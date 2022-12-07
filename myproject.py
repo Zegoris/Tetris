@@ -20,7 +20,7 @@ class Board:  # General class for game modes
         with open("settings.json") as file:
             data = json.load(file)
             self.music = data["Music"]
-            self.sound = data["Sound"]
+            self.sounds = data["Sounds"]
             self.theme = data['DarkTheme']
             self.lightTheme = tuple(data['Color']['Light'])
             self.darkTheme = tuple(data['Color']['Dark'])
