@@ -35,7 +35,7 @@ class Board: # General class for game modes
 
     def negative(self, row, col): # Painting the cell
         color = choice([1, 2, 3, 4, 5]) # Selecting the color of the object
-        object = choice([[(-2, 0), (-1, 0), (0, 0), (1, 0)],
+        object = choice([[(-2, 0), (-1, 0), (0, 0), (1, 0)], # Selecting the form of the object
                          [(-1, 0), (0, 0), (1, 0), (0, 1)],
                          [(-1, 0), (0, 0), (0, 1), (-1, 1)],
                          [(-1, 0), (0, 0), (1, 0), (1, 1)],
