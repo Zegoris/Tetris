@@ -33,8 +33,12 @@ class Settings_Window():
             self.Music = data["Music"]
             self.Sound = data["Sound"]
             self.DarkTheme = data["DarkTheme"]
-            self.DarkColor = tuple(data["Color"]["Dark"])
-            self.LightColor = tuple(data["Color"]["Light"])
+            if self.DarkTheme:
+                self.TextColor = tuple(data["Color"]["Light"])
+                self.BgColor = tuple(data["Color"]["Dark"])
+            else:
+                self.TextColor = tuple(data["Color"]["Dark"])
+                self.BgColor = tuple(data["Color"]["Light"])
 
         self.draw()  # draw all
         while running:
@@ -66,21 +70,29 @@ class Settings_Window():
 
         elif self.ChB_ThemeHitBox_X >= pos[0] >= self.ChB_Theme_posX - 30 and self.ChB_ThemeHitBox_Y >= pos[1] >= self.ChB_Theme_posY - 5:
             # Open Sett_file and replace "Theme"
+
             with open("settings.json") as file:
                 data = json.load(file)
+                if self.DarkTheme:
+                    self.TextColor = tuple(data["Color"]["Dark"])
+                    self.BgColor = tuple(data["Color"]["Light"])
+                else:
+                    self.TextColor = tuple(data["Color"]["Light"])
+                    self.BgColor = tuple(data["Color"]["Dark"])
                 self.DarkTheme = False if self.DarkTheme else True
                 data["DarkTheme"] = True if self.DarkTheme else False
+
                 with open("settings.json", "w") as file:
                     json.dump(data, file, indent=4)
         self.draw()
 
     # Draw on windwo: Title, other sett.
     def draw(self):
-        self.screen.fill(self.DarkColor)                             # BackGround color
+        self.screen.fill(self.TextColor)                             # BackGround color
 
         # draw title
         font = pygame.font.Font(None, 50)
-        text = font.render("GAME SETTINGS", True, self.LightColor)
+        text = font.render("GAME SETTINGS", True, self.BgColor)
         text_x = self.width // 2 - text.get_width() // 2
         text_y = 40
         self.screen.blit(text, (text_x, text_y))
@@ -90,7 +102,7 @@ class Settings_Window():
         # draw ChB "Music"
         # draw text
         font = pygame.font.Font(None, 30)
-        text = font.render("Music", True, self.LightColor)
+        text = font.render("Music", True, self.BgColor)
         text_x = self.ChB_Music_posX
         text_y = self.ChB_Music_posY
         self.screen.blit(text, (text_x, text_y))
@@ -101,20 +113,20 @@ class Settings_Window():
         ChB_y = text_y - 2
 
         if self.Music:
-            pygame.draw.rect(self.screen, self.LightColor, (ChB_x, ChB_y, 20, 20))
-            pygame.draw.rect(self.screen, self.DarkColor, (ChB_x + 2, ChB_y + 2, 16, 16))
-            pygame.draw.rect(self.screen, self.LightColor, (ChB_x + 3, ChB_y + 3, 14, 14))
+            pygame.draw.rect(self.screen, self.BgColor, (ChB_x, ChB_y, 20, 20))
+            pygame.draw.rect(self.screen, self.TextColor, (ChB_x + 2, ChB_y + 2, 16, 16))
+            pygame.draw.rect(self.screen, self.BgColor, (ChB_x + 3, ChB_y + 3, 14, 14))
             pygame.display.flip()
         else:
-            pygame.draw.rect(self.screen, self.LightColor, (ChB_x, ChB_y, 20, 20))
-            pygame.draw.rect(self.screen, self.DarkColor, (ChB_x + 2, ChB_y + 2, 16, 16))
+            pygame.draw.rect(self.screen, self.BgColor, (ChB_x, ChB_y, 20, 20))
+            pygame.draw.rect(self.screen, self.TextColor, (ChB_x + 2, ChB_y + 2, 16, 16))
             pygame.display.flip()
 
 
         # draw ChB "Sound"
         # draw text
         font = pygame.font.Font(None, 30)
-        text = font.render("Sound", True, self.LightColor)
+        text = font.render("Sound", True, self.BgColor)
         text_x = self.ChB_Sound_posX
         text_y = self.ChB_Sound_posY
         self.screen.blit(text, (text_x, text_y))
@@ -125,20 +137,20 @@ class Settings_Window():
         ChB_y = text_y - 2
 
         if self.Sound:
-            pygame.draw.rect(self.screen, self.LightColor, (ChB_x, ChB_y, 20, 20))
-            pygame.draw.rect(self.screen, self.DarkColor, (ChB_x + 2, ChB_y + 2, 16, 16))
-            pygame.draw.rect(self.screen, self.LightColor, (ChB_x + 3, ChB_y + 3, 14, 14))
+            pygame.draw.rect(self.screen, self.BgColor, (ChB_x, ChB_y, 20, 20))
+            pygame.draw.rect(self.screen, self.TextColor, (ChB_x + 2, ChB_y + 2, 16, 16))
+            pygame.draw.rect(self.screen, self.BgColor, (ChB_x + 3, ChB_y + 3, 14, 14))
             pygame.display.flip()
         else:
-            pygame.draw.rect(self.screen, self.LightColor, (ChB_x, ChB_y, 20, 20))
-            pygame.draw.rect(self.screen, self.DarkColor, (ChB_x + 2, ChB_y + 2, 16, 16))
+            pygame.draw.rect(self.screen, self.BgColor, (ChB_x, ChB_y, 20, 20))
+            pygame.draw.rect(self.screen, self.TextColor, (ChB_x + 2, ChB_y + 2, 16, 16))
             pygame.display.flip()
 
 
         # draw ChB "Theme"
         # draw text
         font = pygame.font.Font(None, 30)
-        text = font.render("Dark Theme", True, self.LightColor)
+        text = font.render("Dark Theme", True, self.BgColor)
         text_x = self.ChB_Theme_posX
         text_y = self.ChB_Theme_posY
         self.screen.blit(text, (text_x, text_y))
@@ -149,13 +161,13 @@ class Settings_Window():
         ChB_y = text_y - 2
 
         if self.DarkTheme:
-            pygame.draw.rect(self.screen, self.LightColor, (ChB_x, ChB_y, 20, 20))
-            pygame.draw.rect(self.screen, self.DarkColor, (ChB_x + 2, ChB_y + 2, 16, 16))
-            pygame.draw.rect(self.screen, self.LightColor, (ChB_x + 3, ChB_y + 3, 14, 14))
+            pygame.draw.rect(self.screen, self.BgColor, (ChB_x, ChB_y, 20, 20))
+            pygame.draw.rect(self.screen, self.TextColor, (ChB_x + 2, ChB_y + 2, 16, 16))
+            pygame.draw.rect(self.screen, self.BgColor, (ChB_x + 3, ChB_y + 3, 14, 14))
             pygame.display.flip()
         else:
-            pygame.draw.rect(self.screen, self.LightColor, (ChB_x, ChB_y, 20, 20))
-            pygame.draw.rect(self.screen, self.DarkColor, (ChB_x + 2, ChB_y + 2, 16, 16))
+            pygame.draw.rect(self.screen, self.BgColor, (ChB_x, ChB_y, 20, 20))
+            pygame.draw.rect(self.screen, self.TextColor, (ChB_x + 2, ChB_y + 2, 16, 16))
             pygame.display.flip()
 
 
