@@ -1,10 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="6dc5f473-9df2-4c5a-9f07-20f5a9be5251" name="Changes" comment="repairTest">
-      <change beforePath="$PROJECT_DIR$/SettingsWindow.py" beforeDir="false" afterPath="$PROJECT_DIR$/SettingsWindow.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/settings.json" beforeDir="false" afterPath="$PROJECT_DIR$/settings.json" afterDir="false" />
-    </list>
+    <list default="true" id="6dc5f473-9df2-4c5a-9f07-20f5a9be5251" name="Changes" comment="Colors; &#10;None SwichTheme" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -151,7 +148,21 @@
       <option name="project" value="LOCAL" />
       <updated>1670435714218</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="Colors&#10;None SwichTheme">
+      <created>1670441250785</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1670441250785</updated>
+    </task>
+    <task id="LOCAL-00005" summary="Colors&#10;None SwichTheme">
+      <created>1670441361910</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1670441361912</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="Vcs.Log.History.Properties">
@@ -170,7 +181,19 @@
       <map>
         <entry key="MAIN">
           <value>
-            <State />
+            <State>
+              <option name="FILTERS">
+                <map>
+                  <entry key="branch">
+                    <value>
+                      <list>
+                        <option value="Maxim" />
+                      </list>
+                    </value>
+                  </entry>
+                </map>
+              </option>
+            </State>
           </value>
         </entry>
       </map>
@@ -179,6 +202,8 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="add change Theme" />
     <MESSAGE value="repairTest" />
-    <option name="LAST_COMMIT_MESSAGE" value="repairTest" />
+    <MESSAGE value="Colors&#10;None SwichTheme" />
+    <MESSAGE value="Colors; &#10;None SwichTheme" />
+    <option name="LAST_COMMIT_MESSAGE" value="Colors; &#10;None SwichTheme" />
   </component>
 </project>
