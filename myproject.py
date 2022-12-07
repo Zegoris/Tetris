@@ -19,8 +19,8 @@ class Board:  # General class for game modes
         self.darkTheme = (30, 61, 89)
         with open("settings.json") as file:
             data = json.load(file)
-            self.music = data["Music"]
-            self.sounds = data["Sounds"]
+            self.music = data['Music']
+            self.sounds = data['Sounds']
             self.theme = data['DarkTheme']
             self.lightTheme = tuple(data['Color']['Light'])
             self.darkTheme = tuple(data['Color']['Dark'])
@@ -42,9 +42,12 @@ class Board:  # General class for game modes
                          [(0, 0), (0, 1), (1, 1), (1, 0)],
                          [(0, 0), (0, -1), (0, 1), (1, 1)],
                          [(0, 0), (0, -1), (1, 1), (1, 0)],
-                         [(0, 0), (0, -1), (0, 1), (0, 2)]])
+                         [(0, 0), (0, -1), (0, 1), (0, 2)],
+                         [(0, 0), (0, 1), (1, 0), (1, -1)],
+                         [(0, 0), (0, -1), (1, -1), (0, 1)]])
         for i in object:
             self.board[col + i[0]][row + i[1]] = color
+        print(col, row)
 
     def render(self):
         if self.theme:
