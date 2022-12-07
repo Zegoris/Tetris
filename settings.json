@@ -1,0 +1,17 @@
+{
+    "Music": true,
+    "Sound": true,
+    "DarkTheme": true,
+    "Color": {
+        "Light": [
+            245,
+            240,
+            225
+        ],
+        "Dark": [
+            30,
+            61,
+            89
+        ]
+    }
+}
