@@ -2,6 +2,7 @@ import pygame
 import json
 pygame.init()
 
+# Мяу :)
 
 class Settings_Window():
     def __init__(self):
