@@ -21,6 +21,8 @@ class Board: # General class for game modes
             self.music = data["Music"]
             self.sound = data["Sound"]
             self.theme = data['DarkTheme']
+            self.lightTheme = tuple(data['Color']['Light'])
+            self.darkTheme = tuple(data['Color']['Dark'])
         if self.theme:
             screen.fill(self.darkTheme)
         else:
