@@ -20,6 +20,10 @@ class Settings_Window():
         self.ChB_SoundHitBox_X = self.ChB_Sound_posX + 65
         self.ChB_SoundHitBox_Y = self.ChB_Sound_posY + 20
 
+        self.ChB_Theme_posX = self.width // 2 - 118 // 2
+        self.ChB_Theme_posY = 150
+        self.ChB_ThemeHitBox_X = self.ChB_Theme_posX + 65
+        self.ChB_ThemeHitBox_Y = self.ChB_Theme_posY + 20
 
 
         # open setting.json and take var
@@ -27,6 +31,7 @@ class Settings_Window():
             data = json.load(file)
             self.Music = data["Music"]
             self.Sound = data["Sound"]
+            self.DarkTheme = data["DarkTheme"]
 
         self.draw()  # draw all
         while running:
@@ -53,6 +58,15 @@ class Settings_Window():
                 data = json.load(file)
                 self.Sound = False if self.Sound else True
                 data["Sound"] = True if self.Sound else False
+                with open("settings.json", "w") as file:
+                    json.dump(data, file, indent=4)
+
+        elif self.ChB_ThemeHitBox_X >= pos[0] >= self.ChB_Theme_posX - 30 and self.ChB_ThemeHitBox_Y >= pos[1] >= self.ChB_Theme_posY - 5:
+            # Open Sett_file and replace "Theme"
+            with open("settings.json") as file:
+                data = json.load(file)
+                self.DarkTheme = False if self.DarkTheme else True
+                data["DarkTheme"] = True if self.DarkTheme else False
                 with open("settings.json", "w") as file:
                     json.dump(data, file, indent=4)
         self.draw()
@@ -108,6 +122,30 @@ class Settings_Window():
         ChB_y = text_y - 2
 
         if self.Sound:
+            pygame.draw.rect(self.screen, (100, 255, 100), (ChB_x, ChB_y, 20, 20))
+            pygame.draw.rect(self.screen, (0, 0, 0), (ChB_x + 2, ChB_y + 2, 16, 16))
+            pygame.draw.rect(self.screen, (100, 255, 100), (ChB_x + 3, ChB_y + 3, 14, 14))
+            pygame.display.flip()
+        else:
+            pygame.draw.rect(self.screen, (100, 255, 100), (ChB_x, ChB_y, 20, 20))
+            pygame.draw.rect(self.screen, (0, 0, 0), (ChB_x + 2, ChB_y + 2, 16, 16))
+            pygame.display.flip()
+
+
+        # draw ChB "Theme"
+        # draw text
+        font = pygame.font.Font(None, 30)
+        text = font.render("Dark Theme", True, (100, 255, 100))
+        text_x = self.ChB_Theme_posX
+        text_y = self.ChB_Theme_posY
+        self.screen.blit(text, (text_x, text_y))
+        pygame.display.flip()
+
+        # draw ChB
+        ChB_x = text_x - 25
+        ChB_y = text_y - 2
+
+        if self.DarkTheme:
             pygame.draw.rect(self.screen, (100, 255, 100), (ChB_x, ChB_y, 20, 20))
             pygame.draw.rect(self.screen, (0, 0, 0), (ChB_x + 2, ChB_y + 2, 16, 16))
             pygame.draw.rect(self.screen, (100, 255, 100), (ChB_x + 3, ChB_y + 3, 14, 14))

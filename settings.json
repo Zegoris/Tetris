@@ -1,4 +1,5 @@
 {
-    "Music": false,
-    "Sound": true
+    "Music": true,
+    "Sound": true,
+    "DarkTheme": true
 }
