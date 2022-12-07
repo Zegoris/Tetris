@@ -156,6 +156,4 @@ class Settings_Window():
             pygame.display.flip()
 
 
-
 Settings_Window()
-
