@@ -31,7 +31,7 @@ class Settings_Window():
         with open("settings.json") as file:
             data = json.load(file)
             self.Music = data["Music"]
-            self.Sound = data["Sound"]
+            self.Sound = data["Sounds"]
             self.DarkTheme = data["DarkTheme"]
             if self.DarkTheme:
                 self.TextColor = tuple(data["Color"]["Light"])
@@ -64,7 +64,7 @@ class Settings_Window():
             with open("settings.json") as file:
                 data = json.load(file)
                 self.Sound = False if self.Sound else True
-                data["Sound"] = True if self.Sound else False
+                data["Sounds"] = True if self.Sound else False
                 with open("settings.json", "w") as file:
                     json.dump(data, file, indent=4)
 
@@ -126,7 +126,7 @@ class Settings_Window():
         # draw ChB "Sound"
         # draw text
         font = pygame.font.Font(None, 30)
-        text = font.render("Sound", True, self.BgColor)
+        text = font.render("Sounds", True, self.BgColor)
         text_x = self.ChB_Sound_posX
         text_y = self.ChB_Sound_posY
         self.screen.blit(text, (text_x, text_y))
