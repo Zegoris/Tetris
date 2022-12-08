@@ -1,9 +1,12 @@
 import pygame
 import json
+import os
+import random
 pygame.init()
 #
 
 # Мяу :)
+
 
 class Settings_Window():
     def __init__(self):
@@ -11,6 +14,7 @@ class Settings_Window():
         self.size = self.width, self.height = 500, 700      # Window Size
         self.screen = pygame.display.set_mode(self.size)    # Screen Setting
         running = True
+
 
         # open setting.json and take var
         with open("settings.json") as file:
@@ -26,7 +30,8 @@ class Settings_Window():
                 self.BgColor = tuple(data["Color"]["Light"])
 
         pygame.mixer.music.set_volume(0.1)
-        pygame.mixer.music.load('Music/MeryCristmasTrap_fon.mp3')
+        pygame.mixer.music.load("Music/" + str(random.choice(os.listdir("Music"))))
+
         if self.Music:
             pygame.mixer.music.play()
 
@@ -60,6 +65,7 @@ class Settings_Window():
                 if event.type == pygame.MOUSEBUTTONDOWN:
                     self.click(event.pos)
 
+
     # Change settings
     def click(self, pos):
         if self.ChB_MusicHitBox_X >= pos[0] >= self.ChB_Music_posX - 30 and self.ChB_MusicHitBox_Y >= pos[1] >= self.ChB_Music_posY - 5:
@@ -74,6 +80,7 @@ class Settings_Window():
                 data = json.load(file)
                 self.Music = False if self.Music else True
                 if self.Music:
+                    pygame.mixer.music.load("Music/" + str(random.choice(os.listdir("Music"))))
                     pygame.mixer.music.play()
                 else:
                     pygame.mixer.music.pause()
