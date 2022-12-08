@@ -12,6 +12,14 @@ class Settings_Window():
         self.screen = pygame.display.set_mode(self.size)    # Screen Setting
         running = True
 
+        pygame.mixer.music.set_volume(0.1)
+        pygame.mixer.music.load('Music/MeryCristmasTrap_fon.mp3')
+        pygame.mixer.music.play(-100)
+
+        pygame.mixer.music.set_volume(0.1)
+        self.sound_push_button = pygame.mixer.Sound('Sounds/push_button.mp3')
+
+
         # HitBox
         self.ChB_Music_posX = 175
         self.ChB_Music_posY = 110
@@ -53,6 +61,9 @@ class Settings_Window():
     # Change settings
     def click(self, pos):
         if self.ChB_MusicHitBox_X >= pos[0] >= self.ChB_Music_posX - 30 and self.ChB_MusicHitBox_Y >= pos[1] >= self.ChB_Music_posY - 5:
+            if self.Sound:
+                self.sound_push_button.play()
+
             # Open Sett_file and replace "Music"
             with open("settings.json") as file:
                 data = json.load(file)
@@ -62,6 +73,10 @@ class Settings_Window():
                     json.dump(data, file, indent=4)
 
         elif self.ChB_SoundHitBox_X >= pos[0] >= self.ChB_Sound_posX - 30 and self.ChB_SoundHitBox_Y >= pos[1] >= self.ChB_Sound_posY - 5:
+            if not self.Sound:
+                pygame.mixer.music.load('Sounds/push_button.mp3')
+                pygame.mixer.music.play()
+
             # Open Sett_file and replace "Sound"
             with open("settings.json") as file:
                 data = json.load(file)
@@ -71,8 +86,11 @@ class Settings_Window():
                     json.dump(data, file, indent=4)
 
         elif self.ChB_ThemeHitBox_X >= pos[0] >= self.ChB_Theme_posX - 30 and self.ChB_ThemeHitBox_Y >= pos[1] >= self.ChB_Theme_posY - 5:
-            # Open Sett_file and replace "Theme"
+            if self.Sound:
+                pygame.mixer.music.load('Sounds/push_button.mp3')
+                pygame.mixer.music.play()
 
+            # Open Sett_file and replace "Theme"
             with open("settings.json") as file:
                 data = json.load(file)
                 if self.DarkTheme:

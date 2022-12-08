@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="6dc5f473-9df2-4c5a-9f07-20f5a9be5251" name="Changes" comment="Change name var's">
+    <list default="true" id="6dc5f473-9df2-4c5a-9f07-20f5a9be5251" name="Changes" comment="Rename some vars">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SettingsWindow.py" beforeDir="false" afterPath="$PROJECT_DIR$/SettingsWindow.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/settings.json" beforeDir="false" afterPath="$PROJECT_DIR$/settings.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -188,21 +190,32 @@
   <component name="Vcs.Log.Tabs.Properties">
     <option name="TAB_STATES">
       <map>
+        <entry key="06db7bdd-f158-4db4-93a8-e1a661b07f7e">
+          <value>
+            <State />
+          </value>
+        </entry>
         <entry key="MAIN">
           <value>
             <State>
-              <option name="FILTERS">
+              <option name="HIGHLIGHTERS">
                 <map>
-                  <entry key="branch">
-                    <value>
-                      <list>
-                        <option value="Maxim" />
-                      </list>
-                    </value>
-                  </entry>
+                  <entry key="CURRENT_BRANCH" value="true" />
+                  <entry key="MERGE_COMMITS" value="true" />
+                  <entry key="MY_COMMITS" value="true" />
                 </map>
               </option>
             </State>
+          </value>
+        </entry>
+        <entry key="b311908e-0d18-41ce-bf4a-5f582c77befa">
+          <value>
+            <State />
+          </value>
+        </entry>
+        <entry key="f6b1e260-d705-4f13-8893-146f2604548f">
+          <value>
+            <State />
           </value>
         </entry>
       </map>
