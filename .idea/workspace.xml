@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="6dc5f473-9df2-4c5a-9f07-20f5a9be5251" name="Changes" comment="Rename some vars">
+    <list default="true" id="6dc5f473-9df2-4c5a-9f07-20f5a9be5251" name="Changes" comment="test Sound/Music">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/SettingsWindow.py" beforeDir="false" afterPath="$PROJECT_DIR$/SettingsWindow.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/settings.json" beforeDir="false" afterPath="$PROJECT_DIR$/settings.json" afterDir="false" />
@@ -173,7 +173,21 @@
       <option name="project" value="LOCAL" />
       <updated>1670441473653</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="test Sound/Music">
+      <created>1670508065253</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1670508065253</updated>
+    </task>
+    <task id="LOCAL-00008" summary="test Sound/Music">
+      <created>1670508082226</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1670508082226</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="Vcs.Log.History.Properties">
@@ -226,6 +240,7 @@
     <MESSAGE value="repairTest" />
     <MESSAGE value="Colors&#10;None SwichTheme" />
     <MESSAGE value="Colors; &#10;None SwichTheme" />
-    <option name="LAST_COMMIT_MESSAGE" value="Colors; &#10;None SwichTheme" />
+    <MESSAGE value="test Sound/Music" />
+    <option name="LAST_COMMIT_MESSAGE" value="test Sound/Music" />
   </component>
 </project>

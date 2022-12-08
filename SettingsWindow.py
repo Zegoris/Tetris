@@ -12,11 +12,24 @@ class Settings_Window():
         self.screen = pygame.display.set_mode(self.size)    # Screen Setting
         running = True
 
-        pygame.mixer.music.set_volume(0.1)
-        pygame.mixer.music.load('Music/MeryCristmasTrap_fon.mp3')
-        pygame.mixer.music.play(-100)
+        # open setting.json and take var
+        with open("settings.json") as file:
+            data = json.load(file)
+            self.Music = data["Music"]
+            self.Sound = data["Sounds"]
+            self.DarkTheme = data["DarkTheme"]
+            if self.DarkTheme:
+                self.TextColor = tuple(data["Color"]["Light"])
+                self.BgColor = tuple(data["Color"]["Dark"])
+            else:
+                self.TextColor = tuple(data["Color"]["Dark"])
+                self.BgColor = tuple(data["Color"]["Light"])
 
         pygame.mixer.music.set_volume(0.1)
+        pygame.mixer.music.load('Music/MeryCristmasTrap_fon.mp3')
+        if self.Music:
+            pygame.mixer.music.play()
+
         self.sound_push_button = pygame.mixer.Sound('Sounds/push_button.mp3')
 
 
@@ -37,18 +50,7 @@ class Settings_Window():
         self.ChB_ThemeHitBox_Y = self.ChB_Theme_posY + 20
 
 
-        # open setting.json and take var
-        with open("settings.json") as file:
-            data = json.load(file)
-            self.Music = data["Music"]
-            self.Sound = data["Sounds"]
-            self.DarkTheme = data["DarkTheme"]
-            if self.DarkTheme:
-                self.TextColor = tuple(data["Color"]["Light"])
-                self.BgColor = tuple(data["Color"]["Dark"])
-            else:
-                self.TextColor = tuple(data["Color"]["Dark"])
-                self.BgColor = tuple(data["Color"]["Light"])
+
 
         self.draw()  # draw all
         while running:
@@ -62,20 +64,29 @@ class Settings_Window():
     def click(self, pos):
         if self.ChB_MusicHitBox_X >= pos[0] >= self.ChB_Music_posX - 30 and self.ChB_MusicHitBox_Y >= pos[1] >= self.ChB_Music_posY - 5:
             if self.Sound:
+                pygame.mixer.music.pause()
                 self.sound_push_button.play()
+                if self.Music:
+                    pygame.mixer.music.unpause()
 
             # Open Sett_file and replace "Music"
             with open("settings.json") as file:
                 data = json.load(file)
                 self.Music = False if self.Music else True
+                if self.Music:
+                    pygame.mixer.music.play()
+                else:
+                    pygame.mixer.music.pause()
                 data["Music"] = True if self.Music else False
                 with open("settings.json", "w") as file:
                     json.dump(data, file, indent=4)
 
         elif self.ChB_SoundHitBox_X >= pos[0] >= self.ChB_Sound_posX - 30 and self.ChB_SoundHitBox_Y >= pos[1] >= self.ChB_Sound_posY - 5:
             if not self.Sound:
-                pygame.mixer.music.load('Sounds/push_button.mp3')
-                pygame.mixer.music.play()
+                pygame.mixer.music.pause()
+                self.sound_push_button.play()
+                if self.Music:
+                    pygame.mixer.music.unpause()
 
             # Open Sett_file and replace "Sound"
             with open("settings.json") as file:
@@ -87,8 +98,10 @@ class Settings_Window():
 
         elif self.ChB_ThemeHitBox_X >= pos[0] >= self.ChB_Theme_posX - 30 and self.ChB_ThemeHitBox_Y >= pos[1] >= self.ChB_Theme_posY - 5:
             if self.Sound:
-                pygame.mixer.music.load('Sounds/push_button.mp3')
-                pygame.mixer.music.play()
+                pygame.mixer.music.pause()
+                self.sound_push_button.play()
+                if self.Music:
+                    pygame.mixer.music.unpause()
 
             # Open Sett_file and replace "Theme"
             with open("settings.json") as file:
