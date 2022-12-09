@@ -224,19 +224,19 @@ class Board:  # General class for game modes
                 return False
         return True
 
-    def clearCompleted(self): # Removing filled rows and shifting the top rows down
+    def clearCompleted(self):  # Removing filled rows and shifting the top rows down
         removed_lines = 0
-        y = self.height - 1
-        while y >= 0:
-            if self.isCompleted(y):
-                for y in range(y, 0, -1):
+        y0 = self.height - 1
+        while y0 >= 0:
+            if self.isCompleted(y0):
+                for y in range(y0, 0, -1):
                     for x in range(self.width):
                         self.board[x][y] = self.board[x][y - 1]
                 for x in range(self.width):
                     self.board[x][0] = self.empty
                 removed_lines += 1
             else:
-                y -= 1
+                y0 -= 1
         return removed_lines
 
     def check(self, fig, x0=0, y0=0): # Checks if the shape is within the board boundaries without colliding with other shapes
