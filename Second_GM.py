@@ -175,7 +175,7 @@ class Board:  # General class for game modes
                         self.going_left = False
                         self.last_side_move = time.time()
 
-                    if event.key == pygame.K_UP:  # Rotate the figure if there is room
+                    if event.key == pygame.K_UP and self.score < 21000:  # Rotate the figure if there is room
                         self.fallingFig['rotation'] = (self.fallingFig['rotation'] + 1) \
                                                       % len(self.figures[self.fallingFig['shape']])
                         if not self.checkPos(self.fallingFig):
