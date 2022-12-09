@@ -9,14 +9,14 @@ pygame.mixer.init()
 
 class Board:  # General class for game modes
     def __init__(self, screen, width, height):
-        self.fig_w, self.fig_h = 5, 5
+        self.tetraminesW, self.tetraminesH = 5, 5
         self.empty = 'o'
-        self.figures = {'S': [['ooooo',
+        self.tetramines = {'S': [['ooooo',
                           'ooooo',
                           'ooxxo',
                           'oxxoo',
                           'ooooo'],
-                         ['ooooo',
+                          ['ooooo',
                           'ooxoo',
                           'ooxxo',
                           'oooxo',
@@ -31,7 +31,7 @@ class Board:  # General class for game modes
                           'oxxoo',
                           'oxooo',
                           'ooooo']],
-                   'J': [['ooooo',
+                           'J': [['ooooo',
                           'oxooo',
                           'oxxxo',
                           'ooooo',
@@ -51,7 +51,7 @@ class Board:  # General class for game modes
                           'ooxoo',
                           'oxxoo',
                           'ooooo']],
-                   'L': [['ooooo',
+                           'L': [['ooooo',
                           'oooxo',
                           'oxxxo',
                           'ooooo',
@@ -71,7 +71,7 @@ class Board:  # General class for game modes
                           'ooxoo',
                           'ooxoo',
                           'ooooo']],
-                   'I': [['ooxoo',
+                           'I': [['ooxoo',
                           'ooxoo',
                           'ooxoo',
                           'ooxoo',
@@ -81,12 +81,12 @@ class Board:  # General class for game modes
                           'xxxxo',
                           'ooooo',
                           'ooooo']],
-                   'O': [['ooooo',
+                           'O': [['ooooo',
                           'ooooo',
                           'oxxoo',
                           'oxxoo',
                           'ooooo']],
-                   'T': [['ooooo',
+                           'T': [['ooooo',
                           'ooxoo',
                           'oxxxo',
                           'ooooo',
@@ -106,7 +106,7 @@ class Board:  # General class for game modes
                           'oxxoo',
                           'ooxoo',
                           'ooooo']]}
-        self.size = self.width_w, self.height_w = 600, 750  # Window Size
+        self.size = self.widthW, self.heightW = 600, 750  # Window Size
         running = True
         self.colors = ((0, 0, 225), (0, 225, 0), (225, 0, 0), (225, 225, 0))
         self.lightcolors = ((30, 30, 255), (50, 255, 50), (255, 30, 30), (255, 255, 30))
@@ -130,85 +130,85 @@ class Board:  # General class for game modes
         else:
             screen.fill(self.lightTheme)
         self.fps = 60
-        self.side_freq, self.down_freq = 0.15, 0.1  # Movement to the side and down
-        self.side_margin = 10
-        self.top_margin = self.height_w - (self.height * self.cell_size) - 5
+        self.side_frequency, self.down_frequency = 0.15, 0.1  # Movement to the side and down
+        self.side_fields = 10
+        self.upper_field = self.heightW - (self.height * self.cell_size) - 5
         self.clock = pygame.time.Clock()
-        self.last_move_down = time.time()
-        self.last_side_move = time.time()
+        self.last_down = time.time()
+        self.last_side = time.time()
         self.last_fall = time.time()
-        self.going_down = False  # Is it possible to move to the down
-        self.going_left = False  # Is it possible to move to the left
-        self.going_right = False  # Is it possible to move to the right
-        self.level, self.fall_speed = self.calcSpeed()
-        self.fallingFig = self.getNewFig()
-        self.nextFig = self.getNewFig()
+        self.down = False  # Is it possible to move to the down
+        self.left = False  # Is it possible to move to the left
+        self.right = False  # Is it possible to move to the right
+        self.level, self.fall_speed = self.static()
+        self.fallingTetramine = self.newTetramine()
+        self.nextTetramine = self.newTetramine()
         while running:
-            if self.fallingFig is None:  # If there are no falling shapes, we generate a new one
-                self.fallingFig = self.nextFig
-                self.nextFig = self.getNewFig()
+            if self.fallingTetramine is None:  # If there are no falling shapes, we generate a new one
+                self.fallingTetramine = self.nextTetramine
+                self.nextTetramine = self.newTetramine()
                 self.last_fall = time.time()
 
-                if not self.checkPos(self.fallingFig):
-                    exit()  # If there is no free space on the playing field - the game is over, final window
+                if not self.check(self.fallingTetramine):
+                    exit()  # If there is no free space on the playing field - the game is over, FINAL WINDOW
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
                     running = False
                 if event.type == pygame.KEYUP:
                     if event.key == pygame.K_LEFT:
-                        self.going_left = False
+                        self.left = False
                     if event.key == pygame.K_RIGHT:
-                        self.going_right = False
+                        self.right = False
                     if event.key == pygame.K_DOWN:
-                        self.going_down = False
+                        self.down = False
 
                 if event.type == pygame.KEYDOWN:  # Moving the figure to the right and left
-                    if event.key == pygame.K_LEFT and self.checkPos(self.fallingFig, adjX=-1):
-                        self.fallingFig['x'] -= 1
-                        self.going_left = True
-                        self.going_right = False
-                        self.last_side_move = time.time()
+                    if event.key == pygame.K_LEFT and self.check(self.fallingTetramine, x0=-1):
+                        self.fallingTetramine['x'] -= 1
+                        self.left = True
+                        self.right = False
+                        self.last_side = time.time()
 
-                    if event.key == pygame.K_RIGHT and self.checkPos(self.fallingFig, adjX=1):
-                        self.fallingFig['x'] += 1
-                        self.going_right = True
-                        self.going_left = False
-                        self.last_side_move = time.time()
+                    if event.key == pygame.K_RIGHT and self.check(self.fallingTetramine, x0=1):
+                        self.fallingTetramine['x'] += 1
+                        self.right = True
+                        self.left = False
+                        self.last_side = time.time()
 
                     if event.key == pygame.K_UP:  # Rotate the figure if there is room
-                        self.fallingFig['rotation'] = (self.fallingFig['rotation'] + 1) \
-                                                      % len(self.figures[self.fallingFig['shape']])
-                        if not self.checkPos(self.fallingFig):
-                            self.fallingFig['rotation'] = (self.fallingFig['rotation'] - 1) \
-                                                          % len(self.figures[self.fallingFig['shape']])
+                        self.fallingTetramine['rotation'] = (self.fallingTetramine['rotation'] + 1) \
+                                                            % len(self.tetramines[self.fallingTetramine['shape']])
+                        if not self.check(self.fallingTetramine):
+                            self.fallingTetramine['rotation'] = (self.fallingTetramine['rotation'] - 1) \
+                                                                % len(self.tetramines[self.fallingTetramine['shape']])
 
                     if event.key == pygame.K_DOWN:  # Speed up the fall of the figure
-                        self.going_down = True
-                        if self.checkPos(self.fallingFig, adjY=1):
-                            self.fallingFig['y'] += 1
-                        self.last_move_down = time.time()
+                        self.down = True
+                        if self.check(self.fallingTetramine, y0=1):
+                            self.fallingTetramine['y'] += 1
+                        self.last_down = time.time()
 
             # Controlling the fall of the figure while holding down the keys
-            if (self.going_left or self.going_right) and time.time() - self.last_side_move > self.side_freq:
-                if self.going_left and self.checkPos(self.fallingFig, adjX=-1):
-                    self.fallingFig['x'] -= 1
-                elif self.going_right and self.checkPos(self.fallingFig, adjX=1):
-                    self.fallingFig['x'] += 1
-                self.last_side_move = time.time()
+            if (self.left or self.right) and time.time() - self.last_side > self.side_frequency:
+                if self.left and self.check(self.fallingTetramine, x0=-1):
+                    self.fallingTetramine['x'] -= 1
+                elif self.right and self.check(self.fallingTetramine, x0=1):
+                    self.fallingTetramine['x'] += 1
+                self.last_side = time.time()
 
-            if self.going_down and time.time() - self.last_move_down > self.down_freq \
-                    and self.checkPos(self.fallingFig, adjY=1):
-                self.fallingFig['y'] += 1
-                self.last_move_down = time.time()
+            if self.down and time.time() - self.last_down > self.down_frequency \
+                    and self.check(self.fallingTetramine, y0=1):
+                self.fallingTetramine['y'] += 1
+                self.last_down = time.time()
 
             if time.time() - self.last_fall > self.fall_speed:  # Free fall of the figure
-                if not self.checkPos(self.fallingFig, adjY=1):
-                    self.addBoard(self.fallingFig)  # The figure has landed, add it to the contents of the board
+                if not self.check(self.fallingTetramine, y0=1):
+                    self.addBoard(self.fallingTetramine)  # The figure has landed, add it to the contents of the board
                     self.score += self.clearCompleted() * 300
-                    self.level, self.fall_speed = self.calcSpeed()
-                    self.fallingFig = None
+                    self.level, self.fall_speed = self.static()
+                    self.fallingTetramine = None
                 else:  # The figure hasn't landed yet, we keep moving down
-                    self.fallingFig['y'] += 1
+                    self.fallingTetramine['y'] += 1
                     self.last_fall = time.time()
             if self.theme:
                 self.screen.fill(self.darkTheme)
@@ -229,9 +229,9 @@ class Board:  # General class for game modes
         y = self.height - 1
         while y >= 0:
             if self.isCompleted(y):
-                for pushDownY in range(y, 0, -1):
+                for y in range(y, 0, -1):
                     for x in range(self.width):
-                        self.board[x][pushDownY] = self.board[x][pushDownY - 1]
+                        self.board[x][y] = self.board[x][y - 1]
                 for x in range(self.width):
                     self.board[x][0] = self.empty
                 removed_lines += 1
@@ -239,74 +239,74 @@ class Board:  # General class for game modes
                 y -= 1
         return removed_lines
 
-    def incup(self, x, y):
-        return self.width > x >= 0 and y < self.height
-
-    def checkPos(self, fig, adjX=0, adjY=0): # Checks if the shape is within the board boundaries without colliding with other shapes
-        for x in range(self.fig_w):
-            for y in range(self.fig_h):
-                above_board = y + fig['y'] + adjY < 0
-                if above_board or self.figures[fig['shape']][fig['rotation']][y][x] == self.empty:
+    def check(self, fig, x0=0, y0=0): # Checks if the shape is within the board boundaries without colliding with other shapes
+        for x in range(self.tetraminesW):
+            for y in range(self.tetraminesH):
+                above_board = y + fig['y'] + y0 < 0
+                if above_board or self.tetramines[fig['shape']][fig['rotation']][y][x] == self.empty:
                     continue
-                if not self.incup(x + fig['x'] + adjX, y + fig['y'] + adjY):
+                if not self.inBoard(x + fig['x'] + x0, y + fig['y'] + y0):
                     return False
-                if self.board[x + fig['x'] + adjX][y + fig['y'] + adjY] != self.empty:
+                if self.board[x + fig['x'] + x0][y + fig['y'] + y0] != self.empty:
                     return False
         return True
 
+    def inBoard(self, x, y):
+        return self.width > x >= 0 and y < self.height
+
     def addBoard(self, fig):
-        for x in range(self.fig_w):
-            for y in range(self.fig_h):
-                if self.figures[fig['shape']][fig['rotation']][y][x] != self.empty:
+        for x in range(self.tetraminesW):
+            for y in range(self.tetraminesH):
+                if self.tetramines[fig['shape']][fig['rotation']][y][x] != self.empty:
                     self.board[x + fig['x']][y + fig['y']] = fig['color']
 
-    def calcSpeed(self):
+    def static(self):
         level = int(0 / 10) + 1
         fall_speed = 0.27 - (level * 0.02)
         return level, fall_speed
 
-    def getNewFig(self): # Returns a new shape with a random color and rotation angle
-        shape = choice(list(self.figures.keys()))
-        newFigure = {'shape': shape,
-                     'rotation': randint(0, len(self.figures[shape]) - 1),
-                     'x': int(self.width / 2) - int(self.fig_w / 2),
+    def coords(self, x, y):
+        return (self.side_fields + (x * self.cell_size)), \
+            (self.upper_field + (y * self.cell_size))
+
+    def newTetramine(self): # Returns a new shape with a random color and rotation angle
+        shape = choice(list(self.tetramines.keys()))
+        newTetramine = {'shape': shape,
+                     'rotation': randint(0, len(self.tetramines[shape]) - 1),
+                     'x': int(self.width / 2) - int(self.tetraminesW / 2),
                      'y': -2,
                      'color': randint(0, len(self.colors) - 1)}
-        return newFigure
+        return newTetramine
 
-    def convertCoords(self, block_x, block_y):
-        return (self.side_margin + (block_x * self.cell_size)), \
-            (self.top_margin + (block_y * self.cell_size))
-
-    def drawBlock(self, block_x, block_y, color, pixelx=None, pixely=None): # Drawing the square blocks that make up the figures
+    def drawBlock(self, block_x, block_y, color, x=None, y=None): # Drawing the square blocks that make up the figures
         if color == self.empty:
             return
-        if pixelx is None and pixely is None:
-            pixelx, pixely = self.convertCoords(block_x, block_y)
+        if x is None and y is None:
+            x, y = self.coords(block_x, block_y)
         pygame.draw.rect(self.screen, self.colors[color],
-                         (pixelx + 1, pixely + 1, self.cell_size - 1,
+                         (x + 1, y + 1, self.cell_size - 1,
                           self.cell_size - 1),
                          0, 3)
         pygame.draw.rect(self.screen, self.lightcolors[color],
-                         (pixelx + 1, pixely + 1, self.cell_size - 4,
+                         (x + 1, y + 1, self.cell_size - 4,
                           self.cell_size - 4), 0, 3)
         pygame.draw.circle(self.screen, self.colors[color],
-                           (pixelx + self.cell_size / 2,
-                            pixely + self.cell_size / 2), 5)
+                           (x + self.cell_size / 2,
+                            y + self.cell_size / 2), 5)
 
-    def drawnextFig(self, fig):  # Preview of the next figure
-        self.drawFig(fig, pixelx=self.width_w - 160, pixely=100)
+    def drawnextTetramine(self, tetramine):  # Preview of the next figure
+        self.drawTetramine(tetramine, x0=self.widthW - 160, y0=100)
 
-    def drawFig(self, fig, pixelx=None, pixely=None):
-        figToDraw = self.figures[fig['shape']][fig['rotation']]
-        if pixelx is None and pixely is None:
-            pixelx, pixely = self.convertCoords(fig['x'], fig['y'])
+    def drawTetramine(self, fig, x0=None, y0=None):
+        figToDraw = self.tetramines[fig['shape']][fig['rotation']]
+        if x0 is None and y0 is None:
+            x0, y0 = self.coords(fig['x'], fig['y'])
         # Drawing figure elements
-        for x in range(self.fig_w):
-            for y in range(self.fig_h):
+        for x in range(self.tetraminesW):
+            for y in range(self.tetraminesH):
                 if figToDraw[y][x] != self.empty:
-                    self.drawBlock(None, None, fig['color'], pixelx + (x * self.cell_size),
-                                   pixely + (y * self.cell_size))
+                    self.drawBlock(None, None, fig['color'], x0 + (x * self.cell_size),
+                                   y0 + (y * self.cell_size))
 
     def render(self):
         if self.theme:
@@ -314,17 +314,16 @@ class Board:  # General class for game modes
         else:
             themeColor = pygame.Color('black')
         pygame.draw.rect(self.screen, themeColor,
-                         (self.side_margin - 4, self.top_margin - 4, (self.width * self.cell_size) + 8,
-                         (self.height * self.cell_size) + 8), 5) # Border of the playing field
+                         (self.side_fields - 4, self.upper_field - 4, (self.width * self.cell_size) + 8,
+                          (self.height * self.cell_size) + 8), 5) # Border of the playing field
         for x in range(self.width):
             for y in range(self.height):
-                self.drawBlock(x, y, self.board[x][y])
-        self.drawnextFig(self.nextFig)
-        if self.fallingFig is not None:
-            self.drawFig(self.fallingFig)
+                self.drawBlock(x, y, self.board[x][y]) # Already landed figures
+        self.drawnextTetramine(self.nextTetramine) # Preview of the next figure
+        if self.fallingTetramine is not None:
+            self.drawTetramine(self.fallingTetramine)  # Drawing a falling figure
 
         pygame.display.flip()
-
 
 
 class First_GM(Board):  # Class of the first game mode
