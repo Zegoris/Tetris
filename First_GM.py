@@ -11,8 +11,7 @@ class Board:  # General class for game modes
     def __init__(self, screen, width, height):
         self.fig_w, self.fig_h = 5, 5
         self.empty = 'o'
-        self.points = 0
-        self.figures = {'S': [['ooooo', # Game tetramines
+        self.figures = {'S': [['ooooo',
                           'ooooo',
                           'ooxxo',
                           'oxxoo',
@@ -107,6 +106,8 @@ class Board:  # General class for game modes
                           'oxxoo',
                           'ooxoo',
                           'ooooo']]}
+        self.size = self.width_w, self.height_w = 600, 750  # Window Size
+        running = True
         self.colors = ((0, 0, 225), (0, 225, 0), (225, 0, 0), (225, 225, 0))
         self.lightcolors = ((30, 30, 255), (50, 255, 50), (255, 30, 30), (255, 255, 30))
         self.width = width
@@ -114,10 +115,9 @@ class Board:  # General class for game modes
         self.board = [[self.empty] * height for _ in range(width)]  # Matrix of values of painted cells
         self.left = 0
         self.top = 0
-        self.cell_size = 35
+        self.cell_size = 24
+        self.score = 0
         self.screen = screen
-        self.lightTheme = (245, 240, 225)
-        self.darkTheme = (30, 61, 89)
         with open("settings.json") as file:
             data = json.load(file)
             self.music = data['Music']
@@ -129,6 +129,94 @@ class Board:  # General class for game modes
             screen.fill(self.darkTheme)
         else:
             screen.fill(self.lightTheme)
+        self.fps = 60
+        self.side_freq, self.down_freq = 0.15, 0.1  # Movement to the side and down
+        self.side_margin = 10
+        self.top_margin = self.height_w - (self.height * self.cell_size) - 5
+        self.clock = pygame.time.Clock()
+        self.last_move_down = time.time()
+        self.last_side_move = time.time()
+        self.last_fall = time.time()
+        self.going_down = False  # Is it possible to move to the down
+        self.going_left = False  # Is it possible to move to the left
+        self.going_right = False  # Is it possible to move to the right
+        self.level, self.fall_speed = self.calcSpeed()
+        self.fallingFig = self.getNewFig()
+        self.nextFig = self.getNewFig()
+        while running:
+            if self.fallingFig is None:  # If there are no falling shapes, we generate a new one
+                self.fallingFig = self.nextFig
+                self.nextFig = self.getNewFig()
+                self.last_fall = time.time()
+
+                if not self.checkPos(self.fallingFig):
+                    exit()  # If there is no free space on the playing field - the game is over, final window
+            for event in pygame.event.get():
+                if event.type == pygame.QUIT:
+                    running = False
+                if event.type == pygame.KEYUP:
+                    if event.key == pygame.K_LEFT:
+                        self.going_left = False
+                    if event.key == pygame.K_RIGHT:
+                        self.going_right = False
+                    if event.key == pygame.K_DOWN:
+                        self.going_down = False
+
+                if event.type == pygame.KEYDOWN:  # Moving the figure to the right and left
+                    if event.key == pygame.K_LEFT and self.checkPos(self.fallingFig, adjX=-1):
+                        self.fallingFig['x'] -= 1
+                        self.going_left = True
+                        self.going_right = False
+                        self.last_side_move = time.time()
+
+                    if event.key == pygame.K_RIGHT and self.checkPos(self.fallingFig, adjX=1):
+                        self.fallingFig['x'] += 1
+                        self.going_right = True
+                        self.going_left = False
+                        self.last_side_move = time.time()
+
+                    if event.key == pygame.K_UP:  # Rotate the figure if there is room
+                        self.fallingFig['rotation'] = (self.fallingFig['rotation'] + 1) \
+                                                      % len(self.figures[self.fallingFig['shape']])
+                        if not self.checkPos(self.fallingFig):
+                            self.fallingFig['rotation'] = (self.fallingFig['rotation'] - 1) \
+                                                          % len(self.figures[self.fallingFig['shape']])
+
+                    if event.key == pygame.K_DOWN:  # Speed up the fall of the figure
+                        self.going_down = True
+                        if self.checkPos(self.fallingFig, adjY=1):
+                            self.fallingFig['y'] += 1
+                        self.last_move_down = time.time()
+
+            # Controlling the fall of the figure while holding down the keys
+            if (self.going_left or self.going_right) and time.time() - self.last_side_move > self.side_freq:
+                if self.going_left and self.checkPos(self.fallingFig, adjX=-1):
+                    self.fallingFig['x'] -= 1
+                elif self.going_right and self.checkPos(self.fallingFig, adjX=1):
+                    self.fallingFig['x'] += 1
+                self.last_side_move = time.time()
+
+            if self.going_down and time.time() - self.last_move_down > self.down_freq \
+                    and self.checkPos(self.fallingFig, adjY=1):
+                self.fallingFig['y'] += 1
+                self.last_move_down = time.time()
+
+            if time.time() - self.last_fall > self.fall_speed:  # Free fall of the figure
+                if not self.checkPos(self.fallingFig, adjY=1):
+                    self.addBoard(self.fallingFig)  # The figure has landed, add it to the contents of the board
+                    self.score += self.clearCompleted() * 300
+                    self.level, self.fall_speed = self.calcSpeed()
+                    self.fallingFig = None
+                else:  # The figure hasn't landed yet, we keep moving down
+                    self.fallingFig['y'] += 1
+                    self.last_fall = time.time()
+            if self.theme:
+                self.screen.fill(self.darkTheme)
+            else:
+                self.screen.fill(self.lightTheme)
+            self.render()
+            pygame.display.flip()
+            self.clock.tick(self.fps)
 
     def isCompleted(self, y): # Check the presence of fully filled rows
         for x in range(self.width):
@@ -173,7 +261,7 @@ class Board:  # General class for game modes
                     self.board[x + fig['x']][y + fig['y']] = fig['color']
 
     def calcSpeed(self):
-        level = int(self.points / 10) + 1
+        level = int(0 / 10) + 1
         fall_speed = 0.27 - (level * 0.02)
         return level, fall_speed
 
@@ -185,102 +273,6 @@ class Board:  # General class for game modes
                      'y': -2,
                      'color': randint(0, len(self.colors) - 1)}
         return newFigure
-
-
-class First_GM(Board):  # Class of the first game mode
-    def __init__(self):
-        self.size = self.width_w, self.height_w = 600, 750  # Window Size
-        self.screen = pygame.display.set_mode(self.size)  # Screen Setting
-        running = True
-        Board.__init__(self, self.screen, 12, 25)
-        self.fps = 25
-        self.side_freq, self.down_freq = 0.15, 0.1 # Movement to the side and down
-        self.side_margin = 10
-        self.top_margin = self.height_w - (self.height * self.cell_size) - 5
-        self.clock = pygame.time.Clock()
-        self.last_move_down = time.time()
-        self.last_side_move = time.time()
-        self.last_fall = time.time()
-        self.going_down = False # Is it possible to move to the down
-        self.going_left = False # Is it possible to move to the left
-        self.going_right = False # Is it possible to move to the right
-        self.level, self.fall_speed = self.calcSpeed()
-        self.fallingFig = self.getNewFig()
-        self.nextFig = self.getNewFig()
-        while running:
-            if self.fallingFig is None: # If there are no falling shapes, we generate a new one
-                self.fallingFig = self.nextFig
-                self.nextFig = self.getNewFig()
-                self.last_fall = time.time()
-
-                if not self.checkPos(self.fallingFig):
-                    pass  # If there is no free space on the playing field - the game is over, final window
-            for event in pygame.event.get():
-                if event.type == pygame.QUIT:
-                    running = False
-                if event.type == pygame.KEYUP:
-                    if event.key == pygame.K_LEFT:
-                        self.going_left = False
-                    if event.key == pygame.K_RIGHT:
-                        self.going_right = False
-                    if event.key == pygame.K_DOWN:
-                        self.going_down = False
-
-                if event.type == pygame.KEYDOWN: # Moving the figure to the right and left
-                    if event.key == pygame.K_LEFT and self.checkPos(self.fallingFig, adjX=-1):
-                        self.fallingFig['x'] -= 1
-                        self.going_left = True
-                        self.going_right = False
-                        self.last_side_move = time.time()
-
-                    if event.key == pygame.K_RIGHT and self.checkPos(self.fallingFig, adjX=1):
-                        self.fallingFig['x'] += 1
-                        self.going_right = True
-                        self.going_left = False
-                        self.last_side_move = time.time()
-
-                    if event.key == pygame.K_UP: # Rotate the figure if there is room
-                        self.fallingFig['rotation'] = (self.fallingFig['rotation'] + 1)\
-                                                 % len(self.figures[self.fallingFig['shape']])
-                        if not self.checkPos(self.fallingFig):
-                            self.fallingFig['rotation'] = (self.fallingFig['rotation'] - 1)\
-                                                     % len(self.figures[self.fallingFig['shape']])
-
-                    if event.key == pygame.K_DOWN: # Speed up the fall of the figure
-                        self.going_down = True
-                        if self.checkPos(self.fallingFig, adjY=1):
-                            self.fallingFig['y'] += 1
-                        self.last_move_down = time.time()
-
-            # Controlling the fall of the figure while holding down the keys
-            if (self.going_left or self.going_right) and time.time() - self.last_side_move > self.side_freq:
-                if self.going_left and self.checkPos(self.fallingFig, adjX=-1):
-                    self.fallingFig['x'] -= 1
-                elif self.going_right and self.checkPos(self.fallingFig, adjX=1):
-                    self.fallingFig['x'] += 1
-                self.last_side_move = time.time()
-
-            if self.going_down and time.time() - self.last_move_down > self.down_freq \
-                    and self.checkPos(self.fallingFig, adjY=1):
-                self.fallingFig['y'] += 1
-                self.last_move_down = time.time()
-
-            if time.time() - self.last_fall > self.fall_speed:  # Free fall of the figure
-                if not self.checkPos(self.fallingFig, adjY=1):
-                    self.addBoard(self.fallingFig)  # The figure has landed, add it to the contents of the board
-                    self.points += self.clearCompleted()
-                    self.level, self.fall_speed = self.calcSpeed()
-                    self.fallingFig = None
-                else:  # The figure hasn't landed yet, we keep moving down
-                    self.fallingFig['y'] += 1
-                    self.last_fall = time.time()
-            if self.theme:
-                self.screen.fill(self.darkTheme)
-            else:
-                self.screen.fill(self.lightTheme)
-            self.render()
-            pygame.display.flip()
-            self.clock.tick(self.fps)
 
     def convertCoords(self, block_x, block_y):
         return (self.side_margin + (block_x * self.cell_size)), \
@@ -324,14 +316,22 @@ class First_GM(Board):  # Class of the first game mode
         pygame.draw.rect(self.screen, themeColor,
                          (self.side_margin - 4, self.top_margin - 4, (self.width * self.cell_size) + 8,
                          (self.height * self.cell_size) + 8), 5) # Border of the playing field
-        for x in range(self.width): # Drawing figures that have already been on the field
+        for x in range(self.width):
             for y in range(self.height):
                 self.drawBlock(x, y, self.board[x][y])
-        self.drawnextFig(self.nextFig) # Drawing a preview of a new figure
-        if self.fallingFig is not None: # Drawing the fallingFig
+        self.drawnextFig(self.nextFig)
+        if self.fallingFig is not None:
             self.drawFig(self.fallingFig)
 
         pygame.display.flip()
+
+
+
+class First_GM(Board):  # Class of the first game mode
+    def __init__(self):
+        self.size = self.width_w, self.height_w = 600, 750  # Window Size
+        self.screen = pygame.display.set_mode(self.size)  # Screen Setting
+        Board.__init__(self, self.screen, 15, 31)
 
 
 First_GM()
