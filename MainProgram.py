@@ -35,11 +35,9 @@ class MainWindow():
         # Sounds
         self.sound_push_button = pygame.mixer.Sound('Sounds/push_button.mp3')
 
-        if self.Music and self.runM == 0:
+        # Play Music
+        if self.Music:
             pygame.mixer.music.play()
-
-        elif self.Music and self.runM != 0:
-            pygame.mixer.music.unpause()
 
         self.draw()  # draw all
 
@@ -47,15 +45,16 @@ class MainWindow():
         while running:
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:  # Stop Programm
-                    running = False  # write class of MainWind? for restart game
+                    running = False
                 if event.type == pygame.MOUSEBUTTONDOWN:
                     self.click(event.pos)
 
+    # Draw all in screen
     def draw(self):
-        self.screen.fill(self.TextColor)
+        self.screen.fill(self.TextColor)        # Fill display color
         pygame.display.flip()
 
-        # Title
+        # Title "Tetris"
         font = pygame.font.Font(None, 60)
         text = font.render("T_E_T_R_I_S", True, self.BgColor)
         text_x = self.width // 2 - text.get_width() // 2
@@ -64,7 +63,8 @@ class MainWindow():
         pygame.draw.rect(self.screen, self.BgColor, (text_x - 10, text_y - 10,
                                                text.get_width() + 20, text.get_height() + 20), 6)
 
-        # Btn Play
+
+        # Btn "Play"
         font = pygame.font.Font(None, 60)
         text = font.render("    PLAY     ", True, self.BgColor)
         text_x = self.width // 2 - text.get_width() // 2
@@ -72,10 +72,12 @@ class MainWindow():
         self.screen.blit(text, (text_x, text_y))
         pygame.draw.rect(self.screen, self.BgColor, (text_x - 10, text_y - 10,
                                                      text.get_width() + 20, text.get_height() + 20), 2)
+        # HitBox of Btn "Play"
         self.BtnPlay_HuitBox_X = text_x
         self.BtnPlay_HuitBox_Y = text_y
         self.BtnPlay_HuitBox_XSize = text_x + 500
         self.BtnPlay_HuitBox_YSize = text_y + 50
+
 
         # Btn Sett
         font = pygame.font.Font(None, 60)
@@ -85,20 +87,32 @@ class MainWindow():
         self.screen.blit(text, (text_x, text_y))
         pygame.draw.rect(self.screen, self.BgColor, (text_x - 10, text_y - 10,
                                                      text.get_width() + 20, text.get_height() + 20), 2)
+        # HitBox of Btn "Play"
         self.BtnSett_HuitBox_X = text_x
         self.BtnSett_HuitBox_Y = text_y
         self.BtnSett_HuitBox_XSize = text_x + 500
         self.BtnSett_HuitBox_YSize = text_y + 50
 
-
+        # Draw Changes
         pygame.display.flip()
 
+    # CLick Operation
     def click(self, pos):
+        # If sound On -> play sound
+        if self.Sound:
+            pygame.mixer.music.pause()
+            self.sound_push_button.play()
+            if self.Music:
+                pygame.mixer.music.unpause()
+
+        # If Mouse Pos in HitBox's ->
         if self.BtnPlay_HuitBox_X <= pos[0] <= self.BtnPlay_HuitBox_XSize and self.BtnPlay_HuitBox_Y <= pos[1] <= self.BtnPlay_HuitBox_YSize:
+            # Debug
             print("TEST PLAY")
         elif self.BtnSett_HuitBox_X <= pos[0] <= self.BtnSett_HuitBox_XSize and self.BtnSett_HuitBox_Y <= pos[1] <= self.BtnSett_HuitBox_YSize:
             global runm
             runm = 1
+            # Open SettingsWindow
             Settings_Window()
 
 
@@ -123,36 +137,42 @@ class Settings_Window():
                 self.TextColor = tuple(data["Color"]["Dark"])
                 self.BgColor = tuple(data["Color"]["Light"])
 
+        # Play Music
         if self.Music:
             pygame.mixer.music.unpause()
-
+        # Sounds
         self.sound_push_button = pygame.mixer.Sound('Sounds/push_button.mp3')
 
 
         # HitBox
+        # Chb "Music"
         self.ChB_Music_posX = 175
         self.ChB_Music_posY = 110
         self.ChB_MusicHitBox_X = self.ChB_Music_posX + 65
         self.ChB_MusicHitBox_Y = self.ChB_Music_posY + 20
-
+        # Chb "Sounds"
         self.ChB_Sound_posX = 275
         self.ChB_Sound_posY = 110
         self.ChB_SoundHitBox_X = self.ChB_Sound_posX + 65
         self.ChB_SoundHitBox_Y = self.ChB_Sound_posY + 20
-
+        # Chb "Theme"
         self.ChB_Theme_posX = self.width // 2 - 118 // 2
         self.ChB_Theme_posY = 150
         self.ChB_ThemeHitBox_X = self.ChB_Theme_posX + 65
         self.ChB_ThemeHitBox_Y = self.ChB_Theme_posY + 20
 
-
-
-
         self.draw()  # draw all
         while running:
             for event in pygame.event.get():
-                if event.type == pygame.QUIT:               # Stop Programm
-                    MainWindow()
+                if event.type == pygame.QUIT:               # Stop Program
+                    # play sound if "settings" close
+                    if self.Sound:
+                        pygame.mixer.music.pause()
+                        self.sound_push_button.play()
+                        if self.Music:
+                            pygame.mixer.music.unpause()
+
+                    MainWindow()    # Opne MainWindow
                     running = False                         # write class of MainWind? for restart game
                 if event.type == pygame.MOUSEBUTTONDOWN:
                     self.click(event.pos)
@@ -160,7 +180,9 @@ class Settings_Window():
 
     # Change settings
     def click(self, pos):
+        # If Mouse Pos in HitBox "Music"
         if self.ChB_MusicHitBox_X >= pos[0] >= self.ChB_Music_posX - 30 and self.ChB_MusicHitBox_Y >= pos[1] >= self.ChB_Music_posY - 5:
+            # Play Sounds
             if self.Sound:
                 pygame.mixer.music.pause()
                 self.sound_push_button.play()
@@ -180,7 +202,9 @@ class Settings_Window():
                 with open("settings.json", "w") as file:
                     json.dump(data, file, indent=4)
 
+        # If Mouse Pos in HitBox "Sound"
         elif self.ChB_SoundHitBox_X >= pos[0] >= self.ChB_Sound_posX - 30 and self.ChB_SoundHitBox_Y >= pos[1] >= self.ChB_Sound_posY - 5:
+            # Play Sounds
             if not self.Sound:
                 pygame.mixer.music.pause()
                 self.sound_push_button.play()
@@ -195,7 +219,9 @@ class Settings_Window():
                 with open("settings.json", "w") as file:
                     json.dump(data, file, indent=4)
 
+        # If Mouse Pos in HitBox "Theme"
         elif self.ChB_ThemeHitBox_X >= pos[0] >= self.ChB_Theme_posX - 30 and self.ChB_ThemeHitBox_Y >= pos[1] >= self.ChB_Theme_posY - 5:
+            # Play Sounds
             if self.Sound:
                 pygame.mixer.music.pause()
                 self.sound_push_button.play()
@@ -216,6 +242,7 @@ class Settings_Window():
 
                 with open("settings.json", "w") as file:
                     json.dump(data, file, indent=4)
+
         self.draw()
 
     # Draw on windwo: Title, other sett.
