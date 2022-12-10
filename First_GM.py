@@ -109,7 +109,7 @@ class Board:  # General class for game modes
         self.size = self.widthW, self.heightW = 600, 750  # Window Size
         running = True
         self.colors = ((0, 0, 225), (0, 225, 0), (225, 0, 0), (225, 225, 0))
-        self.lightcolors = ((30, 30, 255), (50, 255, 50), (255, 30, 30), (255, 255, 30))
+        self.light_colors = ((30, 30, 255), (50, 255, 50), (255, 30, 30), (255, 255, 30))
         self.width = width
         self.height = height
         self.board = [[self.empty] * height for _ in range(width)]  # Matrix of values of painted cells
@@ -204,7 +204,7 @@ class Board:  # General class for game modes
             if time.time() - self.last_fall > self.fall_speed:  # Free fall of the figure
                 if not self.check(self.fallingTetramine, y0=1):
                     self.addBoard(self.fallingTetramine)  # The figure has landed, add it to the contents of the board
-                    self.score += self.clearCompleted() * 300
+                    self.score += self.clearCompleted() * 300 if self.score <= 99999 else 99999
                     self.level, self.fall_speed = self.static()
                     self.fallingTetramine = None
                 else:  # The figure hasn't landed yet, we keep moving down
@@ -287,7 +287,7 @@ class Board:  # General class for game modes
                          (x + 1, y + 1, self.cell_size - 1,
                           self.cell_size - 1),
                          0, 3)
-        pygame.draw.rect(self.screen, self.lightcolors[color],
+        pygame.draw.rect(self.screen, self.light_colors[color],
                          (x + 1, y + 1, self.cell_size - 4,
                           self.cell_size - 4), 0, 3)
         pygame.draw.circle(self.screen, self.colors[color],
@@ -298,13 +298,13 @@ class Board:  # General class for game modes
         self.drawTetramine(tetramine, x0=self.widthW - 160, y0=100)
 
     def drawTetramine(self, fig, x0=None, y0=None):
-        figToDraw = self.tetramines[fig['shape']][fig['rotation']]
+        tetramineDraw = self.tetramines[fig['shape']][fig['rotation']]
         if x0 is None and y0 is None:
             x0, y0 = self.coords(fig['x'], fig['y'])
-        # Drawing figure elements
+        # Drawing tetramine elements
         for x in range(self.tetraminesW):
             for y in range(self.tetraminesH):
-                if figToDraw[y][x] != self.empty:
+                if tetramineDraw[y][x] != self.empty:
                     self.drawBlock(None, None, fig['color'], x0 + (x * self.cell_size),
                                    y0 + (y * self.cell_size))
 
