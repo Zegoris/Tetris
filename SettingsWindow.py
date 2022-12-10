@@ -2,10 +2,7 @@ import pygame
 import json
 import os
 import random
-pygame.init()
-#
-
-# Мяу :)
+from MainWindow import MainWindow
 
 
 class Settings_Window():
@@ -61,6 +58,7 @@ class Settings_Window():
         while running:
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:               # Stop Programm
+
                     running = False                         # write class of MainWind? for restart game
                 if event.type == pygame.MOUSEBUTTONDOWN:
                     self.click(event.pos)
