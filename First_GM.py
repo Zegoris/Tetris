@@ -1,5 +1,6 @@
 import pygame
 import json
+import os
 from random import choice, randint
 import time
 
@@ -7,8 +8,36 @@ pygame.init()
 pygame.mixer.init()
 
 
+class Cursor: # Class of the cursor
+    def __init__(self, image):
+        self.all_sprites = pygame.sprite.Group()  # Creating group of sprites
+        self.sprite = pygame.sprite.Sprite()  # Creating a sprite
+        self.sprite.image = self.load_image(image)  # Set image jf the sprite
+        self.sprite.rect = self.sprite.image.get_rect()  # Set size of the sprite
+        self.all_sprites.add(self.sprite)
+        running = True
+        while running:
+            for event in pygame.event.get():
+                if event.type == pygame.QUIT:
+                    running = False
+
+
+    def load_image(self, name, colorkey=None):
+        fullname = os.path.join('sprites', name)  # Create a path to a picture file
+        image = pygame.image.load(fullname)
+        if colorkey is not None:
+            image = image.convert()
+            if colorkey == -1:
+                colorkey = image.get_at((0, 0))
+            image.set_colorkey(colorkey)
+        else:
+            image = image.convert_alpha()
+        return image
+
+
 class Board:  # General class for game modes
     def __init__(self, screen, width, height):
+        cursor = Cursor('cursor.png') # Initialization of the cursor
         self.tetraminesW, self.tetraminesH = 5, 5
         self.empty = 'o'
         self.tetramines = {'S': [['ooooo', # Game tetramines
@@ -126,9 +155,10 @@ class Board:  # General class for game modes
             self.lightTheme = tuple(data['Color']['Light'])
             self.darkTheme = tuple(data['Color']['Dark'])
         if self.theme:
-            screen.fill(self.darkTheme)
+            self.themeColor = self.darkTheme
         else:
-            screen.fill(self.lightTheme)
+            self.themeColor = self.lightTheme
+        self.screen.fill(self.themeColor)
         self.fps = 60
         self.side_frequency, self.down_frequency = 0.15, 0.1  # Movement to the side and down
         self.side_fields = 10
@@ -210,10 +240,13 @@ class Board:  # General class for game modes
                 else:  # The tetramine hasn't landed yet, we keep moving down
                     self.fallingTetramine['y'] += 1
                     self.last_fall = time.time()
-            if self.theme:
-                self.screen.fill(self.darkTheme)
+            self.screen.fill(self.themeColor)
+            if pygame.mouse.get_focused():
+                pygame.mouse.set_visible(False)
+                cursor.sprite.rect.x, cursor.sprite.rect.y = pygame.mouse.get_pos()
+                cursor.all_sprites.draw(self.screen)
             else:
-                self.screen.fill(self.lightTheme)
+                self.screen.fill(self.themeColor)
             self.render()
             pygame.display.flip()
             self.clock.tick(self.fps)
