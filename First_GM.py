@@ -270,7 +270,7 @@ class Board:  # General class for game modes
                 if self.tetramines[tetramine['shape']][tetramine['rotation']][y][x] != self.empty:
                     self.board[x + tetramine['x']][y + tetramine['y']] = tetramine['color']
 
-    def static(self):
+    def static(self): # Calculating game's speed
         level = int(0 / 10) + 1
         fall_speed = 0.27 - (level * 0.02)
         return level, fall_speed

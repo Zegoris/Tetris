@@ -270,7 +270,7 @@ class Board:  # General class for game modes
                 if self.tetramines[tetramine['shape']][tetramine['rotation']][y][x] != self.empty:
                     self.board[x + tetramine['x']][y + tetramine['y']] = tetramine['color']
 
-    def static(self):
+    def static(self): # Calculating game's speed
         level = int(0 / 10) + 1
         fall_speed = 0.27 - (level * 0.02)
         return level, fall_speed
@@ -378,7 +378,7 @@ class Second_GM(Board): # Class of the second game mode
         self.screen = pygame.display.set_mode(self.size)  # Screen Setting
         Board.__init__(self, self.screen, 15, 31)
 
-    def static(self):
+    def static(self): # Calculating game's speed
         score = self.score if self.score < 15000 else 15000
         level = int((score / 250) / 10) + 1
         fall_speed = 0.27 - (level * 0.03)
