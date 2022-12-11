@@ -159,7 +159,7 @@ class Board:  # General class for game modes
                     running = False
                 if event.type == pygame.MOUSEBUTTONUP and event.button == 1:
                     if self.click(event.pos):
-                        exit() # FINAL WINDOW
+                        exit()
                 if event.type == pygame.KEYUP:
                     if event.key == pygame.K_LEFT:
                         self.left = False
@@ -242,28 +242,35 @@ class Board:  # General class for game modes
                 y0 -= 1
         return removed_lines
 
-    def check(self, fig, x0=0, y0=0): # Checks if the tetramine is within the board boundaries without colliding with other tetramines
+    def click(self, pos):
+        # If Mouse Pos in HitBox True
+        if self.button_HitBox_x - 10 <= pos[0] <= self.button_HitBox_sizeX\
+                and self.button_HitBox_y - 12 <= pos[1] <= self.button_HitBox_sizeY:
+            return True
+        return False
+
+    def check(self, tetramine, x0=0, y0=0): # Checks if the tetramine is within the board boundaries without colliding with other tetramines
         for x in range(self.tetraminesW):
             for y in range(self.tetraminesH):
-                above_board = y + fig['y'] + y0 < 0
-                if above_board or self.tetramines[fig['shape']][fig['rotation']][y][x] == self.empty:
+                above_board = y + tetramine['y'] + y0 < 0
+                if above_board or self.tetramines[tetramine['shape']][tetramine['rotation']][y][x] == self.empty:
                     continue
-                if not self.inBoard(x + fig['x'] + x0, y + fig['y'] + y0):
+                if not self.inBoard(x + tetramine['x'] + x0, y + tetramine['y'] + y0):
                     return False
-                if self.board[x + fig['x'] + x0][y + fig['y'] + y0] != self.empty:
+                if self.board[x + tetramine['x'] + x0][y + tetramine['y'] + y0] != self.empty:
                     return False
         return True
 
     def inBoard(self, x, y):
         return self.width > x >= 0 and y < self.height
 
-    def addBoard(self, fig):
+    def addBoard(self, tetramine):
         for x in range(self.tetraminesW):
             for y in range(self.tetraminesH):
-                if self.tetramines[fig['shape']][fig['rotation']][y][x] != self.empty:
-                    self.board[x + fig['x']][y + fig['y']] = fig['color']
+                if self.tetramines[tetramine['shape']][tetramine['rotation']][y][x] != self.empty:
+                    self.board[x + tetramine['x']][y + tetramine['y']] = tetramine['color']
 
-    def static(self): # Calculating game's speed
+    def static(self):
         level = int(0 / 10) + 1
         fall_speed = 0.27 - (level * 0.02)
         return level, fall_speed
@@ -300,18 +307,18 @@ class Board:  # General class for game modes
     def drawnextTetramine(self, tetramine):  # Preview of the next tetramine
         self.drawTetramine(tetramine, self.cell_size + 10, x0=self.widthW - 200, y0=70)
 
-    def drawTetramine(self, fig, size, x0=None, y0=None):
-        tetramineDraw = self.tetramines[fig['shape']][fig['rotation']]
+    def drawTetramine(self, tetramine, size, x0=None, y0=None):
+        tetramineDraw = self.tetramines[tetramine['shape']][tetramine['rotation']]
         if x0 is None and y0 is None:
-            x0, y0 = self.coords(fig['x'], fig['y'])
+            x0, y0 = self.coords(tetramine['x'], tetramine['y'])
         # Drawing tetramine elements
         for x in range(self.tetraminesW):
             for y in range(self.tetraminesH):
                 if tetramineDraw[y][x] != self.empty:
-                    self.drawBlock(None, None, fig['color'], size, x0 + (x * size),
+                    self.drawBlock(None, None, tetramine['color'], size, x0 + (x * size),
                                    y0 + (y * size))
 
-    def info(self):
+    def info(self): # Drawing information about user and score
         if self.theme:
             fontColor = pygame.Color('white')
         else:
@@ -341,17 +348,10 @@ class Board:  # General class for game modes
         pygame.draw.rect(self.screen, fontColor, (text_x - 15, text_y - 15,
                                                      text.get_width() + 30, text.get_height() + 30), 3)
         # HitBox of a button "Quit"
-        self.button_HuitBox_x = text_x
-        self.button_HuitBox_y = text_y
-        self.button_HuitBox_sizeX = text_x + 50
-        self.button_HuitBox_sizeY = text_y + 40
-
-    def click(self, pos):
-        # If Mouse Pos in HitBox True
-        if self.button_HuitBox_x - 10 <= pos[0] <= self.button_HuitBox_sizeX\
-                and self.button_HuitBox_y - 12 <= pos[1] <= self.button_HuitBox_sizeY:
-            return True
-        return False
+        self.button_HitBox_x = text_x
+        self.button_HitBox_y = text_y
+        self.button_HitBox_sizeX = text_x + 50
+        self.button_HitBox_sizeY = text_y + 40
 
     def render(self):
         if self.theme:
@@ -359,16 +359,16 @@ class Board:  # General class for game modes
         else:
             borderColor = pygame.Color('black')
         self.info() # Information about user and score
-        self.button() # Exit button
+        self.button() # The exit button
         pygame.draw.rect(self.screen, borderColor,
                          (self.side_fields - 4, self.upper_field - 4, (self.width * self.cell_size) + 8,
                           (self.height * self.cell_size) + 8), 5) # Border of the playing field
         for x in range(self.width):
             for y in range(self.height):
                 self.drawBlock(x, y, self.board[x][y], size=self.cell_size) # Already landed tetramine
-        self.drawnextTetramine(self.nextTetramine) # Preview of the next tetramine
+        self.drawnextTetramine(self.nextTetramine) # Preview of a next tetramine
         if self.fallingTetramine is not None:
-            self.drawTetramine(self.fallingTetramine, size=self.cell_size)  # Drawing a falling tetramine
+            self.drawTetramine(self.fallingTetramine, size=self.cell_size)  # Drawing the falling tetramine
         pygame.display.flip()
 
 
