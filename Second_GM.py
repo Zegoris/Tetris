@@ -9,6 +9,7 @@ pygame.mixer.init()
 
 class Board:  # General class for game modes
     def __init__(self, screen, width, height):
+        pygame.display.set_caption('Game')
         self.tetraminesW, self.tetraminesH = 5, 5
         self.empty = 'o'
         self.tetramines = {'S': [['ooooo', # Game tetramines
@@ -125,10 +126,12 @@ class Board:  # General class for game modes
             self.theme = data['DarkTheme']
             self.lightTheme = tuple(data['Color']['Light'])
             self.darkTheme = tuple(data['Color']['Dark'])
+        self.user = 'TestUser' # Set user's name from settings.json
         if self.theme:
-            screen.fill(self.darkTheme)
+            self.themeColor = self.darkTheme
         else:
-            screen.fill(self.lightTheme)
+            self.themeColor = self.lightTheme
+        self.screen.fill(self.themeColor)
         self.fps = 60
         self.side_frequency, self.down_frequency = 0.15, 0.1  # Movement to the side and down
         self.side_fields = 10
@@ -154,6 +157,9 @@ class Board:  # General class for game modes
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
                     running = False
+                if event.type == pygame.MOUSEBUTTONUP and event.button == 1:
+                    if self.click(event.pos):
+                        exit() # FINAL WINDOW
                 if event.type == pygame.KEYUP:
                     if event.key == pygame.K_LEFT:
                         self.left = False
@@ -210,10 +216,7 @@ class Board:  # General class for game modes
                 else:  # The tetramine hasn't landed yet, we keep moving down
                     self.fallingTetramine['y'] += 1
                     self.last_fall = time.time()
-            if self.theme:
-                self.screen.fill(self.darkTheme)
-            else:
-                self.screen.fill(self.lightTheme)
+            self.screen.fill(self.themeColor)
             self.render()
             pygame.display.flip()
             self.clock.tick(self.fps)
@@ -260,7 +263,7 @@ class Board:  # General class for game modes
                 if self.tetramines[fig['shape']][fig['rotation']][y][x] != self.empty:
                     self.board[x + fig['x']][y + fig['y']] = fig['color']
 
-    def static(self):
+    def static(self): # Calculating game's speed
         level = int(0 / 10) + 1
         fall_speed = 0.27 - (level * 0.02)
         return level, fall_speed
@@ -278,26 +281,26 @@ class Board:  # General class for game modes
                      'color': randint(0, len(self.colors) - 1)}
         return newTetramine
 
-    def drawBlock(self, block_x, block_y, color, x=None, y=None): # Drawing the square blocks that make up the tetramines
+    def drawBlock(self, block_x, block_y, color, size, x=None, y=None): # Drawing the square blocks that make up the tetramines
         if color == self.empty:
             return
         if x is None and y is None:
             x, y = self.coords(block_x, block_y)
         pygame.draw.rect(self.screen, self.colors[color],
-                         (x + 1, y + 1, self.cell_size - 1,
-                          self.cell_size - 1),
+                         (x + 1, y + 1, size - 1,
+                          size - 1),
                          0, 3)
         pygame.draw.rect(self.screen, self.light_colors[color],
-                         (x + 1, y + 1, self.cell_size - 4,
-                          self.cell_size - 4), 0, 3)
+                         (x + 1, y + 1, size - 4,
+                          size - 4), 0, 3)
         pygame.draw.circle(self.screen, self.colors[color],
-                           (x + self.cell_size / 2,
-                            y + self.cell_size / 2), 5)
+                           (x + size / 2,
+                            y + size / 2), 5)
 
     def drawnextTetramine(self, tetramine):  # Preview of the next tetramine
-        self.drawTetramine(tetramine, x0=self.widthW - 160, y0=100)
+        self.drawTetramine(tetramine, self.cell_size + 10, x0=self.widthW - 200, y0=70)
 
-    def drawTetramine(self, fig, x0=None, y0=None):
+    def drawTetramine(self, fig, size, x0=None, y0=None):
         tetramineDraw = self.tetramines[fig['shape']][fig['rotation']]
         if x0 is None and y0 is None:
             x0, y0 = self.coords(fig['x'], fig['y'])
@@ -305,24 +308,67 @@ class Board:  # General class for game modes
         for x in range(self.tetraminesW):
             for y in range(self.tetraminesH):
                 if tetramineDraw[y][x] != self.empty:
-                    self.drawBlock(None, None, fig['color'], x0 + (x * self.cell_size),
-                                   y0 + (y * self.cell_size))
+                    self.drawBlock(None, None, fig['color'], size, x0 + (x * size),
+                                   y0 + (y * size))
+
+    def info(self):
+        if self.theme:
+            fontColor = pygame.Color('white')
+        else:
+            fontColor = pygame.Color('black')
+        font_score = pygame.font.SysFont('symbol', 45)
+        score = '0' * (5 - len(str(self.score))) + str(self.score)
+        text_score = font_score.render(score, True, fontColor)
+        text_score_x = self.widthW - 170
+        text_score_y = 300
+        font_user = pygame.font.SysFont('arial', 30)
+        text_user = font_user.render(self.user, True, fontColor)
+        text_user_x = self.widthW - 170
+        text_user_y = 25
+        self.screen.blit(text_score, (text_score_x, text_score_y))
+        self.screen.blit(text_user, (text_user_x, text_user_y))
+
+    def button(self): # Drawing exit button
+        if self.theme:
+            fontColor = pygame.Color('white')
+        else:
+            fontColor = pygame.Color('black')
+        font = pygame.font.SysFont('arial', 20)
+        text = font.render('Quit', True, fontColor)
+        text_x = self.widthW - 130
+        text_y = 670
+        self.screen.blit(text, (text_x, text_y))
+        pygame.draw.rect(self.screen, fontColor, (text_x - 15, text_y - 15,
+                                                     text.get_width() + 30, text.get_height() + 30), 3)
+        # HitBox of a button "Quit"
+        self.button_HuitBox_x = text_x
+        self.button_HuitBox_y = text_y
+        self.button_HuitBox_sizeX = text_x + 50
+        self.button_HuitBox_sizeY = text_y + 40
+
+    def click(self, pos):
+        # If Mouse Pos in HitBox True
+        if self.button_HuitBox_x - 10 <= pos[0] <= self.button_HuitBox_sizeX\
+                and self.button_HuitBox_y - 12 <= pos[1] <= self.button_HuitBox_sizeY:
+            return True
+        return False
 
     def render(self):
         if self.theme:
-            themeColor = pygame.Color('white')
+            borderColor = pygame.Color('white')
         else:
-            themeColor = pygame.Color('black')
-        pygame.draw.rect(self.screen, themeColor,
+            borderColor = pygame.Color('black')
+        self.info() # Information about user and score
+        self.button() # Exit button
+        pygame.draw.rect(self.screen, borderColor,
                          (self.side_fields - 4, self.upper_field - 4, (self.width * self.cell_size) + 8,
                           (self.height * self.cell_size) + 8), 5) # Border of the playing field
         for x in range(self.width):
             for y in range(self.height):
-                self.drawBlock(x, y, self.board[x][y]) # Already landed tetramine
+                self.drawBlock(x, y, self.board[x][y], size=self.cell_size) # Already landed tetramine
         self.drawnextTetramine(self.nextTetramine) # Preview of the next tetramine
         if self.fallingTetramine is not None:
-            self.drawTetramine(self.fallingTetramine)  # Drawing a falling tetramine
-
+            self.drawTetramine(self.fallingTetramine, size=self.cell_size)  # Drawing a falling tetramine
         pygame.display.flip()
 
 
