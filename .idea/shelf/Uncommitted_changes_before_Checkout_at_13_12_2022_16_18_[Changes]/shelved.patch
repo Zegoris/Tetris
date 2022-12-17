@@ -1,0 +1,25 @@
+Index: settings.json
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>{\r\n    \"Music\": true,\r\n    \"Sounds\": true,\r\n    \"DarkTheme\": true,\r\n    \"Color\": {\r\n        \"Light\": [\r\n            245,\r\n            240,\r\n            225\r\n        ],\r\n        \"Dark\": [\r\n            30,\r\n            61,\r\n            89\r\n        ]\r\n    }\r\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/settings.json b/settings.json
+--- a/settings.json	(revision 6585463fbd9f1452ca841f1798972de587a8003b)
++++ b/settings.json	(date 1670937479188)
+@@ -3,12 +3,12 @@
+     "Sounds": true,
+     "DarkTheme": true,
+     "Color": {
+-        "Light": [
++        "Dark": [
+             245,
+             240,
+             225
+         ],
+-        "Dark": [
++        "Light": [
+             30,
+             61,
+             89
