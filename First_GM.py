@@ -2,16 +2,45 @@ import pygame
 import json
 from random import choice, randint
 import time
+import os
+import csv
 
 pygame.init()
 pygame.mixer.init()
 
 
+def write_records(user, gm, score):
+    yes = False
+    with open('records.csv', encoding="utf8") as csvf:
+        reader = csv.reader(csvf, delimiter=',', quotechar='"')
+        reader = list(reader)
+    os.remove('records.csv')
+    for i in reader:
+        if user in i:
+            yes = True
+            index = reader.index(i)
+            if gm == 1:
+                reader[index] = [user, score, i[2]]
+            elif gm == 2:
+                reader[index] = [user, i[1], score]
+            break
+    if not yes:
+        if gm == 1:
+            reader.append([user, score, '0'])
+        elif gm == 2:
+            reader.append([user, '0', score])
+    with open('records.csv', 'w', newline='') as csvf:
+        writer = csv.writer(
+            csvf,)
+        writer.writerows(reader)
+
+
 class Board:  # General class for game modes
-    def __init__(self, screen, width, height):
+    def __init__(self, screen, width, height, game_mode):
         pygame.display.set_caption('Game')
         self.tetraminesW, self.tetraminesH = 5, 5
         self.empty = 'o'
+        self.gm = game_mode
         self.tetramines = {'S': [['ooooo', # Game tetramines
                           'ooooo',
                           'ooxxo',
@@ -126,7 +155,7 @@ class Board:  # General class for game modes
             self.theme = data['DarkTheme']
             self.lightTheme = tuple(data['Color']['Light'])
             self.darkTheme = tuple(data['Color']['Dark'])
-        self.user = 'TestUser' # Set user's name from settings.json
+            self.user = data['NickName']
         if self.theme:
             self.themeColor = self.darkTheme
         else:
@@ -156,9 +185,11 @@ class Board:  # General class for game modes
                     exit()  # If there is no free space on the playing field - the game is over, FINAL WINDOW
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
-                    running = False
+                    write_records(self.user, self.gm, self.score)
+                    exit()
                 if event.type == pygame.MOUSEBUTTONUP and event.button == 1:
                     if self.click(event.pos):
+                        write_records(self.user, self.gm, self.score)
                         exit()
                 if event.type == pygame.KEYUP:
                     if event.key == pygame.K_LEFT:
@@ -376,7 +407,7 @@ class First_GM(Board):  # Class of the first game mode
     def __init__(self):
         self.size = self.width_w, self.height_w = 600, 750  # Window Size
         self.screen = pygame.display.set_mode(self.size)  # Screen Setting
-        Board.__init__(self, self.screen, 15, 31)
+        Board.__init__(self, self.screen, 15, 31, game_mode=1)
 
 
 First_GM()
