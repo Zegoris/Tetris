@@ -1,7 +1,7 @@
 {
-    "Music": false,
+    "Music": true,
     "Sounds": true,
-    "DarkTheme": false,
+    "DarkTheme": true,
     "Color": {
         "Dark": [
             245,

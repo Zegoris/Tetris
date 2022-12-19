@@ -1,0 +1,272 @@
+Index: Lessons/test.py
+===================================================================
+diff --git a/Lessons/test.py b/Lessons/test.py
+--- a/Lessons/test.py	
++++ b/Lessons/test.py	
+@@ -5,17 +5,13 @@
+ 
+ pygame.init()
+ 
+-BLACK = (255, 255, 255)
+-W, H = 1000, 570
++width, height = 300, 300
+ 
+-sc = pygame.display.set_mode((W, H))
++sc = pygame.display.set_mode((width, height))
+ sc.fill((255, 255, 255))
+ clock = pygame.time.Clock()
+ FPS = 60
+ 
+-all_sprites = pygame.sprite.Group()
+-
+-
+ def load_image(name, colorkey=None):
+     fullname = os.path.join('data', name)
+     # если файл не существует, то выходим
+@@ -34,24 +30,38 @@
+ 
+ 
+ speed = 10
+-bomb_image = load_image("bomb.png", -1)
+ 
+-for i in range(50):
+-    # можно сразу создавать спрайты с указанием группы
+-    bomb = pygame.sprite.Sprite(all_sprites)
+-    bomb.image = bomb_image
+-    bomb.rect = bomb.image.get_rect()
++# создадим группу, содержащую все спрайты
++all_sprites = pygame.sprite.Group()
+ 
+-    # задаём случайное местоположение бомбочке
+-    bomb.rect.x = random.randrange(W)
+-    bomb.rect.y = random.randrange(H)
++# создадим спрайт
++sprite = pygame.sprite.Sprite()
++# определим его вид
++sprite.image = load_image("Pers.png")
++# и размеры
++sprite.rect = sprite.image.get_rect()
++# добавим спрайт в группу
++all_sprites.add(sprite)
++
++motion = None
+ 
+ while True:
+-
+-
+     for event in pygame.event.get():
+         if event.type == pygame.QUIT:
+             exit()
++        elif event.type == pygame.KEYDOWN:
++            if event.key == pygame.K_LEFT:
++                sprite.rect.x -= 10
++            elif event.key == pygame.K_RIGHT:
++                sprite.rect.x += 10
++            elif event.key == pygame.K_UP:
++                sprite.rect.y -= 10
++            elif event.key == pygame.K_DOWN:
++                sprite.rect.y += 10
++
++
++
++    sc.fill((255, 255, 255))
+ 
+     all_sprites.draw(sc)
+     pygame.display.flip()
+Index: MainProgram.py
+===================================================================
+diff --git a/MainProgram.py b/MainProgram.py
+--- a/MainProgram.py	
++++ b/MainProgram.py	
+@@ -109,6 +109,7 @@
+         if self.BtnPlay_HuitBox_X <= pos[0] <= self.BtnPlay_HuitBox_XSize and self.BtnPlay_HuitBox_Y <= pos[1] <= self.BtnPlay_HuitBox_YSize:
+             # Debug
+             print("TEST PLAY")
++
+         elif self.BtnSett_HuitBox_X <= pos[0] <= self.BtnSett_HuitBox_XSize and self.BtnSett_HuitBox_Y <= pos[1] <= self.BtnSett_HuitBox_YSize:
+             global runm
+             runm = 1
+@@ -258,7 +259,7 @@
+         pygame.display.flip()
+ 
+ 
+-        # draw ChB "Music"
++        # draw CёhB "Music"
+         # draw text
+         font = pygame.font.Font(None, 30)
+         text = font.render("Music", True, self.BgColor)
+Index: .idea/workspace.xml
+===================================================================
+diff --git a/.idea/workspace.xml b/.idea/workspace.xml
+--- a/.idea/workspace.xml	
++++ b/.idea/workspace.xml	
+@@ -1,10 +1,16 @@
+ <?xml version="1.0" encoding="UTF-8"?>
+ <project version="4">
+   <component name="ChangeListManager">
+-    <list default="true" id="60af78ae-74e4-4259-939a-c7eff029eade" name="Changes" comment="None Work">
++    <list default="true" id="60af78ae-74e4-4259-939a-c7eff029eade" name="Changes" comment="Stable MainProgram/Window">
+       <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_07_12_2022_23_13__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_07_12_2022_23_13__Changes_.xml" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_07_12_2022_23_26__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_07_12_2022_23_26__Changes_.xml" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_13_12_2022_16_14__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_13_12_2022_16_14__Changes_.xml" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_13_12_2022_16_14__Changes_1.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_13_12_2022_16_14__Changes_1.xml" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_13_12_2022_16_18__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_13_12_2022_16_18__Changes_.xml" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_13_12_2022_16_12__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_13_12_2022_16_12__Changes_.xml" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/Lessons/test.py" beforeDir="false" afterPath="$PROJECT_DIR$/Lessons/test.py" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/MainProgram.py" beforeDir="false" afterPath="$PROJECT_DIR$/MainProgram.py" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/settings.json" beforeDir="false" afterPath="$PROJECT_DIR$/settings.json" afterDir="false" />
+     </list>
+     <option name="SHOW_DIALOG" value="false" />
+@@ -35,11 +41,8 @@
+     <option name="hideEmptyMiddlePackages" value="true" />
+     <option name="showLibraryContents" value="true" />
+   </component>
+-  <component name="PropertiesComponent">
+-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../LyceumYandex/main.py" />
+-    <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
+-    <property name="settings.editor.splitter.proportion" value="0.20977597" />
+-  </component>
++  <component name="PropertiesComponent">{
++}</component>
+   <component name="RecentsManager">
+     <key name="CopyFile.RECENT_KEYS">
+       <recent name="D:\IT\PycharmProjects\pythonProject1\PyGame\Tetris\.idea" />
+@@ -48,7 +51,7 @@
+       <recent name="D:\IT\PycharmProjects\pythonProject1\PyGame\Tetris" />
+     </key>
+   </component>
+-  <component name="RunManager" selected="Python.test">
++  <component name="RunManager" selected="Python.MainProgram">
+     <configuration name="MainProgram" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+       <module name="Tetris" />
+       <option name="INTERPRETER_OPTIONS" value="" />
+@@ -112,19 +115,19 @@
+       <option name="INPUT_FILE" value="" />
+       <method v="2" />
+     </configuration>
+-    <configuration name="main" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+-      <module name="Tetris" />
++    <configuration name="myproject (1)" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
++      <module name="git" />
+       <option name="INTERPRETER_OPTIONS" value="" />
+       <option name="PARENT_ENVS" value="true" />
+       <envs>
+         <env name="PYTHONUNBUFFERED" value="1" />
+       </envs>
+-      <option name="SDK_HOME" value="" />
+-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/../../LyceumYandex" />
++      <option name="SDK_HOME" value="D:\IT\Python\python.exe" />
++      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+       <option name="IS_MODULE_SDK" value="false" />
+       <option name="ADD_CONTENT_ROOTS" value="true" />
+       <option name="ADD_SOURCE_ROOTS" value="true" />
+-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/../../LyceumYandex/main.py" />
++      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/myproject.py" />
+       <option name="PARAMETERS" value="" />
+       <option name="SHOW_COMMAND_LINE" value="false" />
+       <option name="EMULATE_TERMINAL" value="false" />
+@@ -133,7 +136,7 @@
+       <option name="INPUT_FILE" value="" />
+       <method v="2" />
+     </configuration>
+-    <configuration name="myproject (1)" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
++    <configuration name="myproject" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+       <module name="git" />
+       <option name="INTERPRETER_OPTIONS" value="" />
+       <option name="PARENT_ENVS" value="true" />
+@@ -141,11 +144,11 @@
+         <env name="PYTHONUNBUFFERED" value="1" />
+       </envs>
+       <option name="SDK_HOME" value="D:\IT\Python\python.exe" />
+-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
++      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/../../../../../Downloads/Telegram Desktop" />
+       <option name="IS_MODULE_SDK" value="false" />
+       <option name="ADD_CONTENT_ROOTS" value="true" />
+       <option name="ADD_SOURCE_ROOTS" value="true" />
+-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/myproject.py" />
++      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/../../../../../Downloads/Telegram Desktop/myproject.py" />
+       <option name="PARAMETERS" value="" />
+       <option name="SHOW_COMMAND_LINE" value="false" />
+       <option name="EMULATE_TERMINAL" value="false" />
+@@ -177,26 +180,26 @@
+     </configuration>
+     <list>
+       <item itemvalue="Python.SettingsWindow" />
+-      <item itemvalue="Python.MainWindow" />
+-      <item itemvalue="Python.myproject (1)" />
+       <item itemvalue="Python.MainProgram" />
+       <item itemvalue="Python.test" />
+-      <item itemvalue="Python.main" />
++      <item itemvalue="Python.myproject" />
++      <item itemvalue="Python.MainWindow" />
++      <item itemvalue="Python.myproject (1)" />
+     </list>
+     <recent_temporary>
+       <list>
+-        <item itemvalue="Python.test" />
+         <item itemvalue="Python.MainProgram" />
+-        <item itemvalue="Python.main" />
++        <item itemvalue="Python.test" />
+         <item itemvalue="Python.MainWindow" />
+         <item itemvalue="Python.myproject (1)" />
++        <item itemvalue="Python.myproject" />
+       </list>
+     </recent_temporary>
+   </component>
+   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+   <component name="TaskManager">
+     <task active="true" id="Default" summary="Default task">
+-      <changelist id="60af78ae-74e4-4259-939a-c7eff029eade" name="Changes" comment="None Work" />
++      <changelist id="60af78ae-74e4-4259-939a-c7eff029eade" name="Changes" comment="Stable MainProgram/Window" />
+       <created>1670431254942</created>
+       <option name="number" value="Default" />
+       <option name="presentableId" value="Default" />
+@@ -290,6 +293,17 @@
+                   <entry key="MY_COMMITS" value="true" />
+                 </map>
+               </option>
++              <option name="FILTERS">
++                <map>
++                  <entry key="branch">
++                    <value>
++                      <list>
++                        <option value="Maxim" />
++                      </list>
++                    </value>
++                  </entry>
++                </map>
++              </option>
+             </State>
+           </value>
+         </entry>
+@@ -305,7 +319,6 @@
+         </entry>
+       </map>
+     </option>
+-    <option name="oldMeFiltersMigrated" value="true" />
+   </component>
+   <component name="VcsManagerConfiguration">
+     <MESSAGE value="add change Theme" />
+@@ -315,20 +328,4 @@
+     <MESSAGE value="test Sound/Music" />
+     <option name="LAST_COMMIT_MESSAGE" value="test Sound/Music" />
+   </component>
+-  <component name="XDebuggerManager">
+-    <breakpoint-manager>
+-      <breakpoints>
+-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+-          <url>file://$PROJECT_DIR$/SettingsWindow.py</url>
+-          <line>208</line>
+-          <option name="timeStamp" value="1" />
+-        </line-breakpoint>
+-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+-          <url>file://$PROJECT_DIR$/MainWindow.py</url>
+-          <line>103</line>
+-          <option name="timeStamp" value="5" />
+-        </line-breakpoint>
+-      </breakpoints>
+-    </breakpoint-manager>
+-  </component>
+ </project>
+\ No newline at end of file

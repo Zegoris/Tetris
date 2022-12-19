@@ -1,0 +1,10 @@
+Index: records.csv
+===================================================================
+diff --git a/records.csv b/records.csv
+--- a/records.csv	
++++ b/records.csv	
+@@ -1,1 +1,2 @@
+-user,first_gm,second_gm
+\ No newline at end of file
++user,first_gm,second_gm
++TPLV,6000,600

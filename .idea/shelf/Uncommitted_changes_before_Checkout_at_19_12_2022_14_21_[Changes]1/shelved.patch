@@ -1,0 +1,17 @@
+Index: settings.json
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/settings.json b/settings.json
+--- a/settings.json	
++++ b/settings.json	
+@@ -1,7 +1,7 @@
+ {
+     "Music": false,
+     "Sounds": true,
+-    "DarkTheme": false,
++    "DarkTheme": true,
+     "Color": {
+         "Dark": [
+             245,

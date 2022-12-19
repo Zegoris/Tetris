@@ -31,9 +31,9 @@ class MainWindow():
 
         # Music
         pygame.mixer.music.set_volume(0.1)
-        pygame.mixer.music.load("Music/" + str(random.choice(os.listdir("Music"))))
+        pygame.mixer.music.load("Data/Music/" + str(random.choice(os.listdir("Data/Music"))))
         # Sounds
-        self.sound_push_button = pygame.mixer.Sound('Sounds/push_button.mp3')
+        self.sound_push_button = pygame.mixer.Sound('Data/Sounds/push_button.mp3')
 
         # Play Music
         if self.Music:
@@ -107,8 +107,7 @@ class MainWindow():
 
         # If Mouse Pos in HitBox's ->
         if self.BtnPlay_HuitBox_X <= pos[0] <= self.BtnPlay_HuitBox_XSize and self.BtnPlay_HuitBox_Y <= pos[1] <= self.BtnPlay_HuitBox_YSize:
-            # Debug
-            print("TEST PLAY")
+            Levels_Window()
         elif self.BtnSett_HuitBox_X <= pos[0] <= self.BtnSett_HuitBox_XSize and self.BtnSett_HuitBox_Y <= pos[1] <= self.BtnSett_HuitBox_YSize:
             global runm
             runm = 1
@@ -141,7 +140,7 @@ class Settings_Window():
         if self.Music:
             pygame.mixer.music.unpause()
         # Sounds
-        self.sound_push_button = pygame.mixer.Sound('Sounds/push_button.mp3')
+        self.sound_push_button = pygame.mixer.Sound('Data/Sounds/push_button.mp3')
 
 
         # HitBox
@@ -194,7 +193,7 @@ class Settings_Window():
                 data = json.load(file)
                 self.Music = False if self.Music else True
                 if self.Music:
-                    pygame.mixer.music.load("Music/" + str(random.choice(os.listdir("Music"))))
+                    pygame.mixer.music.load("Data/Music/" + str(random.choice(os.listdir("Data/Music"))))
                     pygame.mixer.music.play()
                 else:
                     pygame.mixer.music.pause()
@@ -329,5 +328,52 @@ class Settings_Window():
             pygame.draw.rect(self.screen, self.TextColor, (ChB_x + 2, ChB_y + 2, 16, 16))
             pygame.display.flip()
 
+
+class Levels_Window():
+    def __init__(self):
+        pygame.init()  # init pygame
+        self.size = self.width, self.height = 500, 700  # Window Size
+        self.screen = pygame.display.set_mode(self.size)  # Screen Setting
+        running = True
+        global runm
+        self.runM = runm
+
+        # open setting.json and take var
+        with open("settings.json") as file:
+            data = json.load(file)
+            self.Music = data["Music"]
+            self.Sound = data["Sounds"]
+            self.DarkTheme = data["DarkTheme"]
+            if self.DarkTheme:
+                self.TextColor = tuple(data["Color"]["Light"])
+                self.BgColor = tuple(data["Color"]["Dark"])
+            else:
+                self.TextColor = tuple(data["Color"]["Dark"])
+                self.BgColor = tuple(data["Color"]["Light"])
+
+        # Music
+        pygame.mixer.music.set_volume(0.1)
+        pygame.mixer.music.load("Data/Music/" + str(random.choice(os.listdir("Data/Music"))))
+        # Sounds
+        self.sound_push_button = pygame.mixer.Sound('Data/Sounds/push_button.mp3')
+
+        # Play Music
+        if self.Music:
+            pygame.mixer.music.play()
+
+        self.draw()  # draw all
+
+        # Staff
+        while running:
+            for event in pygame.event.get():
+                if event.type == pygame.QUIT:  # Stop Programm
+                    running = False
+                if event.type == pygame.MOUSEBUTTONDOWN:
+                    #elf.click(event.pos)
+                    pass
+
+    def draw(self):
+        self.screen.fill(self.TextColor)        # Fill display color
+        pygame.display.flip()
 
 MainWindow()
