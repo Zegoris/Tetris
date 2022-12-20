@@ -36,10 +36,12 @@ def write_records(user, gm, score):
             yes = True
             index = reader.index(i)
             if gm == 1:
-                reader[index] = [user, score, i[2]]
+                if score > int(reader[index][1]):
+                    reader[index] = [user, score, i[2]]
 
             elif gm == 2:
-                reader[index] = [user, i[1], score]
+                if score > int(reader[index][2]):
+                    reader[index] = [user, i[1], score]
             break
     if not yes:
         if gm == 1:
@@ -253,7 +255,7 @@ class Board:  # General class for game modes
                             self.fallingTetramine['y'] += 1
                         self.last_down = time.time()
 
-                    if event.key == pygame.K_SPACE:  # Instant drop down the tetramine
+                    if event.key == pygame.K_SPACE:  # Instant reset of the tetramine
                         self.down = False
                         self.left = False
                         self.right = False
