@@ -8,6 +8,21 @@ import csv
 pygame.init()
 pygame.mixer.init()
 
+all_sprites = pygame.sprite.Group()  # Creating group of sprites
+pygame.mouse.set_visible(False)
+
+def load_image(name, colorkey=None):
+    fullname = os.path.join('sprites', name)  # Create a path to a picture file
+    image = pygame.image.load(fullname)
+    if colorkey is not None:
+        image = image.convert()
+        if colorkey == -1:
+            colorkey = image.get_at((0, 0))
+        image.set_colorkey(colorkey)
+    else:
+        image = image.convert_alpha()
+    return image
+
 
 def write_records(user, gm, score):
     yes = False
@@ -21,121 +36,130 @@ def write_records(user, gm, score):
             index = reader.index(i)
             if gm == 1:
                 reader[index] = [user, score, i[2]]
+
             elif gm == 2:
                 reader[index] = [user, i[1], score]
             break
     if not yes:
         if gm == 1:
             reader.append([user, score, '0'])
+
         elif gm == 2:
             reader.append([user, '0', score])
     with open('records.csv', 'w', newline='') as csvf:
-        writer = csv.writer(
-            csvf,)
+        writer = csv.writer(csvf)
         writer.writerows(reader)
+
+
+class Cursor(pygame.sprite.Sprite):  # Class of the cursor
+    def __init__(self, image):
+        super().__init__(all_sprites)
+        self.image = load_image(image)  # Set image jf the sprite
+        self.rect = self.image.get_rect()  # Set size of the sprite
 
 
 class Board:  # General class for game modes
     def __init__(self, screen, width, height, game_mode):
         pygame.display.set_caption('Game')
+        self.cursor = Cursor('cursor.png')  # Initialization of the cursor
         self.tetraminesW, self.tetraminesH = 5, 5
         self.empty = 'o'
         self.gm = game_mode
-        self.tetramines = {'S': [['ooooo', # Game tetramines
-                          'ooooo',
-                          'ooxxo',
-                          'oxxoo',
-                          'ooooo'],
-                          ['ooooo',
-                          'ooxoo',
-                          'ooxxo',
-                          'oooxo',
-                          'ooooo']],
-                   'Z': [['ooooo',
-                          'ooooo',
-                          'oxxoo',
-                          'ooxxo',
-                          'ooooo'],
-                         ['ooooo',
-                          'ooxoo',
-                          'oxxoo',
-                          'oxooo',
-                          'ooooo']],
+        self.tetramines = {'S': [['ooooo',  # Game tetramines
+                                  'ooooo',
+                                  'ooxxo',
+                                  'oxxoo',
+                                  'ooooo'],
+                                 ['ooooo',
+                                  'ooxoo',
+                                  'ooxxo',
+                                  'oooxo',
+                                  'ooooo']],
+                           'Z': [['ooooo',
+                                  'ooooo',
+                                  'oxxoo',
+                                  'ooxxo',
+                                  'ooooo'],
+                                 ['ooooo',
+                                  'ooxoo',
+                                  'oxxoo',
+                                  'oxooo',
+                                  'ooooo']],
                            'J': [['ooooo',
-                          'oxooo',
-                          'oxxxo',
-                          'ooooo',
-                          'ooooo'],
-                         ['ooooo',
-                          'ooxxo',
-                          'ooxoo',
-                          'ooxoo',
-                          'ooooo'],
-                         ['ooooo',
-                          'ooooo',
-                          'oxxxo',
-                          'oooxo',
-                          'ooooo'],
-                         ['ooooo',
-                          'ooxoo',
-                          'ooxoo',
-                          'oxxoo',
-                          'ooooo']],
+                                  'oxooo',
+                                  'oxxxo',
+                                  'ooooo',
+                                  'ooooo'],
+                                 ['ooooo',
+                                  'ooxxo',
+                                  'ooxoo',
+                                  'ooxoo',
+                                  'ooooo'],
+                                 ['ooooo',
+                                  'ooooo',
+                                  'oxxxo',
+                                  'oooxo',
+                                  'ooooo'],
+                                 ['ooooo',
+                                  'ooxoo',
+                                  'ooxoo',
+                                  'oxxoo',
+                                  'ooooo']],
                            'L': [['ooooo',
-                          'oooxo',
-                          'oxxxo',
-                          'ooooo',
-                          'ooooo'],
-                         ['ooooo',
-                          'ooxoo',
-                          'ooxoo',
-                          'ooxxo',
-                          'ooooo'],
-                         ['ooooo',
-                          'ooooo',
-                          'oxxxo',
-                          'oxooo',
-                          'ooooo'],
-                         ['ooooo',
-                          'oxxoo',
-                          'ooxoo',
-                          'ooxoo',
-                          'ooooo']],
+                                  'oooxo',
+                                  'oxxxo',
+                                  'ooooo',
+                                  'ooooo'],
+                                 ['ooooo',
+                                  'ooxoo',
+                                  'ooxoo',
+                                  'ooxxo',
+                                  'ooooo'],
+                                 ['ooooo',
+                                  'ooooo',
+                                  'oxxxo',
+                                  'oxooo',
+                                  'ooooo'],
+                                 ['ooooo',
+                                  'oxxoo',
+                                  'ooxoo',
+                                  'ooxoo',
+                                  'ooooo']],
                            'I': [['ooxoo',
-                          'ooxoo',
-                          'ooxoo',
-                          'ooxoo',
-                          'ooooo'],
-                         ['ooooo',
-                          'ooooo',
-                          'xxxxo',
-                          'ooooo',
-                          'ooooo']],
+                                  'ooxoo',
+                                  'ooxoo',
+                                  'ooxoo',
+                                  'ooooo'],
+                                 ['ooooo',
+                                  'ooooo',
+                                  'xxxxo',
+                                  'ooooo',
+                                  'ooooo']],
                            'O': [['ooooo',
-                          'ooooo',
-                          'oxxoo',
-                          'oxxoo',
-                          'ooooo']],
+                                  'ooooo',
+                                  'oxxoo',
+                                  'oxxoo',
+                                  'ooooo']],
                            'T': [['ooooo',
-                          'ooxoo',
-                          'oxxxo',
-                          'ooooo',
-                          'ooooo'],
-                         ['ooooo',
-                          'ooxoo',
-                          'ooxxo',
-                          'ooxoo',
-                          'ooooo'],
-                         ['ooooo',
-                          'ooooo',
-                          'oxxxo',
-                          'ooxoo',
-                          'ooooo'],
-                         ['ooooo',
-                          'ooxoo',
-                          'oxxoo',
-                          'ooxoo',
-                          'ooooo']]}
+                                  'ooxoo',
+                                  'oxxxo',
+                                  'ooooo',
+                                  'ooooo'],
+                                 ['ooooo',
+                                  'ooxoo',
+                                  'ooxxo',
+                                  'ooxoo',
+                                  'ooooo'],
+                                 ['ooooo',
+                                  'ooooo',
+                                  'oxxxo',
+                                  'ooxoo',
+                                  'ooooo'],
+                                 ['ooooo',
+                                  'ooxoo',
+                                  'oxxoo',
+                                  'ooxoo',
+                                  'ooooo']]}
         self.size = self.widthW, self.heightW = 600, 750  # Window Size
         running = True
         self.colors = ((0, 0, 225), (0, 225, 0), (225, 0, 0), (225, 225, 0))
@@ -143,8 +167,6 @@ class Board:  # General class for game modes
         self.width = width
         self.height = height
         self.board = [[self.empty] * height for _ in range(width)]  # Matrix of values of painted cells
-        self.left = 0
-        self.top = 0
         self.cell_size = 24
         self.score = 0
         self.screen = screen
@@ -175,6 +197,7 @@ class Board:  # General class for game modes
         self.level, self.fall_speed = self.static()
         self.fallingTetramine = self.newTetramine()
         self.nextTetramine = self.newTetramine()
+
         while running:
             if self.fallingTetramine is None:  # If there are no falling tetramine, we generate a new one
                 self.fallingTetramine = self.nextTetramine
@@ -187,15 +210,19 @@ class Board:  # General class for game modes
                 if event.type == pygame.QUIT:
                     write_records(self.user, self.gm, self.score)
                     exit()
+
                 if event.type == pygame.MOUSEBUTTONUP and event.button == 1:
                     if self.click(event.pos):
                         write_records(self.user, self.gm, self.score)
                         exit()
+
                 if event.type == pygame.KEYUP:
                     if event.key == pygame.K_LEFT:
                         self.left = False
+
                     if event.key == pygame.K_RIGHT:
                         self.right = False
+
                     if event.key == pygame.K_DOWN:
                         self.down = False
 
@@ -225,10 +252,22 @@ class Board:  # General class for game modes
                             self.fallingTetramine['y'] += 1
                         self.last_down = time.time()
 
+                    if event.key == pygame.K_SPACE:  # Instant drop down the tetramine
+                        self.down = False
+                        self.left = False
+                        self.right = False
+                        for i in range(1, self.height):
+                            end = i - 1
+                            if not self.check(self.fallingTetramine, y0=i):
+                                break
+                        self.fallingTetramine['y'] += end
+                        self.score += 3
+
             # Controlling the fall of the tetramine while holding down the keys
             if (self.left or self.right) and time.time() - self.last_side > self.side_frequency:
                 if self.left and self.check(self.fallingTetramine, x0=-1):
                     self.fallingTetramine['x'] -= 1
+
                 elif self.right and self.check(self.fallingTetramine, x0=1):
                     self.fallingTetramine['x'] += 1
                 self.last_side = time.time()
@@ -249,10 +288,9 @@ class Board:  # General class for game modes
                     self.last_fall = time.time()
             self.screen.fill(self.themeColor)
             self.render()
-            pygame.display.flip()
             self.clock.tick(self.fps)
 
-    def isCompleted(self, y): # Check the presence of fully filled rows
+    def isCompleted(self, y):  # Check the presence of fully filled rows
         for x in range(self.width):
             if self.board[x][y] == self.empty:
                 return False
@@ -280,14 +318,16 @@ class Board:  # General class for game modes
             return True
         return False
 
-    def check(self, tetramine, x0=0, y0=0): # Checks if the tetramine is within the board boundaries without colliding with other tetramines
+    def check(self, tetramine, x0=0, y0=0):  # Checks if the tetramine is within the board boundaries without colliding with other tetramines
         for x in range(self.tetraminesW):
             for y in range(self.tetraminesH):
                 above_board = y + tetramine['y'] + y0 < 0
                 if above_board or self.tetramines[tetramine['shape']][tetramine['rotation']][y][x] == self.empty:
                     continue
+
                 if not self.inBoard(x + tetramine['x'] + x0, y + tetramine['y'] + y0):
                     return False
+
                 if self.board[x + tetramine['x'] + x0][y + tetramine['y'] + y0] != self.empty:
                     return False
         return True
@@ -310,18 +350,19 @@ class Board:  # General class for game modes
         return (self.side_fields + (x * self.cell_size)), \
             (self.upper_field + (y * self.cell_size))
 
-    def newTetramine(self): # Returns a new tetramine with a random color and rotation angle
+    def newTetramine(self):  # Returns a new tetramine with a random color and rotation angle
         shape = choice(list(self.tetramines.keys()))
         newTetramine = {'shape': shape,
-                     'rotation': randint(0, len(self.tetramines[shape]) - 1),
-                     'x': int(self.width / 2) - int(self.tetraminesW / 2),
-                     'y': -2,
-                     'color': randint(0, len(self.colors) - 1)}
+                        'rotation': randint(0, len(self.tetramines[shape]) - 1),
+                        'x': int(self.width / 2) - int(self.tetraminesW / 2),
+                        'y': -2,
+                        'color': randint(0, len(self.colors) - 1)}
         return newTetramine
 
-    def drawBlock(self, block_x, block_y, color, size, x=None, y=None): # Drawing the square blocks that make up the tetramines
+    def drawBlock(self, block_x, block_y, color, size, x=None, y=None):  # Drawing the square blocks that make up the tetramines
         if color == self.empty:
             return
+
         if x is None and y is None:
             x, y = self.coords(block_x, block_y)
         pygame.draw.rect(self.screen, self.colors[color],
@@ -351,14 +392,15 @@ class Board:  # General class for game modes
 
     def info(self): # Drawing information about user and score
         if self.theme:
-            fontColor = pygame.Color('white')
-        else:
             fontColor = pygame.Color('black')
+        else:
+            fontColor = pygame.Color('white')
         font_score = pygame.font.SysFont('symbol', 45)
         score = '0' * (5 - len(str(self.score))) + str(self.score)
         text_score = font_score.render(score, True, fontColor)
         text_score_x = self.widthW - 170
         text_score_y = 300
+
         font_user = pygame.font.SysFont('arial', 30)
         text_user = font_user.render(self.user, True, fontColor)
         text_user_x = self.widthW - 170
@@ -368,9 +410,9 @@ class Board:  # General class for game modes
 
     def button(self): # Drawing exit button
         if self.theme:
-            fontColor = pygame.Color('white')
-        else:
             fontColor = pygame.Color('black')
+        else:
+            fontColor = pygame.Color('white')
         font = pygame.font.SysFont('arial', 20)
         text = font.render('Quit', True, fontColor)
         text_x = self.widthW - 130
@@ -379,27 +421,33 @@ class Board:  # General class for game modes
         pygame.draw.rect(self.screen, fontColor, (text_x - 15, text_y - 15,
                                                      text.get_width() + 30, text.get_height() + 30), 3)
         # HitBox of a button "Quit"
-        self.button_HitBox_x = text_x
-        self.button_HitBox_y = text_y
-        self.button_HitBox_sizeX = text_x + 50
-        self.button_HitBox_sizeY = text_y + 40
+        self.button_HitBox_x = text_x - 10
+        self.button_HitBox_y = text_y - 5
+        self.button_HitBox_sizeX = text_x + 45
+        self.button_HitBox_sizeY = text_y + 35
 
     def render(self):
         if self.theme:
-            borderColor = pygame.Color('white')
-        else:
             borderColor = pygame.Color('black')
+        else:
+            borderColor = pygame.Color('white')
         self.info() # Information about user and score
         self.button() # Exit button
         pygame.draw.rect(self.screen, borderColor,
                          (self.side_fields - 4, self.upper_field - 4, (self.width * self.cell_size) + 8,
-                          (self.height * self.cell_size) + 8), 5) # Border of the playing field
+                          (self.height * self.cell_size) + 8), 5)  # Border of the playing field
+
         for x in range(self.width):
             for y in range(self.height):
-                self.drawBlock(x, y, self.board[x][y], size=self.cell_size) # Already landed tetramine
-        self.drawnextTetramine(self.nextTetramine) # Preview of the next tetramine
+                self.drawBlock(x, y, self.board[x][y], size=self.cell_size)  # Already landed tetramine
+        self.drawnextTetramine(self.nextTetramine)  # Preview of the next tetramine
+
         if self.fallingTetramine is not None:
             self.drawTetramine(self.fallingTetramine, size=self.cell_size)  # Drawing a falling tetramine
+
+        if pygame.mouse.get_focused(): # Drawing a cursor
+            self.cursor.rect.x, self.cursor.rect.y = pygame.mouse.get_pos()
+            all_sprites.draw(self.screen)
         pygame.display.flip()
 
 
