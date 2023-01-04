@@ -1,19 +1,29 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="60af78ae-74e4-4259-939a-c7eff029eade" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/records.csv" afterDir="false" />
+    <list default="true" id="60af78ae-74e4-4259-939a-c7eff029eade" name="Changes" comment="Test_Levels. Stable.">
+      <change afterPath="$PROJECT_DIR$/Data/Sprites/logo_1level_unlock.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Data/Sprites/logo_2level_unlock.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Data/Sprites/logo_3level_lock.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_07_12_2022_23_13__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_07_12_2022_23_13__Changes_.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_07_12_2022_23_26__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_07_12_2022_23_26__Changes_.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_13_12_2022_16_14_[Changes]1/shelved.patch" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_13_12_2022_16_14__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_13_12_2022_16_14__Changes_.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_13_12_2022_16_14__Changes_1.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_13_12_2022_16_14__Changes_1.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_13_12_2022_16_18__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_13_12_2022_16_18__Changes_.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_13_12_2022_16_12__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_13_12_2022_16_12__Changes_.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_13_12_2022_16_14__Changes_1.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_13_12_2022_16_18_[Changes]/shelved.patch" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_13_12_2022_16_18__Changes_.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_19_12_2022_14_21_[Changes]1/shelved.patch" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_19_12_2022_14_21__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_19_12_2022_14_21__Changes_.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_19_12_2022_14_21__Changes_1.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_19_12_2022_15_15__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_19_12_2022_15_15__Changes_.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_13_12_2022_16_12_[Changes]/shelved.patch" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_13_12_2022_16_12__Changes_.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_17_12_2022_21_51_[Changes]/shelved.patch" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_17_12_2022_21_51__Changes_.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Lessons/test.py" beforeDir="false" afterPath="$PROJECT_DIR$/Lessons/test.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/MainProgram.py" beforeDir="false" afterPath="$PROJECT_DIR$/MainProgram.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Music/MeryCristmasTrap_fon.mp3" beforeDir="false" afterPath="$PROJECT_DIR$/Data/Music/MeryCristmasTrap_fon.mp3" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Music/Nightwing.mp3" beforeDir="false" afterPath="$PROJECT_DIR$/Data/Music/Nightwing.mp3" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Sounds/push_button.mp3" beforeDir="false" afterPath="$PROJECT_DIR$/Data/Sounds/push_button.mp3" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/records.csv" beforeDir="false" afterPath="$PROJECT_DIR$/records.csv" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/settings.json" beforeDir="false" afterPath="$PROJECT_DIR$/settings.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -44,21 +54,24 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../LyceumYandex/main.py" />
-    <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
-    <property name="settings.editor.splitter.proportion" value="0.20977597" />
-  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;last_opened_file_path&quot;: &quot;D:/IT/PycharmProjects/pythonProject1/PyGame/Tetris/Data&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable&quot;
+  }
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\IT\PycharmProjects\pythonProject1\PyGame\Tetris\Data" />
       <recent name="D:\IT\PycharmProjects\pythonProject1\PyGame\Tetris\.idea" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\IT\PycharmProjects\pythonProject1\PyGame\Tetris\Data\Sprites" />
       <recent name="D:\IT\PycharmProjects\pythonProject1\PyGame\Tetris\Data" />
       <recent name="D:\IT\PycharmProjects\pythonProject1\PyGame\Tetris" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.MainProgram">
+  <component name="RunManager" selected="Python.test">
     <configuration name="MainProgram" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="Tetris" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -195,8 +208,8 @@
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Python.MainProgram" />
         <item itemvalue="Python.test" />
+        <item itemvalue="Python.MainProgram" />
         <item itemvalue="Python.main" />
         <item itemvalue="Python.MainWindow" />
         <item itemvalue="Python.myproject (1)" />

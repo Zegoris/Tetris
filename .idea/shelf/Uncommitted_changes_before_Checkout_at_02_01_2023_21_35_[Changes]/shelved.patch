@@ -1,0 +1,117 @@
+Index: MainProgram.py
+===================================================================
+diff --git a/MainProgram.py b/MainProgram.py
+--- a/MainProgram.py	
++++ b/MainProgram.py	
+@@ -2,6 +2,7 @@
+ import json
+ import random
+ import os
++import sys
+ 
+ runm = 0
+ 
+@@ -337,6 +338,7 @@
+         running = True
+         global runm
+         self.runM = runm
++        self.all_sprites = pygame.sprite.Group()
+ 
+         # open setting.json and take var
+         with open("settings.json") as file:
+@@ -376,4 +378,31 @@
+         self.screen.fill(self.TextColor)        # Fill display color
+         pygame.display.flip()
+ 
++        Level1_image = self.load_image("Data/Sprites/Test_level_1.png")
++
++        Level1 = pygame.sprite.Sprite(self.all_sprites)
++        Level1.image = Level1_image
++        Level1.rect = Level1.image.get_rect()
++
++        Level1.rect.x = 10
++        Level1.rect.y = 10
++
++        pygame.display.flip()
++
++    def load_image(name, colorkey=None):
++        fullname = os.path.join('Data', str(name))
++        # если файл не существует, то выходим
++        if not os.path.isfile(fullname):
++            print(f"Файл с изображением '{fullname}' не найден")
++            sys.exit()
++        image = pygame.image.load(fullname)
++        if colorkey is not None:
++            image = image.convert()
++            if colorkey == -1:
++                colorkey = image.get_at((0, 0))
++            image.set_colorkey(colorkey)
++        else:
++            image = image.convert_alpha()
++        return image
++
+ MainWindow()
+\ No newline at end of file
+Index: .idea/workspace.xml
+===================================================================
+diff --git a/.idea/workspace.xml b/.idea/workspace.xml
+--- a/.idea/workspace.xml	
++++ b/.idea/workspace.xml	
+@@ -1,20 +1,19 @@
+ <?xml version="1.0" encoding="UTF-8"?>
+ <project version="4">
+   <component name="ChangeListManager">
+-    <list default="true" id="60af78ae-74e4-4259-939a-c7eff029eade" name="Changes" comment="">
+-      <change afterPath="$PROJECT_DIR$/records.csv" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_07_12_2022_23_13__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_07_12_2022_23_13__Changes_.xml" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_07_12_2022_23_26__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_07_12_2022_23_26__Changes_.xml" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_13_12_2022_16_14__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_13_12_2022_16_14__Changes_.xml" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_13_12_2022_16_14__Changes_1.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_13_12_2022_16_14__Changes_1.xml" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_13_12_2022_16_18__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_13_12_2022_16_18__Changes_.xml" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_13_12_2022_16_12__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_13_12_2022_16_12__Changes_.xml" afterDir="false" />
++    <list default="true" id="60af78ae-74e4-4259-939a-c7eff029eade" name="Changes" comment="Test_Levels. Stable.">
++      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_13_12_2022_16_14_[Changes]1/shelved.patch" beforeDir="false" />
++      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_13_12_2022_16_14__Changes_1.xml" beforeDir="false" />
++      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_13_12_2022_16_18_[Changes]/shelved.patch" beforeDir="false" />
++      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_13_12_2022_16_18__Changes_.xml" beforeDir="false" />
++      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_19_12_2022_14_21_[Changes]1/shelved.patch" beforeDir="false" />
++      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_19_12_2022_14_21__Changes_1.xml" beforeDir="false" />
++      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_13_12_2022_16_12_[Changes]/shelved.patch" beforeDir="false" />
++      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_13_12_2022_16_12__Changes_.xml" beforeDir="false" />
++      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_17_12_2022_21_51_[Changes]/shelved.patch" beforeDir="false" />
++      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_17_12_2022_21_51__Changes_.xml" beforeDir="false" />
+       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/MainProgram.py" beforeDir="false" afterPath="$PROJECT_DIR$/MainProgram.py" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/Music/MeryCristmasTrap_fon.mp3" beforeDir="false" afterPath="$PROJECT_DIR$/Data/Music/MeryCristmasTrap_fon.mp3" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/Music/Nightwing.mp3" beforeDir="false" afterPath="$PROJECT_DIR$/Data/Music/Nightwing.mp3" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/Sounds/push_button.mp3" beforeDir="false" afterPath="$PROJECT_DIR$/Data/Sounds/push_button.mp3" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/settings.json" beforeDir="false" afterPath="$PROJECT_DIR$/settings.json" afterDir="false" />
+     </list>
+     <option name="SHOW_DIALOG" value="false" />
+     <option name="HIGHLIGHT_CONFLICTS" value="true" />
+@@ -268,7 +267,14 @@
+       <option name="project" value="LOCAL" />
+       <updated>1670508082226</updated>
+     </task>
+-    <option name="localTasksCounter" value="9" />
++    <task id="LOCAL-00009" summary="Test_Levels. Stable.">
++      <created>1671453096455</created>
++      <option name="number" value="00009" />
++      <option name="presentableId" value="LOCAL-00009" />
++      <option name="project" value="LOCAL" />
++      <updated>1671453096455</updated>
++    </task>
++    <option name="localTasksCounter" value="10" />
+     <servers />
+   </component>
+   <component name="Vcs.Log.History.Properties">
+@@ -322,7 +328,8 @@
+     <MESSAGE value="Colors&#10;None SwichTheme" />
+     <MESSAGE value="Colors; &#10;None SwichTheme" />
+     <MESSAGE value="test Sound/Music" />
+-    <option name="LAST_COMMIT_MESSAGE" value="test Sound/Music" />
++    <MESSAGE value="Test_Levels. Stable." />
++    <option name="LAST_COMMIT_MESSAGE" value="Test_Levels. Stable." />
+   </component>
+   <component name="XDebuggerManager">
+     <breakpoint-manager>

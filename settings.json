@@ -4,9 +4,9 @@
     "DarkTheme": true,
     "Color": {
         "Dark": [
-            245,
-            240,
-            225
+            255,
+            255,
+            255
         ],
         "Light": [
             30,

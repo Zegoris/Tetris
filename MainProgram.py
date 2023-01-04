@@ -1,3 +1,5 @@
+import sys
+
 import pygame
 import json
 import random
@@ -334,7 +336,7 @@ class Levels_Window():
         pygame.init()  # init pygame
         self.size = self.width, self.height = 500, 700  # Window Size
         self.screen = pygame.display.set_mode(self.size)  # Screen Setting
-        running = True
+        self.running = True
         global runm
         self.runM = runm
 
@@ -353,27 +355,167 @@ class Levels_Window():
 
         # Music
         pygame.mixer.music.set_volume(0.1)
-        pygame.mixer.music.load("Data/Music/" + str(random.choice(os.listdir("Data/Music"))))
+
         # Sounds
         self.sound_push_button = pygame.mixer.Sound('Data/Sounds/push_button.mp3')
 
         # Play Music
         if self.Music:
-            pygame.mixer.music.play()
+            pygame.mixer.music.unpause()
+
 
         self.draw()  # draw all
 
         # Staff
-        while running:
+        while self.running:
             for event in pygame.event.get():
-                if event.type == pygame.QUIT:  # Stop Programm
-                    running = False
+                if event.type == pygame.QUIT:  # Stop Program
+                    # play sound if "settings" close
+                    if self.Sound:
+                        pygame.mixer.music.pause()
+                        self.sound_push_button.play()
+                        if self.Music:
+                            pygame.mixer.music.unpause()
+
+                    MainWindow()  # Opne MainWindow
+                    self.running = False
+
                 if event.type == pygame.MOUSEBUTTONDOWN:
-                    #elf.click(event.pos)
-                    pass
+                    self.click(event.pos)
 
     def draw(self):
         self.screen.fill(self.TextColor)        # Fill display color
+
+        self.all_sprites = pygame.sprite.Group()
+
+
+        # Classic levels
+        font = pygame.font.Font(None, 60)
+        text = font.render("CLASSIC", True, self.BgColor)
+        text_x = self.width // 2 - text.get_width() // 2
+        text_y = 13
+        self.screen.blit(text, (text_x, text_y))
+        pygame.draw.line(self.screen, self.BgColor, (0, 50), (500, 50), 4)
+
+        sp1_l1 = pygame.sprite.Sprite()
+        sp1_l1.image = pygame.image.load("Data/Sprites/logo_1level_unlock.png")
+        sp1_l1.rect = sp1_l1.image.get_rect()
+        sp1_l1.rect.x, sp1_l1.rect.y = 50, 70
+
+        sp1_l2 = pygame.sprite.Sprite()
+        sp1_l2.image = pygame.image.load("Data/Sprites/logo_2level_unlock.png")
+        sp1_l2.rect = sp1_l2.image.get_rect()
+        sp1_l2.rect.x, sp1_l2.rect.y = 200, 70
+
+        sp1_l3 = pygame.sprite.Sprite()
+        sp1_l3.image = pygame.image.load("Data/Sprites/logo_3level_lock.png")
+        sp1_l3.rect = sp1_l3.image.get_rect()
+        sp1_l3.rect.x, sp1_l3.rect.y = 350, 70
+
+
+        #survival levels
+        font = pygame.font.Font(None, 60)
+        text = font.render("SURVIVAL", True, self.BgColor)
+        text_x = self.width // 2 - text.get_width() // 2
+        text_y = 233
+        self.screen.blit(text, (text_x, text_y))
+        pygame.draw.line(self.screen, self.BgColor, (0, 270), (500, 270), 4)
+
+        sp2_l1 = pygame.sprite.Sprite()
+        sp2_l1.image = pygame.image.load("Data/Sprites/logo_1level_lock.png")
+        sp2_l1.rect = sp2_l1.image.get_rect()
+        sp2_l1.rect.x, sp2_l1.rect.y = 50, 290
+
+        sp2_l2 = pygame.sprite.Sprite()
+        sp2_l2.image = pygame.image.load("Data/Sprites/logo_2level_lock.png")
+        sp2_l2.rect = sp2_l2.image.get_rect()
+        sp2_l2.rect.x, sp2_l2.rect.y = 200, 290
+
+        sp2_l3 = pygame.sprite.Sprite()
+        sp2_l3.image = pygame.image.load("Data/Sprites/logo_3level_lock.png")
+        sp2_l3.rect = sp2_l3.image.get_rect()
+        sp2_l3.rect.x, sp2_l3.rect.y = 350, 290
+
+        # puzzle levels
+        font = pygame.font.Font(None, 60)
+        text = font.render("PUZZLE", True, self.BgColor)
+        text_x = self.width // 2 - text.get_width() // 2
+        text_y = 453
+        self.screen.blit(text, (text_x, text_y))
+        pygame.draw.line(self.screen, self.BgColor, (0, 490), (500, 490), 4)
+
+        sp3_l1 = pygame.sprite.Sprite()
+        sp3_l1.image = pygame.image.load("Data/Sprites/logo_1level_lock.png")
+        sp3_l1.rect = sp3_l1.image.get_rect()
+        sp3_l1.rect.x, sp3_l1.rect.y = 50, 510
+
+        sp3_l2 = pygame.sprite.Sprite()
+        sp3_l2.image = pygame.image.load("Data/Sprites/logo_2level_lock.png")
+        sp3_l2.rect = sp3_l2.image.get_rect()
+        sp3_l2.rect.x, sp3_l2.rect.y = 200, 510
+
+        sp3_l3 = pygame.sprite.Sprite()
+        sp3_l3.image = pygame.image.load("Data/Sprites/logo_3level_lock.png")
+        sp3_l3.rect = sp3_l3.image.get_rect()
+        sp3_l3.rect.x, sp3_l3.rect.y = 350, 510
+
+        self.all_sprites.add(sp1_l1, sp1_l2, sp1_l3, sp2_l1, sp2_l2, sp2_l3, sp3_l1, sp3_l2, sp3_l3)
+
+        # Btn "Quit"
+        font = pygame.font.Font(None, 40)
+        text = font.render("Quit", True, self.BgColor)
+        self.btn_Q_text_x = self.width // 2 - text.get_width() // 2
+        self.btn_Q_text_y = 650
+        self.btn_Q_x = text.get_width() + 20
+        self.btn_Q_y = text.get_height() + 20
+        self.screen.blit(text, (self.btn_Q_text_x, self.btn_Q_text_y))
+        pygame.draw.rect(self.screen, self.BgColor, (self.btn_Q_text_x - 10, self.btn_Q_text_y - 10,
+                                                     self.btn_Q_x, self.btn_Q_y), 3)
+
+        # Btn "?"
+        font = pygame.font.Font(None, 30)
+        text = font.render("?", True, self.BgColor)
+        self.btn_text_x = 20
+        self.btn_text_y = 660
+        self.btn_x = text.get_width() + 20
+        self.btn_y = text.get_height() + 20
+        self.screen.blit(text, (self.btn_text_x, self.btn_text_y))
+        pygame.draw.rect(self.screen, self.BgColor, (self.btn_text_x - 10, self.btn_text_y - 10,
+                                                     self.btn_x, self.btn_y), 3)
+
+        self.all_sprites.draw(self.screen)
         pygame.display.flip()
+
+    def click(self, pos):
+        sp = list(self.all_sprites)
+        for i in sp:
+            x, y, x2, y2 = i.rect.x, i.rect.y, i.rect.x + i.rect.width, i.rect.y + i.rect.height
+            if x - 10 <= pos[0] <= x2 and y - 10 <= pos[1] <= y2:
+                if sp.index(i) + 1 <= 2:
+                    # start Game
+                    pass
+                else:
+                    # Error Window "this level is locked"
+                    pass
+
+        # Close levels window
+        if self.btn_Q_text_x - 10 <= pos[0] <= self.btn_Q_text_x + self.btn_Q_x and\
+                self.btn_Q_text_y - 10 <= pos[1] <= self.btn_Q_text_y + self.btn_Q_y:
+
+            if self.Sound:
+                pygame.mixer.music.pause()
+                self.sound_push_button.play()
+                if self.Music:
+                    pygame.mixer.music.unpause()
+
+            MainWindow()  # Opne MainWindow
+            self.running = False
+
+        #More Inf for levels
+        elif self.btn_text_x - 10 <= pos[0] <= self.btn_text_x + self.btn_x and\
+                self.btn_text_y - 10 <= pos[1] <= self.btn_text_y + self.btn_y:
+            pass
+
+
 
 MainWindow()

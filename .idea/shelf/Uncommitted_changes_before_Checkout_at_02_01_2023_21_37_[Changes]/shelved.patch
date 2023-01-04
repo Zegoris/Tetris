@@ -1,0 +1,15 @@
+Index: records.csv
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>user,first_gm,second_gm
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/records.csv b/records.csv
+--- a/records.csv	(revision e12204265103adc21c494e46a2e2e9b357ae8554)
++++ b/records.csv	(date 1672684606702)
+@@ -1,1 +1,2 @@
+-user,first_gm,second_gm
+\ No newline at end of file
++user,first_gm,second_gm
++TPLV,0,0
