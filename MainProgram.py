@@ -95,6 +95,18 @@ class MainWindow():
         self.BtnSett_HuitBox_XSize = text_x + 500
         self.BtnSett_HuitBox_YSize = text_y + 50
 
+        # Quite BTN
+        # Btn "Quit"
+        font = pygame.font.Font(None, 40)
+        text = font.render("Quit", True, self.BgColor)
+        self.btn_Q_text_x = self.width // 2 - text.get_width() // 2
+        self.btn_Q_text_y = 650
+        self.btn_Q_x = text.get_width() + 20
+        self.btn_Q_y = text.get_height() + 20
+        self.screen.blit(text, (self.btn_Q_text_x, self.btn_Q_text_y))
+        pygame.draw.rect(self.screen, self.BgColor, (self.btn_Q_text_x - 10, self.btn_Q_text_y - 10,
+                                                     self.btn_Q_x, self.btn_Q_y), 3)
+
         # Draw Changes
         pygame.display.flip()
 
@@ -116,6 +128,18 @@ class MainWindow():
             # Open SettingsWindow
             Settings_Window()
 
+        elif self.btn_Q_text_x - 10 <= pos[0] <= self.btn_Q_text_x + self.btn_Q_x and\
+                self.btn_Q_text_y - 10 <= pos[1] <= self.btn_Q_text_y + self.btn_Q_y:
+
+            if self.Sound:
+                pygame.mixer.music.pause()
+                self.sound_push_button.play()
+                if self.Music:
+                    pygame.mixer.music.unpause()
+
+
+            self.running = False
+            pygame.quit()
 
 class Settings_Window():
     def __init__(self):
@@ -244,6 +268,18 @@ class Settings_Window():
                 with open("settings.json", "w") as file:
                     json.dump(data, file, indent=4)
 
+        # Close levels window
+        elif self.btn_Q_text_x - 10 <= pos[0] <= self.btn_Q_text_x + self.btn_Q_x and \
+                self.btn_Q_text_y - 10 <= pos[1] <= self.btn_Q_text_y + self.btn_Q_y:
+
+            if self.Sound:
+                pygame.mixer.music.pause()
+                self.sound_push_button.play()
+                if self.Music:
+                    pygame.mixer.music.unpause()
+
+            MainWindow()  # Opne MainWindow
+            self.running = False
         self.draw()
 
     # Draw on windwo: Title, other sett.
@@ -324,12 +360,23 @@ class Settings_Window():
             pygame.draw.rect(self.screen, self.BgColor, (ChB_x, ChB_y, 20, 20))
             pygame.draw.rect(self.screen, self.TextColor, (ChB_x + 2, ChB_y + 2, 16, 16))
             pygame.draw.rect(self.screen, self.BgColor, (ChB_x + 3, ChB_y + 3, 14, 14))
-            pygame.display.flip()
+
         else:
             pygame.draw.rect(self.screen, self.BgColor, (ChB_x, ChB_y, 20, 20))
             pygame.draw.rect(self.screen, self.TextColor, (ChB_x + 2, ChB_y + 2, 16, 16))
-            pygame.display.flip()
 
+        # Btn "Quit"
+        font = pygame.font.Font(None, 40)
+        text = font.render("Quit", True, self.BgColor)
+        self.btn_Q_text_x = self.width // 2 - text.get_width() // 2
+        self.btn_Q_text_y = 650
+        self.btn_Q_x = text.get_width() + 20
+        self.btn_Q_y = text.get_height() + 20
+        self.screen.blit(text, (self.btn_Q_text_x, self.btn_Q_text_y))
+        pygame.draw.rect(self.screen, self.BgColor, (self.btn_Q_text_x - 10, self.btn_Q_text_y - 10,
+                                                         self.btn_Q_x, self.btn_Q_y), 3)
+
+        pygame.display.flip()
 
 class Levels_Window():
     def __init__(self):
@@ -337,6 +384,7 @@ class Levels_Window():
         self.size = self.width, self.height = 500, 700  # Window Size
         self.screen = pygame.display.set_mode(self.size)  # Screen Setting
         self.running = True
+        self.error = False
         global runm
         self.runM = runm
 
@@ -472,31 +520,42 @@ class Levels_Window():
         pygame.draw.rect(self.screen, self.BgColor, (self.btn_Q_text_x - 10, self.btn_Q_text_y - 10,
                                                      self.btn_Q_x, self.btn_Q_y), 3)
 
-        # Btn "?"
-        font = pygame.font.Font(None, 30)
-        text = font.render("?", True, self.BgColor)
-        self.btn_text_x = 20
-        self.btn_text_y = 660
-        self.btn_x = text.get_width() + 20
-        self.btn_y = text.get_height() + 20
-        self.screen.blit(text, (self.btn_text_x, self.btn_text_y))
-        pygame.draw.rect(self.screen, self.BgColor, (self.btn_text_x - 10, self.btn_text_y - 10,
-                                                     self.btn_x, self.btn_y), 3)
 
         self.all_sprites.draw(self.screen)
         pygame.display.flip()
 
     def click(self, pos):
-        sp = list(self.all_sprites)
-        for i in sp:
-            x, y, x2, y2 = i.rect.x, i.rect.y, i.rect.x + i.rect.width, i.rect.y + i.rect.height
-            if x - 10 <= pos[0] <= x2 and y - 10 <= pos[1] <= y2:
-                if sp.index(i) + 1 <= 2:
-                    # крч, sp.index(i) + 1 это номер нажатого левела, тут фильтр до 2 лвл
-                    pass
-                else:
-                    # Error Window "this level is locked"
-                    pass
+        if not self.error:
+            sp = list(self.all_sprites)
+            for i in sp:
+                x, y, x2, y2 = i.rect.x, i.rect.y, i.rect.x + i.rect.width, i.rect.y + i.rect.height
+                if x - 10 <= pos[0] <= x2 and y - 10 <= pos[1] <= y2:
+                    if sp.index(i) + 1 <= 2:
+                        if sp.index(i) + 1 == 1:
+                            # start 1 lev
+                            pass
+                        elif sp.index(i) + 1 == 2:
+                            # start 2 lev
+                            pass
+                    else:
+                        self.error = True
+                        pygame.draw.rect(self.screen, (0, 0, 0), (57, 237, 400, 160))
+                        pygame.draw.rect(self.screen, (255, 0, 0), (50, 230, 400, 160))
+
+                        font = pygame.font.Font(None, 80)
+                        text = font.render("Coming soon!", True, (255, 255, 255))
+                        text2 = font.render("Coming soon!", True, (0, 0, 0))
+                        self.btn_text_x = 70
+                        self.btn_text_y = 280
+                        self.screen.blit(text2, (self.btn_text_x + 3, self.btn_text_y + 3))
+                        self.screen.blit(text, (self.btn_text_x, self.btn_text_y))
+                        pygame.display.flip()
+
+
+        else:
+            self.error = False
+            self.draw()
+
 
         # Close levels window
         if self.btn_Q_text_x - 10 <= pos[0] <= self.btn_Q_text_x + self.btn_Q_x and\
@@ -511,10 +570,7 @@ class Levels_Window():
             MainWindow()  # Opne MainWindow
             self.running = False
 
-        #More Inf for levels
-        elif self.btn_text_x - 10 <= pos[0] <= self.btn_text_x + self.btn_x and\
-                self.btn_text_y - 10 <= pos[1] <= self.btn_text_y + self.btn_y:
-            pass
+
 
 
 
