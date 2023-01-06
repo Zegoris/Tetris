@@ -2,29 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="60af78ae-74e4-4259-939a-c7eff029eade" name="Changes" comment="Test_Levels. Stable.">
-      <change afterPath="$PROJECT_DIR$/Data/Sprites/logo_1level_unlock.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Data/Sprites/logo_2level_unlock.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Data/Sprites/logo_3level_lock.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_07_12_2022_23_13__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_07_12_2022_23_13__Changes_.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_07_12_2022_23_26__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_07_12_2022_23_26__Changes_.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_13_12_2022_16_14_[Changes]1/shelved.patch" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_13_12_2022_16_14__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_13_12_2022_16_14__Changes_.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_13_12_2022_16_14__Changes_1.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_13_12_2022_16_18_[Changes]/shelved.patch" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_13_12_2022_16_18__Changes_.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_19_12_2022_14_21_[Changes]1/shelved.patch" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_19_12_2022_14_21__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_19_12_2022_14_21__Changes_.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_19_12_2022_14_21__Changes_1.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_19_12_2022_15_15__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_19_12_2022_15_15__Changes_.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_13_12_2022_16_12_[Changes]/shelved.patch" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_13_12_2022_16_12__Changes_.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_17_12_2022_21_51_[Changes]/shelved.patch" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_17_12_2022_21_51__Changes_.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Lessons/test.py" beforeDir="false" afterPath="$PROJECT_DIR$/Lessons/test.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MainProgram.py" beforeDir="false" afterPath="$PROJECT_DIR$/MainProgram.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/records.csv" beforeDir="false" afterPath="$PROJECT_DIR$/records.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/settings.json" beforeDir="false" afterPath="$PROJECT_DIR$/settings.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -66,6 +45,7 @@
       <recent name="D:\IT\PycharmProjects\pythonProject1\PyGame\Tetris\.idea" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\IT\PycharmProjects\pythonProject1\PyGame\Tetris\Lessons\data" />
       <recent name="D:\IT\PycharmProjects\pythonProject1\PyGame\Tetris\Data\Sprites" />
       <recent name="D:\IT\PycharmProjects\pythonProject1\PyGame\Tetris\Data" />
       <recent name="D:\IT\PycharmProjects\pythonProject1\PyGame\Tetris" />
@@ -281,7 +261,14 @@
       <option name="project" value="LOCAL" />
       <updated>1670508082226</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="Test_Levels. Stable.">
+      <created>1672839649508</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1672839649508</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="Vcs.Log.History.Properties">
@@ -335,7 +322,8 @@
     <MESSAGE value="Colors&#10;None SwichTheme" />
     <MESSAGE value="Colors; &#10;None SwichTheme" />
     <MESSAGE value="test Sound/Music" />
-    <option name="LAST_COMMIT_MESSAGE" value="test Sound/Music" />
+    <MESSAGE value="Test_Levels. Stable." />
+    <option name="LAST_COMMIT_MESSAGE" value="Test_Levels. Stable." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
