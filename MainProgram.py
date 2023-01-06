@@ -492,7 +492,7 @@ class Levels_Window():
             x, y, x2, y2 = i.rect.x, i.rect.y, i.rect.x + i.rect.width, i.rect.y + i.rect.height
             if x - 10 <= pos[0] <= x2 and y - 10 <= pos[1] <= y2:
                 if sp.index(i) + 1 <= 2:
-                    # start Game
+                    # крч, sp.index(i) + 1 это номер нажатого левела, тут фильтр до 2 лвл
                     pass
                 else:
                     # Error Window "this level is locked"
