@@ -1,11 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="60af78ae-74e4-4259-939a-c7eff029eade" name="Changes" comment="Test_Levels. Stable.">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MainProgram.py" beforeDir="false" afterPath="$PROJECT_DIR$/MainProgram.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/settings.json" beforeDir="false" afterPath="$PROJECT_DIR$/settings.json" afterDir="false" />
-    </list>
+    <list default="true" id="e5d15a82-f89d-4480-be08-b31da0a33c63" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -124,11 +120,11 @@
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/../../LyceumYandex" />
+      <option name="WORKING_DIRECTORY" value="$USER_HOME$/LyceumYandex" />
       <option name="IS_MODULE_SDK" value="false" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/../../LyceumYandex/main.py" />
+      <option name="SCRIPT_NAME" value="$USER_HOME$/LyceumYandex/main.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -181,11 +177,11 @@
     </configuration>
     <list>
       <item itemvalue="Python.SettingsWindow" />
-      <item itemvalue="Python.MainWindow" />
-      <item itemvalue="Python.myproject (1)" />
       <item itemvalue="Python.MainProgram" />
-      <item itemvalue="Python.test" />
+      <item itemvalue="Python.MainWindow" />
       <item itemvalue="Python.main" />
+      <item itemvalue="Python.myproject (1)" />
+      <item itemvalue="Python.test" />
     </list>
     <recent_temporary>
       <list>

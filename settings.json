@@ -1,12 +1,12 @@
 {
     "Music": false,
-    "Sounds": true,
+    "Sounds": false,
     "DarkTheme": true,
     "Color": {
         "Dark": [
-            255,
-            255,
-            255
+            245,
+            240,
+            225
         ],
         "Light": [
             30,
