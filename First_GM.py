@@ -8,19 +8,14 @@ import csv
 pygame.init()
 pygame.mixer.init()
 
-all_sprites = pygame.sprite.Group()  # Creating group of sprites
+cursor_group = pygame.sprite.Group()  # Creating group of sprites
 pygame.mouse.set_visible(False)
+runm = 0
 
-def load_image(name, colorkey=None):
+
+def load_image(name):
     fullname = os.path.join('sprites', name)  # Create a path to a picture file
     image = pygame.image.load(fullname)
-    if colorkey is not None:
-        image = image.convert()
-        if colorkey == -1:
-            colorkey = image.get_at((0, 0))
-        image.set_colorkey(colorkey)
-    else:
-        image = image.convert_alpha()
     return image
 
 
@@ -55,15 +50,18 @@ def write_records(user, gm, score):
 
 class Cursor(pygame.sprite.Sprite):  # Class of the cursor
     def __init__(self, image):
-        super().__init__(all_sprites)
+        super().__init__(cursor_group)
         self.image = load_image(image)  # Set image jf the sprite
         self.rect = self.image.get_rect()  # Set size of the sprite
 
 
+cursor = Cursor('cursor.png')  # Initialization of the cursor
+
+
 class Board:  # General class for game modes
     def __init__(self, screen, width, height, game_mode):
+        global cursor
         pygame.display.set_caption('Game')
-        self.cursor = Cursor('cursor.png')  # Initialization of the cursor
         self.tetraminesW, self.tetraminesH = 5, 5
         self.empty = 'o'
         self.gm = game_mode
@@ -181,9 +179,9 @@ class Board:  # General class for game modes
             self.darkTheme = tuple(data['Color']['Dark'])
             self.user = data['NickName']
         if self.theme:
-            self.themeColor = self.darkTheme
-        else:
             self.themeColor = self.lightTheme
+        else:
+            self.themeColor = self.darkTheme
         self.screen.fill(self.themeColor)
         self.fps = 60
         self.side_frequency, self.down_frequency = 0.15, 0.1  # Movement to the side and down
@@ -394,9 +392,9 @@ class Board:  # General class for game modes
 
     def info(self): # Drawing information about user and score
         if self.theme:
-            fontColor = pygame.Color('black')
-        else:
             fontColor = pygame.Color('white')
+        else:
+            fontColor = pygame.Color((30, 61, 89))
         font_score = pygame.font.SysFont('symbol', 45)
         score = '0' * (5 - len(str(self.score))) + str(self.score)
         text_score = font_score.render(score, True, fontColor)
@@ -412,9 +410,9 @@ class Board:  # General class for game modes
 
     def button(self): # Drawing exit button
         if self.theme:
-            fontColor = pygame.Color('black')
-        else:
             fontColor = pygame.Color('white')
+        else:
+            fontColor = pygame.Color((30, 61, 89))
         font = pygame.font.SysFont('arial', 20)
         text = font.render('Quit', True, fontColor)
         text_x = self.widthW - 130
@@ -430,9 +428,9 @@ class Board:  # General class for game modes
 
     def render(self):
         if self.theme:
-            borderColor = pygame.Color('black')
-        else:
             borderColor = pygame.Color('white')
+        else:
+            borderColor = pygame.Color((30, 61, 89))
         self.info() # Information about user and score
         self.button() # Exit button
         pygame.draw.rect(self.screen, borderColor,
@@ -448,8 +446,8 @@ class Board:  # General class for game modes
             self.drawTetramine(self.fallingTetramine, size=self.cell_size)  # Drawing a falling tetramine
 
         if pygame.mouse.get_focused(): # Drawing a cursor
-            self.cursor.rect.x, self.cursor.rect.y = pygame.mouse.get_pos()
-            all_sprites.draw(self.screen)
+            cursor.rect.x, cursor.rect.y = pygame.mouse.get_pos()
+            cursor_group.draw(self.screen)
         pygame.display.flip()
 
 

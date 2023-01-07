@@ -1,7 +1,7 @@
 {
     "Music": false,
-    "Sounds": true,
-    "DarkTheme": false,
+    "Sounds": false,
+    "DarkTheme": true,
     "Color": {
         "Dark": [
             245,
@@ -14,5 +14,5 @@
             89
         ]
     },
-    "NickName": "TPLV"
+    "NickName": "Gercog"
 }
