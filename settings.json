@@ -1,0 +1,18 @@
+{
+    "Music": false,
+    "Sounds": false,
+    "DarkTheme": true,
+    "Color": {
+        "Dark": [
+            245,
+            240,
+            225
+        ],
+        "Light": [
+            30,
+            61,
+            89
+        ]
+    },
+    "NickName": "NOPE"
+}
