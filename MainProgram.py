@@ -14,7 +14,7 @@ runm = 0
 
 
 def load_image(name):
-    fullname = os.path.join('sprites', name)  # Create a path to a picture file
+    fullname = os.path.join('Data/Sprites', name)  # Create a path to a picture file
     image = pygame.image.load(fullname)
     return image
 
