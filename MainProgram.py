@@ -500,9 +500,6 @@ class MainWindow:
         pygame.mixer.music.load("Data/Music/" + str(choice(os.listdir("Data/Music"))))
         # Sounds
         self.sound_push_button = pygame.mixer.Sound('Data/Sounds/push_button.mp3')
-        self.sound_push_keywords = pygame.mixer.Sound('Data/Sounds/push_keywords.mp3')
-        self.sound_push_backspace = pygame.mixer.Sound('Data/Sounds/push_backspace.mp3')
-
 
         # Play Music
         if self.Music:
@@ -643,7 +640,7 @@ class Settings_Window:
         self.color_active = pygame.Color('dodgerblue2')
         self.color = self.color_inactive
         active = False
-        self.NickName = 'dwada'
+        self.NickName = ''
         done = False
 
         # Play Music
@@ -651,6 +648,8 @@ class Settings_Window:
             pygame.mixer.music.unpause()
         # Sounds
         self.sound_push_button = pygame.mixer.Sound('Data/Sounds/push_button.mp3')
+        self.sound_push_keywords = pygame.mixer.Sound('Data/Sounds/push_keywords.mp3')
+        self.sound_push_backspace = pygame.mixer.Sound('Data/Sounds/push_backspace.mp3')
 
         # HitBox
         # Chb "Music"
@@ -681,7 +680,8 @@ class Settings_Window:
                     MainWindow()  # Open MainWindow
                     self.running = False
                 if event.type == pygame.MOUSEBUTTONDOWN:
-                    self.sound_push_button
+                    if self.Sound:
+                        self.sound_push_button.play()
                     #NickName
                     if self.input_box.collidepoint(event.pos):
                         # Toggle the active variable.
@@ -694,10 +694,12 @@ class Settings_Window:
 
                     self.click(event.pos)
                 if event.type == pygame.KEYDOWN:
-                    self.sound_push_keywords
+                    if self.Sound:
+                        self.sound_push_backspace.play()
                     if active:
                         if event.key == pygame.K_BACKSPACE:
-                            self.sound_push_backspace
+                            if self.Sound:
+                                self.sound_push_backspace.play()
                             self.NickName = self.NickName[:-1]
                         else:
                             self.NickName += event.unicode
