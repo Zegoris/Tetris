@@ -1,6 +1,6 @@
 {
     "Music": false,
-    "Sounds": false,
+    "Sounds": true,
     "DarkTheme": true,
     "Color": {
         "Dark": [
@@ -14,5 +14,5 @@
             89
         ]
     },
-    "NickName": "NOPE"
+    "NickName": "TPLV"
 }

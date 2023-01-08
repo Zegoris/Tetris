@@ -500,6 +500,9 @@ class MainWindow:
         pygame.mixer.music.load("Data/Music/" + str(choice(os.listdir("Data/Music"))))
         # Sounds
         self.sound_push_button = pygame.mixer.Sound('Data/Sounds/push_button.mp3')
+        self.sound_push_keywords = pygame.mixer.Sound('Data/Sounds/push_keywords.mp3')
+        self.sound_push_backspace = pygame.mixer.Sound('Data/Sounds/push_backspace.mp3')
+
 
         # Play Music
         if self.Music:
@@ -630,6 +633,18 @@ class Settings_Window:
             else:
                 self.TextColor = tuple(data["Color"]["Dark"])
                 self.BgColor = tuple(data["Color"]["Light"])
+            self.NickName = data["NickName"]
+
+
+        #data of nickname
+        self.font = pygame.font.Font(None, 32)
+        self.input_box = pygame.Rect(150, 220, 280, 32)
+        self.color_inactive = self.BgColor
+        self.color_active = pygame.Color('dodgerblue2')
+        self.color = self.color_inactive
+        active = False
+        self.NickName = 'dwada'
+        done = False
 
         # Play Music
         if self.Music:
@@ -666,7 +681,34 @@ class Settings_Window:
                     MainWindow()  # Open MainWindow
                     self.running = False
                 if event.type == pygame.MOUSEBUTTONDOWN:
+                    self.sound_push_button
+                    #NickName
+                    if self.input_box.collidepoint(event.pos):
+                        # Toggle the active variable.
+
+                        active = not active
+                    else:
+                        active = False
+                    # Change the current color of the input box.
+                    self.color = self.color_active if active else self.BgColor
+
                     self.click(event.pos)
+                if event.type == pygame.KEYDOWN:
+                    self.sound_push_keywords
+                    if active:
+                        if event.key == pygame.K_BACKSPACE:
+                            self.sound_push_backspace
+                            self.NickName = self.NickName[:-1]
+                        else:
+                            self.NickName += event.unicode
+
+                        # Open Sett_file and replace "Music"
+                        with open("settings.json") as file:
+                            data = json.load(file)
+                            data["NickName"] = self.NickName
+                            with open("settings.json", "w") as file:
+                                json.dump(data, file, indent=4)
+
             self.screen.fill(self.TextColor)  # BackGround color
             self.draw()  # draw all
 
@@ -751,6 +793,23 @@ class Settings_Window:
 
     # Draw on window: Title, other sett.
     def draw(self):
+        # draw tittle "NickName"
+        font = pygame.font.Font(None, 30)
+        text = font.render("NickName:", True, self.BgColor)
+        text_x = (self.width // 2 - text.get_width() // 2) - 48
+        text_y = 195
+        self.screen.blit(text, (text_x, text_y))
+
+        # draw NickName
+        txt_surface = self.font.render(self.NickName, True, self.BgColor)
+        # Resize the box if the text is too long.
+        width = max(200, txt_surface.get_width() + 10)
+        self.input_box.w = width
+        # Blit the text.
+        self.screen.blit(txt_surface, (self.input_box.x + 5, self.input_box.y + 5))
+        # Blit the input_box rect.
+        pygame.draw.rect(self.screen,  self.BgColor, self.input_box, 2)
+
 
         # draw title
         font = pygame.font.Font(None, 50)
