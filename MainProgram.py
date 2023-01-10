@@ -62,7 +62,7 @@ class Game_Over:
     def __init__(self, score):
         global cursor
         self.score = score
-        self.size = self.width, self.height = 600, 750  # Window Size
+        self.size = self.width, self.height = 500, 700  # Window Size
         self.screen = pygame.display.set_mode(self.size)  # Screen Setting
         self.running = True
         with open("settings.json") as file:
@@ -86,7 +86,7 @@ class Game_Over:
                 if event.type == pygame.MOUSEBUTTONUP and event.button == 1:
                     if self.click(event.pos):
                         self.running = False
-                        Final_Window()
+                        MainWindow()
 
             self.screen.fill(self.themeColor)
             self.render()
@@ -106,18 +106,18 @@ class Game_Over:
         font_score = pygame.font.SysFont('symbol', 45)
         score = '0' * (5 - len(str(self.score))) + str(self.score)
         text_score = font_score.render(score, True, fontColor)
-        text_score_x = self.width - 290
-        text_score_y = 260
+        text_score_x = self.width - 235
+        text_score_y = 240
 
-        font_go = pygame.font.SysFont('arial', 45)
+        font_go = pygame.font.SysFont('arial', 55)
         text_go = font_go.render('GAME OVER', True, fontColor)
-        text_go_x = self.width - 440
+        text_go_x = self.width - 414
         text_go_y = 25
 
         font_Score = pygame.font.SysFont('arial', 45)
         text_Score = font_Score.render('Score:', True, fontColor)
-        text_Score_x = self.width - 430
-        text_Score_y = 250
+        text_Score_x = self.width - 380
+        text_Score_y = 230
 
         self.screen.blit(text_score, (text_score_x, text_score_y))
         self.screen.blit(text_go, (text_go_x, text_go_y))
@@ -130,8 +130,8 @@ class Game_Over:
             fontColor = pygame.Color((30, 61, 89))
         font = pygame.font.SysFont('arial', 30)
         text = font.render('Continue', True, fontColor)
-        text_x = self.width - 365
-        text_y = 400
+        text_x = self.width - 310
+        text_y = 360
         self.screen.blit(text, (text_x, text_y))
         pygame.draw.rect(self.screen, fontColor, (text_x - 15, text_y - 15,
                                                      text.get_width() + 30, text.get_height() + 30), 3)
@@ -710,72 +710,6 @@ class MainWindow:
             self.running = False
 
 
-class Final_Window(MainWindow):
-    def __init__(self):
-        MainWindow.__init__(self)
-
-    # Draw all in screen
-    def draw(self):
-
-        # Title "Tetris"
-        font = pygame.font.Font(None, 60)
-        text = font.render("T_E_T_R_I_S", True, self.BgColor)
-        text_x = self.width // 2 - text.get_width() // 2
-        text_y = 40
-        self.screen.blit(text, (text_x, text_y))
-        pygame.draw.rect(self.screen, self.BgColor, (text_x - 10, text_y - 10,
-                                               text.get_width() + 20, text.get_height() + 20), 6)
-
-
-        # Btn "Replay"
-        font = pygame.font.Font(None, 60)
-        text = font.render("   REPLAY   ", True, self.BgColor)
-        text_x = self.width // 2 - text.get_width() // 2
-        text_y = 170
-        self.screen.blit(text, (text_x, text_y))
-        pygame.draw.rect(self.screen, self.BgColor, (text_x - 10, text_y - 10,
-                                                     text.get_width() + 20, text.get_height() + 20), 2)
-        # HitBox of Btn "Play"
-        self.BtnPlay_HitBox_X = text_x - 15
-        self.BtnPlay_HitBox_Y = text_y - 10
-        self.BtnPlay_HitBox_XSize = text_x + 205
-        self.BtnPlay_HitBox_YSize = text_y + 50
-
-
-        # Btn Sett
-        font = pygame.font.Font(None, 60)
-        text = font.render(" SETTINGS ", True, self.BgColor)
-        text_x = self.width // 2 - text.get_width() // 2
-        text_y = 250
-        self.screen.blit(text, (text_x, text_y))
-        pygame.draw.rect(self.screen, self.BgColor, (text_x - 10, text_y - 10,
-                                                     text.get_width() + 20, text.get_height() + 20), 2)
-        # HitBox of Btn "Play"
-        self.BtnSett_HitBox_X = text_x - 15
-        self.BtnSett_HitBox_Y = text_y - 10
-        self.BtnSett_HitBox_XSize = text_x + 235
-        self.BtnSett_HitBox_YSize = text_y + 50
-
-        # Quite BTN
-        # Btn "Quit"
-        font = pygame.font.Font(None, 40)
-        text = font.render("Quit", True, self.BgColor)
-        text_x = self.width // 2 - text.get_width() // 2
-        text_y = 650
-        self.screen.blit(text, (text_x, text_y))
-        pygame.draw.rect(self.screen, self.BgColor, (text_x - 10, text_y - 10,
-                                                     text.get_width() + 20, text.get_height() + 20), 3)
-        self.BtnQ_HitBox_X = text_x - 15
-        self.BtnQ_HitBox_Y = text_y - 10
-        self.BtnQ_HitBox_XSize = text_x + 235
-        self.BtnQ_HitBox_YSize = text_y + 50
-        if pygame.mouse.get_focused():  # Drawing a cursor
-            cursor.rect.x, cursor.rect.y = pygame.mouse.get_pos()
-            cursor_group.draw(self.screen)
-        # Draw Changes
-        pygame.display.flip()
-
-
 class Settings_Window:
     def __init__(self):
         global cursor
@@ -1207,8 +1141,10 @@ class Levels_Window:
                 if x - 10 <= pos[0] <= x2 and y - 10 <= pos[1] <= y2:
                     if sp.index(i) + 1 <= 2:
                         if sp.index(i) + 1 == 1:
+                            self.running = False
                             First_GM()
                         elif sp.index(i) + 1 == 2:
+                            self.running = False
                             Second_GM()
                     else:
                         self.error = True
