@@ -14,7 +14,7 @@ runm = 0
 
 
 def load_image(name):
-    fullname = os.path.join('sprites', name)  # Create a path to a picture file
+    fullname = os.path.join('Data/Sprites', name)  # Create a path to a picture file
     image = pygame.image.load(fullname)
     return image
 
@@ -33,7 +33,7 @@ class Game_Over:
     def __init__(self, score):
         global cursor
         self.score = score
-        self.size = self.width, self.height = 600, 750  # Window Size
+        self.size = self.width, self.height = 500, 700  # Window Size
         self.screen = pygame.display.set_mode(self.size)  # Screen Setting
         self.running = True
         with open("settings.json") as file:
@@ -76,18 +76,18 @@ class Game_Over:
         font_score = pygame.font.SysFont('symbol', 45)
         score = '0' * (5 - len(str(self.score))) + str(self.score)
         text_score = font_score.render(score, True, fontColor)
-        text_score_x = self.width - 290
-        text_score_y = 260
+        text_score_x = self.width - 235
+        text_score_y = 240
 
-        font_go = pygame.font.SysFont('arial', 45)
+        font_go = pygame.font.SysFont('arial', 55)
         text_go = font_go.render('GAME OVER', True, fontColor)
-        text_go_x = self.width - 440
+        text_go_x = self.width - 414
         text_go_y = 25
 
         font_Score = pygame.font.SysFont('arial', 45)
         text_Score = font_Score.render('Score:', True, fontColor)
-        text_Score_x = self.width - 430
-        text_Score_y = 250
+        text_Score_x = self.width - 380
+        text_Score_y = 230
 
         self.screen.blit(text_score, (text_score_x, text_score_y))
         self.screen.blit(text_go, (text_go_x, text_go_y))
@@ -100,8 +100,8 @@ class Game_Over:
             fontColor = pygame.Color((30, 61, 89))
         font = pygame.font.SysFont('arial', 30)
         text = font.render('Continue', True, fontColor)
-        text_x = self.width - 365
-        text_y = 400
+        text_x = self.width - 310
+        text_y = 360
         self.screen.blit(text, (text_x, text_y))
         pygame.draw.rect(self.screen, fontColor, (text_x - 15, text_y - 15,
                                                      text.get_width() + 30, text.get_height() + 30), 3)
