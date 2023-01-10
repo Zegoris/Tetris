@@ -58,6 +58,102 @@ class Cursor(pygame.sprite.Sprite):  # Class of the cursor
 cursor = Cursor('cursor.png')  # Initialization of the cursor
 
 
+class Game_Over:
+    def __init__(self, score):
+        global cursor
+        self.score = score
+        self.size = self.width, self.height = 600, 750  # Window Size
+        self.screen = pygame.display.set_mode(self.size)  # Screen Setting
+        self.running = True
+        with open("settings.json") as file:
+            data = json.load(file)
+            self.music = data['Music']
+            self.sounds = data['Sounds']
+            self.theme = data['DarkTheme']
+            self.lightTheme = tuple(data['Color']['Light'])
+            self.darkTheme = tuple(data['Color']['Dark'])
+            self.user = data['NickName']
+        if self.theme:
+            self.themeColor = self.lightTheme
+        else:
+            self.themeColor = self.darkTheme
+        self.screen.fill(self.themeColor)
+
+        while self.running:
+            for event in pygame.event.get():
+                if event.type == pygame.QUIT:
+                    exit()
+                if event.type == pygame.MOUSEBUTTONUP and event.button == 1:
+                    if self.click(event.pos):
+                        self.running = False
+
+            self.screen.fill(self.themeColor)
+            self.render()
+
+    def click(self, pos):
+        # If Mouse Pos in HitBox True
+        if self.button_HitBox_x - 10 <= pos[0] <= self.button_HitBox_sizeX\
+                and self.button_HitBox_y - 12 <= pos[1] <= self.button_HitBox_sizeY:
+            return True
+        return False
+
+    def info(self): # Drawing information about user and score
+        if self.theme:
+            fontColor = pygame.Color('white')
+        else:
+            fontColor = pygame.Color((30, 61, 89))
+        font_score = pygame.font.SysFont('symbol', 45)
+        score = '0' * (5 - len(str(self.score))) + str(self.score)
+        text_score = font_score.render(score, True, fontColor)
+        text_score_x = self.width - 290
+        text_score_y = 260
+
+        font_go = pygame.font.SysFont('arial', 45)
+        text_go = font_go.render('GAME OVER', True, fontColor)
+        text_go_x = self.width - 440
+        text_go_y = 25
+
+        font_Score = pygame.font.SysFont('arial', 45)
+        text_Score = font_Score.render('Score:', True, fontColor)
+        text_Score_x = self.width - 430
+        text_Score_y = 250
+
+        self.screen.blit(text_score, (text_score_x, text_score_y))
+        self.screen.blit(text_go, (text_go_x, text_go_y))
+        self.screen.blit(text_Score, (text_Score_x, text_Score_y))
+
+    def button(self): # Drawing exit button
+        if self.theme:
+            fontColor = pygame.Color('white')
+        else:
+            fontColor = pygame.Color((30, 61, 89))
+        font = pygame.font.SysFont('arial', 30)
+        text = font.render('Continue', True, fontColor)
+        text_x = self.width - 365
+        text_y = 400
+        self.screen.blit(text, (text_x, text_y))
+        pygame.draw.rect(self.screen, fontColor, (text_x - 15, text_y - 15,
+                                                     text.get_width() + 30, text.get_height() + 30), 3)
+        # HitBox of a button "Continue"
+        self.button_HitBox_x = text_x - 10
+        self.button_HitBox_y = text_y - 5
+        self.button_HitBox_sizeX = text_x + 130
+        self.button_HitBox_sizeY = text_y + 50
+
+    def render(self):
+        if self.theme:
+            borderColor = pygame.Color('white')
+        else:
+            borderColor = pygame.Color((30, 61, 89))
+        self.info() # Information about user and score
+        self.button() # Exit button
+
+        if pygame.mouse.get_focused(): # Drawing a cursor
+            cursor.rect.x, cursor.rect.y = pygame.mouse.get_pos()
+            cursor_group.draw(self.screen)
+        pygame.display.flip()
+
+
 class Board:  # General class for game modes
     def __init__(self, screen, width, height, game_mode):
         global cursor
@@ -161,7 +257,7 @@ class Board:  # General class for game modes
                                   'ooxoo',
                                   'ooooo']]}
         self.size = self.widthW, self.heightW = 600, 750  # Window Size
-        running = True
+        self.running = True
         self.colors = ((0, 0, 225), (0, 225, 0), (225, 0, 0), (225, 225, 0))
         self.light_colors = ((30, 30, 255), (50, 255, 50), (255, 30, 30), (255, 255, 30))
         self.width = width
@@ -198,23 +294,25 @@ class Board:  # General class for game modes
         self.fallingTetramine = self.newTetramine()
         self.nextTetramine = self.newTetramine()
 
-        while running:
+        while self.running:
             if self.fallingTetramine is None:  # If there are no falling tetramine, we generate a new one
                 self.fallingTetramine = self.nextTetramine
                 self.nextTetramine = self.newTetramine()
                 self.last_fall = time.time()
 
                 if not self.check(self.fallingTetramine):
-                    exit()  # If there is no free space on the playing field - the game is over, FINAL WINDOW
+                    write_records(self.user, self.gm, self.score)
+                    self.running = False  # If there is no free space on the playing field - the game is over, FINAL WINDOW
+                    Game_Over(self.score)
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
-                    write_records(self.user, self.gm, self.score)
                     exit()
 
                 if event.type == pygame.MOUSEBUTTONUP and event.button == 1:
                     if self.click(event.pos):
                         write_records(self.user, self.gm, self.score)
-                        exit()
+                        self.running = False
+                        Game_Over(self.score)
 
                 if event.type == pygame.KEYUP:
                     if event.key == pygame.K_LEFT:
