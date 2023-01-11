@@ -1,10 +1,61 @@
 import pygame
-import sys
-
-import pygame
 import json
-import random
+from random import choice, randint
+import time
 import os
+import csv
+
+pygame.init()
+pygame.mixer.init()
+
+cursor_group = pygame.sprite.Group()  # Creating group of sprites
+pygame.mouse.set_visible(False)
+runm = 0
+
+
+def load_image(name):
+    fullname = os.path.join('Data/Sprites', name)  # Create a path to a picture file
+    image = pygame.image.load(fullname)
+    return image
+
+
+def write_records(user, gm, score):
+    yes = False
+    with open('records.csv', encoding="utf8") as csvf:
+        reader = csv.reader(csvf, delimiter=',', quotechar='"')
+        reader = list(reader)
+    os.remove('records.csv')
+    for i in reader:
+        if user in i:
+            yes = True
+            index = reader.index(i)
+            if gm == 1:
+                if score > int(reader[index][1]):
+                    reader[index] = [user, score, i[2]]
+
+            elif gm == 2:
+                if score > int(reader[index][2]):
+                    reader[index] = [user, i[1], score]
+            break
+    if not yes:
+        if gm == 1:
+            reader.append([user, score, '0'])
+
+        elif gm == 2:
+            reader.append([user, '0', score])
+    with open('records.csv', 'w', newline='') as csvf:
+        writer = csv.writer(csvf)
+        writer.writerows(reader)
+
+
+class Cursor(pygame.sprite.Sprite):  # Class of the cursor
+    def __init__(self, image):
+        super().__init__(cursor_group)
+        self.image = load_image(image)  # Set image jf the sprite
+        self.rect = self.image.get_rect()  # Set size of the sprite
+
+
+cursor = Cursor('cursor.png')  # Initialization of the cursor
 
 class MainWindow:
     def __init__(self):
