@@ -1,0 +1,22 @@
+Index: records.csv
+===================================================================
+diff --git a/records.csv b/records.csv
+--- a/records.csv	
++++ b/records.csv	
+@@ -1,2 +1,3 @@
+ user,first_gm,second_gm
++NOPE,0,0
+ TPLV,0,0
+Index: MainProgram.py
+===================================================================
+diff --git a/MainProgram.py b/MainProgram.py
+--- a/MainProgram.py	
++++ b/MainProgram.py	
+@@ -15,6 +15,7 @@
+ 
+ def load_image(name):
+     fullname = os.path.join('sprites', name)  # Create a path to a picture file
++    print(fullname)
+     image = pygame.image.load(fullname)
+     return image
+ 

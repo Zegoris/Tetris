@@ -1,0 +1,220 @@
+Index: Lessons/test.py
+===================================================================
+diff --git a/Lessons/test.py b/Lessons/test.py
+--- a/Lessons/test.py	
++++ b/Lessons/test.py	
+@@ -1,15 +1,0 @@
+-for i in range(0, 100):
+-    for _ in range(0, 3):
+-        if len(str(i)) < 4:
+-            i = "0" + str(i)
+-    print("STRING " + i[0])
+-    print("DELAY 10")
+-    print("STRING " + i[1])
+-    print("DELAY 10")
+-    print("STRING " + i[2])
+-    print("DELAY 10")
+-    print("STRING " + i[3])
+-    print("DELAY 10")
+-    print("ENTER")
+-    print("DELAY 100")
+-    print()
+\ No newline at end of file
+Index: .idea/workspace.xml
+===================================================================
+diff --git a/.idea/workspace.xml b/.idea/workspace.xml
+--- a/.idea/workspace.xml	
++++ b/.idea/workspace.xml	
+@@ -1,7 +1,25 @@
+ <?xml version="1.0" encoding="UTF-8"?>
+ <project version="4">
+   <component name="ChangeListManager">
+-    <list default="true" id="e5d15a82-f89d-4480-be08-b31da0a33c63" name="Changes" comment="" />
++    <list default="true" id="c5b65fd8-9ad9-4bfb-9fea-b6da13e4e94f" name="Changes" comment="Little fix: nickname, sounds, cursor">
++      <change afterPath="$PROJECT_DIR$/Installer/1test.py" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_02_01_2023_21_35__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_02_01_2023_21_35__Changes_.xml" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_02_01_2023_21_35__Changes_1.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_02_01_2023_21_35__Changes_1.xml" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_02_01_2023_21_37__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_02_01_2023_21_37__Changes_.xml" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_07_12_2022_23_13__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_07_12_2022_23_13__Changes_.xml" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_07_12_2022_23_26__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_07_12_2022_23_26__Changes_.xml" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_13_12_2022_16_14__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_13_12_2022_16_14__Changes_.xml" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_19_12_2022_14_21__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_19_12_2022_14_21__Changes_.xml" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_19_12_2022_15_15__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_19_12_2022_15_15__Changes_.xml" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/Lessons/data/Pers.png" beforeDir="false" />
++      <change beforePath="$PROJECT_DIR$/Lessons/data/arrow.png" beforeDir="false" />
++      <change beforePath="$PROJECT_DIR$/Lessons/data/bomb.png" beforeDir="false" />
++      <change beforePath="$PROJECT_DIR$/Lessons/data/boom.png" beforeDir="false" />
++      <change beforePath="$PROJECT_DIR$/Lessons/data/ponts.txt" beforeDir="false" />
++      <change beforePath="$PROJECT_DIR$/Lessons/data/test.png" beforeDir="false" />
++      <change beforePath="$PROJECT_DIR$/Lessons/test.py" beforeDir="false" afterPath="$PROJECT_DIR$/Lessons/test.py" afterDir="false" />
++    </list>
+     <option name="SHOW_DIALOG" value="false" />
+     <option name="HIGHLIGHT_CONFLICTS" value="true" />
+     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+@@ -17,7 +35,7 @@
+   <component name="Git.Settings">
+     <option name="RECENT_BRANCH_BY_REPOSITORY">
+       <map>
+-        <entry key="$PROJECT_DIR$" value="Egor" />
++        <entry key="$PROJECT_DIR$" value="main" />
+       </map>
+     </option>
+     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+@@ -26,6 +44,9 @@
+     <option name="stateVersion" value="1" />
+   </component>
+   <component name="ProjectId" id="2IasuvQ5UkiVQBkPjIPbSy2LeGm" />
++  <component name="ProjectLevelVcsManager">
++    <ConfirmationsSetting value="2" id="Add" />
++  </component>
+   <component name="ProjectViewState">
+     <option name="hideEmptyMiddlePackages" value="true" />
+     <option name="showLibraryContents" value="true" />
+@@ -42,14 +63,15 @@
+       <recent name="D:\IT\PycharmProjects\pythonProject1\PyGame\Tetris\.idea" />
+     </key>
+     <key name="MoveFile.RECENT_KEYS">
++      <recent name="D:\IT\PycharmProjects\pythonProject1\PyGame\Tetris\Installer" />
++      <recent name="D:\IT\PycharmProjects\pythonProject1\PyGame\Tetris\Lessons" />
+       <recent name="D:\IT\PycharmProjects\pythonProject1\PyGame\Tetris\Lessons\data" />
+       <recent name="D:\IT\PycharmProjects\pythonProject1\PyGame\Tetris\Data\Sprites" />
+       <recent name="D:\IT\PycharmProjects\pythonProject1\PyGame\Tetris\Data" />
+-      <recent name="D:\IT\PycharmProjects\pythonProject1\PyGame\Tetris" />
+     </key>
+   </component>
+-  <component name="RunManager" selected="Python.MainProgram">
+-    <configuration name="MainProgram" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
++  <component name="RunManager" selected="Python.1test">
++    <configuration name="1test" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+       <module name="Tetris" />
+       <option name="INTERPRETER_OPTIONS" value="" />
+       <option name="PARENT_ENVS" value="true" />
+@@ -57,11 +79,11 @@
+         <env name="PYTHONUNBUFFERED" value="1" />
+       </envs>
+       <option name="SDK_HOME" value="" />
+-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
++      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Installer" />
+       <option name="IS_MODULE_SDK" value="true" />
+       <option name="ADD_CONTENT_ROOTS" value="true" />
+       <option name="ADD_SOURCE_ROOTS" value="true" />
+-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/MainProgram.py" />
++      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Installer/1test.py" />
+       <option name="PARAMETERS" value="" />
+       <option name="SHOW_COMMAND_LINE" value="false" />
+       <option name="EMULATE_TERMINAL" value="false" />
+@@ -70,7 +92,7 @@
+       <option name="INPUT_FILE" value="" />
+       <method v="2" />
+     </configuration>
+-    <configuration name="MainWindow" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
++    <configuration name="MainProgram" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+       <module name="Tetris" />
+       <option name="INTERPRETER_OPTIONS" value="" />
+       <option name="PARENT_ENVS" value="true" />
+@@ -82,7 +104,7 @@
+       <option name="IS_MODULE_SDK" value="true" />
+       <option name="ADD_CONTENT_ROOTS" value="true" />
+       <option name="ADD_SOURCE_ROOTS" value="true" />
+-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/MainWindow.py" />
++      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/MainProgram.py" />
+       <option name="PARAMETERS" value="" />
+       <option name="SHOW_COMMAND_LINE" value="false" />
+       <option name="EMULATE_TERMINAL" value="false" />
+@@ -91,19 +113,19 @@
+       <option name="INPUT_FILE" value="" />
+       <method v="2" />
+     </configuration>
+-    <configuration name="SettingsWindow" type="PythonConfigurationType" factoryName="Python" nameIsGenerated="true">
++    <configuration name="MainWindow" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+       <module name="Tetris" />
+       <option name="INTERPRETER_OPTIONS" value="" />
+       <option name="PARENT_ENVS" value="true" />
+       <envs>
+         <env name="PYTHONUNBUFFERED" value="1" />
+       </envs>
+-      <option name="SDK_HOME" value="D:\IT\Python\python.exe" />
++      <option name="SDK_HOME" value="" />
+       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+-      <option name="IS_MODULE_SDK" value="false" />
++      <option name="IS_MODULE_SDK" value="true" />
+       <option name="ADD_CONTENT_ROOTS" value="true" />
+       <option name="ADD_SOURCE_ROOTS" value="true" />
+-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/SettingsWindow.py" />
++      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/MainWindow.py" />
+       <option name="PARAMETERS" value="" />
+       <option name="SHOW_COMMAND_LINE" value="false" />
+       <option name="EMULATE_TERMINAL" value="false" />
+@@ -112,19 +134,19 @@
+       <option name="INPUT_FILE" value="" />
+       <method v="2" />
+     </configuration>
+-    <configuration name="main" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
++    <configuration name="SettingsWindow" type="PythonConfigurationType" factoryName="Python" nameIsGenerated="true">
+       <module name="Tetris" />
+       <option name="INTERPRETER_OPTIONS" value="" />
+       <option name="PARENT_ENVS" value="true" />
+       <envs>
+         <env name="PYTHONUNBUFFERED" value="1" />
+       </envs>
+-      <option name="SDK_HOME" value="" />
+-      <option name="WORKING_DIRECTORY" value="$USER_HOME$/LyceumYandex" />
++      <option name="SDK_HOME" value="D:\IT\Python\python.exe" />
++      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+       <option name="IS_MODULE_SDK" value="false" />
+       <option name="ADD_CONTENT_ROOTS" value="true" />
+       <option name="ADD_SOURCE_ROOTS" value="true" />
+-      <option name="SCRIPT_NAME" value="$USER_HOME$/LyceumYandex/main.py" />
++      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/SettingsWindow.py" />
+       <option name="PARAMETERS" value="" />
+       <option name="SHOW_COMMAND_LINE" value="false" />
+       <option name="EMULATE_TERMINAL" value="false" />
+@@ -133,19 +155,19 @@
+       <option name="INPUT_FILE" value="" />
+       <method v="2" />
+     </configuration>
+-    <configuration name="myproject (1)" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+-      <module name="git" />
++    <configuration name="main" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
++      <module name="Tetris" />
+       <option name="INTERPRETER_OPTIONS" value="" />
+       <option name="PARENT_ENVS" value="true" />
+       <envs>
+         <env name="PYTHONUNBUFFERED" value="1" />
+       </envs>
+-      <option name="SDK_HOME" value="D:\IT\Python\python.exe" />
+-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
++      <option name="SDK_HOME" value="" />
++      <option name="WORKING_DIRECTORY" value="$USER_HOME$/LyceumYandex" />
+       <option name="IS_MODULE_SDK" value="false" />
+       <option name="ADD_CONTENT_ROOTS" value="true" />
+       <option name="ADD_SOURCE_ROOTS" value="true" />
+-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/myproject.py" />
++      <option name="SCRIPT_NAME" value="$USER_HOME$/LyceumYandex/main.py" />
+       <option name="PARAMETERS" value="" />
+       <option name="SHOW_COMMAND_LINE" value="false" />
+       <option name="EMULATE_TERMINAL" value="false" />
+@@ -177,19 +199,19 @@
+     </configuration>
+     <list>
+       <item itemvalue="Python.SettingsWindow" />
++      <item itemvalue="Python.1test" />
+       <item itemvalue="Python.MainProgram" />
+       <item itemvalue="Python.MainWindow" />
+       <item itemvalue="Python.main" />
+-      <item itemvalue="Python.myproject (1)" />
+       <item itemvalue="Python.test" />
+     </list>
+     <recent_temporary>
+       <list>
+-        <item itemvalue="Python.MainProgram" />
++        <item itemvalue="Python.1test" />
+         <item itemvalue="Python.test" />
+         <item itemvalue="Python.main" />
+         <item itemvalue="Python.MainWindow" />
+-        <item itemvalue="Python.myproject (1)" />
++        <item itemvalue="Python.MainProgram" />
+       </list>
+     </recent_temporary>
+   </component>

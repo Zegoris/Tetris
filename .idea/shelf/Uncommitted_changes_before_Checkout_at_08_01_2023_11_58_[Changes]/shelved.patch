@@ -1,0 +1,68 @@
+Index: .idea/workspace.xml
+===================================================================
+diff --git a/.idea/workspace.xml b/.idea/workspace.xml
+--- a/.idea/workspace.xml	
++++ b/.idea/workspace.xml	
+@@ -1,7 +1,7 @@
+ <?xml version="1.0" encoding="UTF-8"?>
+ <project version="4">
+   <component name="ChangeListManager">
+-    <list default="true" id="e5d15a82-f89d-4480-be08-b31da0a33c63" name="Changes" comment="" />
++    <list default="true" id="60af78ae-74e4-4259-939a-c7eff029eade" name="Changes" comment="add levels menu. Stable." />
+     <option name="SHOW_DIALOG" value="false" />
+     <option name="HIGHLIGHT_CONFLICTS" value="true" />
+     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+@@ -120,11 +120,11 @@
+         <env name="PYTHONUNBUFFERED" value="1" />
+       </envs>
+       <option name="SDK_HOME" value="" />
+-      <option name="WORKING_DIRECTORY" value="$USER_HOME$/LyceumYandex" />
++      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/../../LyceumYandex" />
+       <option name="IS_MODULE_SDK" value="false" />
+       <option name="ADD_CONTENT_ROOTS" value="true" />
+       <option name="ADD_SOURCE_ROOTS" value="true" />
+-      <option name="SCRIPT_NAME" value="$USER_HOME$/LyceumYandex/main.py" />
++      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/../../LyceumYandex/main.py" />
+       <option name="PARAMETERS" value="" />
+       <option name="SHOW_COMMAND_LINE" value="false" />
+       <option name="EMULATE_TERMINAL" value="false" />
+@@ -177,11 +177,11 @@
+     </configuration>
+     <list>
+       <item itemvalue="Python.SettingsWindow" />
+-      <item itemvalue="Python.MainProgram" />
+       <item itemvalue="Python.MainWindow" />
+-      <item itemvalue="Python.main" />
+       <item itemvalue="Python.myproject (1)" />
++      <item itemvalue="Python.MainProgram" />
+       <item itemvalue="Python.test" />
++      <item itemvalue="Python.main" />
+     </list>
+     <recent_temporary>
+       <list>
+@@ -279,7 +279,14 @@
+       <option name="project" value="LOCAL" />
+       <updated>1673009835249</updated>
+     </task>
+-    <option name="localTasksCounter" value="12" />
++    <task id="LOCAL-00012" summary="add levels menu. Stable.">
++      <created>1673033861015</created>
++      <option name="number" value="00012" />
++      <option name="presentableId" value="LOCAL-00012" />
++      <option name="project" value="LOCAL" />
++      <updated>1673033861015</updated>
++    </task>
++    <option name="localTasksCounter" value="13" />
+     <servers />
+   </component>
+   <component name="Vcs.Log.History.Properties">
+@@ -334,7 +341,8 @@
+     <MESSAGE value="Colors; &#10;None SwichTheme" />
+     <MESSAGE value="test Sound/Music" />
+     <MESSAGE value="Test_Levels. Stable." />
+-    <option name="LAST_COMMIT_MESSAGE" value="Test_Levels. Stable." />
++    <MESSAGE value="add levels menu. Stable." />
++    <option name="LAST_COMMIT_MESSAGE" value="add levels menu. Stable." />
+   </component>
+   <component name="XDebuggerManager">
+     <breakpoint-manager>

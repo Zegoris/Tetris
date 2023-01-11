@@ -1,0 +1,583 @@
+Index: .idea/shelf/Uncommitted_changes_before_Checkout_at_02_01_2023_21_37_[Changes]/shelved.patch
+===================================================================
+diff --git a/.idea/shelf/Uncommitted_changes_before_Checkout_at_02_01_2023_21_37_[Changes]/shelved.patch b/.idea/shelf/Uncommitted_changes_before_Checkout_at_02_01_2023_21_37_[Changes]/shelved.patch
+deleted file mode 100644
+--- a/.idea/shelf/Uncommitted_changes_before_Checkout_at_02_01_2023_21_37_[Changes]/shelved.patch	
++++ /dev/null	
+@@ -1,15 +0,0 @@
+-Index: records.csv
+-IDEA additional info:
+-Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+-<+>user,first_gm,second_gm
+-Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+-<+>UTF-8
+-===================================================================
+-diff --git a/records.csv b/records.csv
+---- a/records.csv	(revision e12204265103adc21c494e46a2e2e9b357ae8554)
+-+++ b/records.csv	(date 1672684606702)
+-@@ -1,1 +1,2 @@
+--user,first_gm,second_gm
+-\ No newline at end of file
+-+user,first_gm,second_gm
+-+TPLV,0,0
+Index: Lessons/data/ponts.txt
+===================================================================
+diff --git a/Lessons/data/ponts.txt b/Lessons/data/ponts.txt
+deleted file mode 100644
+--- a/Lessons/data/ponts.txt	
++++ /dev/null	
+@@ -1,1 +0,0 @@
+-(2;-1), (3,5;0,5), (4;-1), (5;0), (4;2), (2;1), (2;3), (4;5), (4;6), (2;5), (1;7), (1;8), (0;7), (0;9), (-1;7), (-2;8), (-2;7), (-3;7), (-2;6), (-4;6), (-3;5), (-4;5), (-3;4), (-5;4), (-4;3), (-5;3), (-4;2), (-6;2), (-5;1), (-6;1), (-5;0), (-6;0), (-5;-1), (-6;-2), (-4;-2), (-5;-3), (-3;-4), (-4;-5), (-2;-5), (-1;-6), (3;-6), (3;-5), (1;-5), (1;-4), (2;-3), (2;-1)
+\ No newline at end of file
+Index: .idea/shelf/Uncommitted_changes_before_Checkout_at_02_01_2023_21_35_[Changes]1/shelved.patch
+===================================================================
+diff --git a/.idea/shelf/Uncommitted_changes_before_Checkout_at_02_01_2023_21_35_[Changes]1/shelved.patch b/.idea/shelf/Uncommitted_changes_before_Checkout_at_02_01_2023_21_35_[Changes]1/shelved.patch
+deleted file mode 100644
+--- a/.idea/shelf/Uncommitted_changes_before_Checkout_at_02_01_2023_21_35_[Changes]1/shelved.patch	
++++ /dev/null	
+@@ -1,515 +0,0 @@
+-Index: .idea/shelf/Uncommitted_changes_before_Checkout_at_13_12_2022_16_14__Changes_1.xml
+-===================================================================
+-diff --git a/.idea/shelf/Uncommitted_changes_before_Checkout_at_13_12_2022_16_14__Changes_1.xml b/.idea/shelf/Uncommitted_changes_before_Checkout_at_13_12_2022_16_14__Changes_1.xml
+-deleted file mode 100644
+---- a/.idea/shelf/Uncommitted_changes_before_Checkout_at_13_12_2022_16_14__Changes_1.xml	
+-+++ /dev/null	
+-@@ -1,4 +0,0 @@
+--<changelist name="Uncommitted_changes_before_Checkout_at_13_12_2022_16_14_[Changes]1" date="1670937308523" recycled="true" deleted="true">
+--  <option name="PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_13_12_2022_16_14_[Changes]1/shelved.patch" />
+--  <option name="DESCRIPTION" value="Uncommitted changes before Checkout at 13.12.2022 16:14 [Changes]" />
+--</changelist>
+-\ No newline at end of file
+-Index: .idea/shelf/Uncommitted_changes_before_Update_at_17_12_2022_21_51__Changes_.xml
+-===================================================================
+-diff --git a/.idea/shelf/Uncommitted_changes_before_Update_at_17_12_2022_21_51__Changes_.xml b/.idea/shelf/Uncommitted_changes_before_Update_at_17_12_2022_21_51__Changes_.xml
+-deleted file mode 100644
+---- a/.idea/shelf/Uncommitted_changes_before_Update_at_17_12_2022_21_51__Changes_.xml	
+-+++ /dev/null	
+-@@ -1,4 +0,0 @@
+--<changelist name="Uncommitted_changes_before_Update_at_17_12_2022_21_51_[Changes]" date="1671303131011" recycled="true" deleted="true">
+--  <option name="PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_17_12_2022_21_51_[Changes]/shelved.patch" />
+--  <option name="DESCRIPTION" value="Uncommitted changes before Update at 17.12.2022 21:51 [Changes]" />
+--</changelist>
+-\ No newline at end of file
+-Index: .idea/shelf/Uncommitted_changes_before_Update_at_13_12_2022_16_12__Changes_.xml
+-===================================================================
+-diff --git a/.idea/shelf/Uncommitted_changes_before_Update_at_13_12_2022_16_12__Changes_.xml b/.idea/shelf/Uncommitted_changes_before_Update_at_13_12_2022_16_12__Changes_.xml
+-deleted file mode 100644
+---- a/.idea/shelf/Uncommitted_changes_before_Update_at_13_12_2022_16_12__Changes_.xml	
+-+++ /dev/null	
+-@@ -1,4 +0,0 @@
+--<changelist name="Uncommitted_changes_before_Update_at_13_12_2022_16_12_[Changes]" date="1670937178262" recycled="true" deleted="true">
+--  <option name="PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_13_12_2022_16_12_[Changes]/shelved.patch" />
+--  <option name="DESCRIPTION" value="Uncommitted changes before Update at 13.12.2022 16:12 [Changes]" />
+--</changelist>
+-\ No newline at end of file
+-Index: .idea/shelf/Uncommitted_changes_before_Update_at_13_12_2022_16_12_[Changes]/shelved.patch
+-===================================================================
+-diff --git a/.idea/shelf/Uncommitted_changes_before_Update_at_13_12_2022_16_12_[Changes]/shelved.patch b/.idea/shelf/Uncommitted_changes_before_Update_at_13_12_2022_16_12_[Changes]/shelved.patch
+-deleted file mode 100644
+---- a/.idea/shelf/Uncommitted_changes_before_Update_at_13_12_2022_16_12_[Changes]/shelved.patch	
+-+++ /dev/null	
+-@@ -1,65 +0,0 @@
+--Index: .idea/workspace.xml
+--IDEA additional info:
+--Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+--<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<project version=\"4\">\r\n  <component name=\"ChangeListManager\">\r\n    <list default=\"true\" id=\"60af78ae-74e4-4259-939a-c7eff029eade\" name=\"Changes\" comment=\"\">\r\n      <change afterPath=\"$PROJECT_DIR$/Lessons.py\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_07_12_2022_23_13__Changes_.xml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_07_12_2022_23_13__Changes_.xml\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_07_12_2022_23_26__Changes_.xml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_07_12_2022_23_26__Changes_.xml\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/.idea/workspace.xml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/.idea/workspace.xml\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/MainWindow.py\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/MainWindow.py\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/SettingsWindow.py\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/SettingsWindow.py\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/settings.json\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/settings.json\" afterDir=\"false\" />\r\n    </list>\r\n    <option name=\"SHOW_DIALOG\" value=\"false\" />\r\n    <option name=\"HIGHLIGHT_CONFLICTS\" value=\"true\" />\r\n    <option name=\"HIGHLIGHT_NON_ACTIVE_CHANGELIST\" value=\"false\" />\r\n    <option name=\"LAST_RESOLUTION\" value=\"IGNORE\" />\r\n  </component>\r\n  <component name=\"FileTemplateManagerImpl\">\r\n    <option name=\"RECENT_TEMPLATES\">\r\n      <list>\r\n        <option value=\"Python Script\" />\r\n      </list>\r\n    </option>\r\n  </component>\r\n  <component name=\"Git.Settings\">\r\n    <option name=\"RECENT_BRANCH_BY_REPOSITORY\">\r\n      <map>\r\n        <entry key=\"$PROJECT_DIR$\" value=\"Maxim\" />\r\n      </map>\r\n    </option>\r\n    <option name=\"RECENT_GIT_ROOT_PATH\" value=\"$PROJECT_DIR$\" />\r\n  </component>\r\n  <component name=\"HighlightingSettingsPerFile\">\r\n    <setting file=\"file://$PROJECT_DIR$/SettingsWindow.py\" root0=\"FORCE_HIGHLIGHTING\" />\r\n  </component>\r\n  <component name=\"MarkdownSettingsMigration\">\r\n    <option name=\"stateVersion\" value=\"1\" />\r\n  </component>\r\n  <component name=\"ProjectId\" id=\"2IasuvQ5UkiVQBkPjIPbSy2LeGm\" />\r\n  <component name=\"ProjectViewState\">\r\n    <option name=\"hideEmptyMiddlePackages\" value=\"true\" />\r\n    <option name=\"showLibraryContents\" value=\"true\" />\r\n  </component>\r\n  <component name=\"PropertiesComponent\">\r\n    <property name=\"RunOnceActivity.OpenProjectViewOnStart\" value=\"true\" />\r\n    <property name=\"RunOnceActivity.ShowReadmeOnStart\" value=\"true\" />\r\n    <property name=\"settings.editor.selected.configurable\" value=\"preferences.toDoOptions\" />\r\n  </component>\r\n  <component name=\"RecentsManager\">\r\n    <key name=\"CopyFile.RECENT_KEYS\">\r\n      <recent name=\"D:\\IT\\PycharmProjects\\pythonProject1\\PyGame\\Tetris\\.idea\" />\r\n    </key>\r\n    <key name=\"MoveFile.RECENT_KEYS\">\r\n      <recent name=\"D:\\IT\\PycharmProjects\\pythonProject1\\PyGame\\Tetris\" />\r\n    </key>\r\n  </component>\r\n  <component name=\"RunManager\" selected=\"Python.MainWindow\">\r\n    <configuration name=\"Lessons\" type=\"PythonConfigurationType\" factoryName=\"Python\" temporary=\"true\" nameIsGenerated=\"true\">\r\n      <module name=\"Tetris\" />\r\n      <option name=\"INTERPRETER_OPTIONS\" value=\"\" />\r\n      <option name=\"PARENT_ENVS\" value=\"true\" />\r\n      <envs>\r\n        <env name=\"PYTHONUNBUFFERED\" value=\"1\" />\r\n      </envs>\r\n      <option name=\"SDK_HOME\" value=\"\" />\r\n      <option name=\"WORKING_DIRECTORY\" value=\"$PROJECT_DIR$\" />\r\n      <option name=\"IS_MODULE_SDK\" value=\"true\" />\r\n      <option name=\"ADD_CONTENT_ROOTS\" value=\"true\" />\r\n      <option name=\"ADD_SOURCE_ROOTS\" value=\"true\" />\r\n      <option name=\"SCRIPT_NAME\" value=\"$PROJECT_DIR$/Lessons.py\" />\r\n      <option name=\"PARAMETERS\" value=\"\" />\r\n      <option name=\"SHOW_COMMAND_LINE\" value=\"false\" />\r\n      <option name=\"EMULATE_TERMINAL\" value=\"false\" />\r\n      <option name=\"MODULE_MODE\" value=\"false\" />\r\n      <option name=\"REDIRECT_INPUT\" value=\"false\" />\r\n      <option name=\"INPUT_FILE\" value=\"\" />\r\n      <method v=\"2\" />\r\n    </configuration>\r\n    <configuration name=\"MainWindow\" type=\"PythonConfigurationType\" factoryName=\"Python\" temporary=\"true\" nameIsGenerated=\"true\">\r\n      <module name=\"Tetris\" />\r\n      <option name=\"INTERPRETER_OPTIONS\" value=\"\" />\r\n      <option name=\"PARENT_ENVS\" value=\"true\" />\r\n      <envs>\r\n        <env name=\"PYTHONUNBUFFERED\" value=\"1\" />\r\n      </envs>\r\n      <option name=\"SDK_HOME\" value=\"\" />\r\n      <option name=\"WORKING_DIRECTORY\" value=\"$PROJECT_DIR$\" />\r\n      <option name=\"IS_MODULE_SDK\" value=\"true\" />\r\n      <option name=\"ADD_CONTENT_ROOTS\" value=\"true\" />\r\n      <option name=\"ADD_SOURCE_ROOTS\" value=\"true\" />\r\n      <option name=\"SCRIPT_NAME\" value=\"$PROJECT_DIR$/MainWindow.py\" />\r\n      <option name=\"PARAMETERS\" value=\"\" />\r\n      <option name=\"SHOW_COMMAND_LINE\" value=\"false\" />\r\n      <option name=\"EMULATE_TERMINAL\" value=\"false\" />\r\n      <option name=\"MODULE_MODE\" value=\"false\" />\r\n      <option name=\"REDIRECT_INPUT\" value=\"false\" />\r\n      <option name=\"INPUT_FILE\" value=\"\" />\r\n      <method v=\"2\" />\r\n    </configuration>\r\n    <configuration name=\"SettingsWindow\" type=\"PythonConfigurationType\" factoryName=\"Python\" nameIsGenerated=\"true\">\r\n      <module name=\"Tetris\" />\r\n      <option name=\"INTERPRETER_OPTIONS\" value=\"\" />\r\n      <option name=\"PARENT_ENVS\" value=\"true\" />\r\n      <envs>\r\n        <env name=\"PYTHONUNBUFFERED\" value=\"1\" />\r\n      </envs>\r\n      <option name=\"SDK_HOME\" value=\"D:\\IT\\Python\\python.exe\" />\r\n      <option name=\"WORKING_DIRECTORY\" value=\"$PROJECT_DIR$\" />\r\n      <option name=\"IS_MODULE_SDK\" value=\"false\" />\r\n      <option name=\"ADD_CONTENT_ROOTS\" value=\"true\" />\r\n      <option name=\"ADD_SOURCE_ROOTS\" value=\"true\" />\r\n      <option name=\"SCRIPT_NAME\" value=\"$PROJECT_DIR$/SettingsWindow.py\" />\r\n      <option name=\"PARAMETERS\" value=\"\" />\r\n      <option name=\"SHOW_COMMAND_LINE\" value=\"false\" />\r\n      <option name=\"EMULATE_TERMINAL\" value=\"false\" />\r\n      <option name=\"MODULE_MODE\" value=\"false\" />\r\n      <option name=\"REDIRECT_INPUT\" value=\"false\" />\r\n      <option name=\"INPUT_FILE\" value=\"\" />\r\n      <method v=\"2\" />\r\n    </configuration>\r\n    <configuration name=\"myproject (1)\" type=\"PythonConfigurationType\" factoryName=\"Python\" temporary=\"true\" nameIsGenerated=\"true\">\r\n      <module name=\"git\" />\r\n      <option name=\"INTERPRETER_OPTIONS\" value=\"\" />\r\n      <option name=\"PARENT_ENVS\" value=\"true\" />\r\n      <envs>\r\n        <env name=\"PYTHONUNBUFFERED\" value=\"1\" />\r\n      </envs>\r\n      <option name=\"SDK_HOME\" value=\"D:\\IT\\Python\\python.exe\" />\r\n      <option name=\"WORKING_DIRECTORY\" value=\"$PROJECT_DIR$\" />\r\n      <option name=\"IS_MODULE_SDK\" value=\"false\" />\r\n      <option name=\"ADD_CONTENT_ROOTS\" value=\"true\" />\r\n      <option name=\"ADD_SOURCE_ROOTS\" value=\"true\" />\r\n      <option name=\"SCRIPT_NAME\" value=\"$PROJECT_DIR$/myproject.py\" />\r\n      <option name=\"PARAMETERS\" value=\"\" />\r\n      <option name=\"SHOW_COMMAND_LINE\" value=\"false\" />\r\n      <option name=\"EMULATE_TERMINAL\" value=\"false\" />\r\n      <option name=\"MODULE_MODE\" value=\"false\" />\r\n      <option name=\"REDIRECT_INPUT\" value=\"false\" />\r\n      <option name=\"INPUT_FILE\" value=\"\" />\r\n      <method v=\"2\" />\r\n    </configuration>\r\n    <list>\r\n      <item itemvalue=\"Python.SettingsWindow\" />\r\n      <item itemvalue=\"Python.MainWindow\" />\r\n      <item itemvalue=\"Python.myproject (1)\" />\r\n      <item itemvalue=\"Python.Lessons\" />\r\n    </list>\r\n    <recent_temporary>\r\n      <list>\r\n        <item itemvalue=\"Python.MainWindow\" />\r\n        <item itemvalue=\"Python.Lessons\" />\r\n        <item itemvalue=\"Python.myproject (1)\" />\r\n        <item itemvalue=\"Python.myproject (1)\" />\r\n        <item itemvalue=\"Python.myproject\" />\r\n      </list>\r\n    </recent_temporary>\r\n  </component>\r\n  <component name=\"SpellCheckerSettings\" RuntimeDictionaries=\"0\" Folders=\"0\" CustomDictionaries=\"0\" DefaultDictionary=\"application-level\" UseSingleDictionary=\"true\" transferred=\"true\" />\r\n  <component name=\"TaskManager\">\r\n    <task active=\"true\" id=\"Default\" summary=\"Default task\">\r\n      <changelist id=\"6dc5f473-9df2-4c5a-9f07-20f5a9be5251\" name=\"Changes\" comment=\"\" />\r\n      <created>1670431254942</created>\r\n      <option name=\"number\" value=\"Default\" />\r\n      <option name=\"presentableId\" value=\"Default\" />\r\n      <updated>1670431254942</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00001\" summary=\"add change Theme\">\r\n      <created>1670434156569</created>\r\n      <option name=\"number\" value=\"00001\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00001\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1670434156569</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00002\" summary=\"repairTest\">\r\n      <created>1670435425650</created>\r\n      <option name=\"number\" value=\"00002\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00002\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1670435425650</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00003\" summary=\"repairTest\">\r\n      <created>1670435714218</created>\r\n      <option name=\"number\" value=\"00003\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00003\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1670435714218</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00004\" summary=\"Colors&#10;None SwichTheme\">\r\n      <created>1670441250785</created>\r\n      <option name=\"number\" value=\"00004\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00004\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1670441250785</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00005\" summary=\"Colors&#10;None SwichTheme\">\r\n      <created>1670441361910</created>\r\n      <option name=\"number\" value=\"00005\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00005\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1670441361912</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00006\" summary=\"Colors; &#10;None SwichTheme\">\r\n      <created>1670441473653</created>\r\n      <option name=\"number\" value=\"00006\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00006\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1670441473653</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00007\" summary=\"test Sound/Music\">\r\n      <created>1670508065253</created>\r\n      <option name=\"number\" value=\"00007\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00007\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1670508065253</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00008\" summary=\"test Sound/Music\">\r\n      <created>1670508082226</created>\r\n      <option name=\"number\" value=\"00008\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00008\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1670508082226</updated>\r\n    </task>\r\n    <option name=\"localTasksCounter\" value=\"9\" />\r\n    <servers />\r\n  </component>\r\n  <component name=\"Vcs.Log.History.Properties\">\r\n    <option name=\"COLUMN_ID_ORDER\">\r\n      <list>\r\n        <option value=\"Default.Root\" />\r\n        <option value=\"Default.Author\" />\r\n        <option value=\"Default.Date\" />\r\n        <option value=\"Default.Subject\" />\r\n        <option value=\"Space.CommitStatus\" />\r\n      </list>\r\n    </option>\r\n  </component>\r\n  <component name=\"Vcs.Log.Tabs.Properties\">\r\n    <option name=\"TAB_STATES\">\r\n      <map>\r\n        <entry key=\"06db7bdd-f158-4db4-93a8-e1a661b07f7e\">\r\n          <value>\r\n            <State />\r\n          </value>\r\n        </entry>\r\n        <entry key=\"MAIN\">\r\n          <value>\r\n            <State>\r\n              <option name=\"HIGHLIGHTERS\">\r\n                <map>\r\n                  <entry key=\"CURRENT_BRANCH\" value=\"true\" />\r\n                  <entry key=\"MERGE_COMMITS\" value=\"true\" />\r\n                  <entry key=\"MY_COMMITS\" value=\"true\" />\r\n                </map>\r\n              </option>\r\n              <option name=\"FILTERS\">\r\n                <map>\r\n                  <entry key=\"branch\">\r\n                    <value>\r\n                      <list>\r\n                        <option value=\"Maxim\" />\r\n                      </list>\r\n                    </value>\r\n                  </entry>\r\n                </map>\r\n              </option>\r\n            </State>\r\n          </value>\r\n        </entry>\r\n        <entry key=\"b311908e-0d18-41ce-bf4a-5f582c77befa\">\r\n          <value>\r\n            <State />\r\n          </value>\r\n        </entry>\r\n        <entry key=\"f6b1e260-d705-4f13-8893-146f2604548f\">\r\n          <value>\r\n            <State />\r\n          </value>\r\n        </entry>\r\n      </map>\r\n    </option>\r\n    <option name=\"oldMeFiltersMigrated\" value=\"true\" />\r\n  </component>\r\n  <component name=\"VcsManagerConfiguration\">\r\n    <MESSAGE value=\"add change Theme\" />\r\n    <MESSAGE value=\"repairTest\" />\r\n    <MESSAGE value=\"Colors&#10;None SwichTheme\" />\r\n    <MESSAGE value=\"Colors; &#10;None SwichTheme\" />\r\n    <MESSAGE value=\"test Sound/Music\" />\r\n    <option name=\"LAST_COMMIT_MESSAGE\" value=\"test Sound/Music\" />\r\n  </component>\r\n  <component name=\"XDebuggerManager\">\r\n    <breakpoint-manager>\r\n      <breakpoints>\r\n        <line-breakpoint enabled=\"true\" suspend=\"THREAD\" type=\"python-line\">\r\n          <url>file://$PROJECT_DIR$/SettingsWindow.py</url>\r\n          <line>208</line>\r\n          <option name=\"timeStamp\" value=\"1\" />\r\n        </line-breakpoint>\r\n        <line-breakpoint enabled=\"true\" suspend=\"THREAD\" type=\"python-line\">\r\n          <url>file://$PROJECT_DIR$/MainWindow.py</url>\r\n          <line>103</line>\r\n          <option name=\"timeStamp\" value=\"5\" />\r\n        </line-breakpoint>\r\n      </breakpoints>\r\n    </breakpoint-manager>\r\n  </component>\r\n</project>
+--Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+--<+>UTF-8
+--===================================================================
+--diff --git a/.idea/workspace.xml b/.idea/workspace.xml
+----- a/.idea/workspace.xml	(revision cc8685272894b18ef5f01bcf603cd7580b0634b9)
+--+++ b/.idea/workspace.xml	(date 1670679175408)
+--@@ -1,15 +1,7 @@
+-- <?xml version="1.0" encoding="UTF-8"?>
+-- <project version="4">
+--   <component name="ChangeListManager">
+---    <list default="true" id="60af78ae-74e4-4259-939a-c7eff029eade" name="Changes" comment="">
+---      <change afterPath="$PROJECT_DIR$/Lessons.py" afterDir="false" />
+---      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_07_12_2022_23_13__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_07_12_2022_23_13__Changes_.xml" afterDir="false" />
+---      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_07_12_2022_23_26__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_07_12_2022_23_26__Changes_.xml" afterDir="false" />
+---      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+---      <change beforePath="$PROJECT_DIR$/MainWindow.py" beforeDir="false" afterPath="$PROJECT_DIR$/MainWindow.py" afterDir="false" />
+---      <change beforePath="$PROJECT_DIR$/SettingsWindow.py" beforeDir="false" afterPath="$PROJECT_DIR$/SettingsWindow.py" afterDir="false" />
+---      <change beforePath="$PROJECT_DIR$/settings.json" beforeDir="false" afterPath="$PROJECT_DIR$/settings.json" afterDir="false" />
+---    </list>
+--+    <list default="true" id="60af78ae-74e4-4259-939a-c7eff029eade" name="Changes" comment="None Work" />
+--     <option name="SHOW_DIALOG" value="false" />
+--     <option name="HIGHLIGHT_CONFLICTS" value="true" />
+--     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+--@@ -220,7 +212,14 @@
+--       <option name="project" value="LOCAL" />
+--       <updated>1670508082226</updated>
+--     </task>
+---    <option name="localTasksCounter" value="9" />
+--+    <task id="LOCAL-00009" summary="None Work">
+--+      <created>1670679162723</created>
+--+      <option name="number" value="00009" />
+--+      <option name="presentableId" value="LOCAL-00009" />
+--+      <option name="project" value="LOCAL" />
+--+      <updated>1670679162723</updated>
+--+    </task>
+--+    <option name="localTasksCounter" value="10" />
+--     <servers />
+--   </component>
+--   <component name="Vcs.Log.History.Properties">
+--@@ -286,7 +285,8 @@
+--     <MESSAGE value="Colors&#10;None SwichTheme" />
+--     <MESSAGE value="Colors; &#10;None SwichTheme" />
+--     <MESSAGE value="test Sound/Music" />
+---    <option name="LAST_COMMIT_MESSAGE" value="test Sound/Music" />
+--+    <MESSAGE value="None Work" />
+--+    <option name="LAST_COMMIT_MESSAGE" value="None Work" />
+--   </component>
+--   <component name="XDebuggerManager">
+--     <breakpoint-manager>
+--@@ -295,11 +295,6 @@
+--           <url>file://$PROJECT_DIR$/SettingsWindow.py</url>
+--           <line>208</line>
+--           <option name="timeStamp" value="1" />
+---        </line-breakpoint>
+---        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+---          <url>file://$PROJECT_DIR$/MainWindow.py</url>
+---          <line>103</line>
+---          <option name="timeStamp" value="5" />
+--         </line-breakpoint>
+--       </breakpoints>
+--     </breakpoint-manager>
+-Index: .idea/shelf/Uncommitted_changes_before_Checkout_at_13_12_2022_16_18_[Changes]/shelved.patch
+-===================================================================
+-diff --git a/.idea/shelf/Uncommitted_changes_before_Checkout_at_13_12_2022_16_18_[Changes]/shelved.patch b/.idea/shelf/Uncommitted_changes_before_Checkout_at_13_12_2022_16_18_[Changes]/shelved.patch
+-deleted file mode 100644
+---- a/.idea/shelf/Uncommitted_changes_before_Checkout_at_13_12_2022_16_18_[Changes]/shelved.patch	
+-+++ /dev/null	
+-@@ -1,25 +0,0 @@
+--Index: settings.json
+--IDEA additional info:
+--Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+--<+>{\r\n    \"Music\": true,\r\n    \"Sounds\": true,\r\n    \"DarkTheme\": true,\r\n    \"Color\": {\r\n        \"Light\": [\r\n            245,\r\n            240,\r\n            225\r\n        ],\r\n        \"Dark\": [\r\n            30,\r\n            61,\r\n            89\r\n        ]\r\n    }\r\n}
+--Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+--<+>UTF-8
+--===================================================================
+--diff --git a/settings.json b/settings.json
+----- a/settings.json	(revision 6585463fbd9f1452ca841f1798972de587a8003b)
+--+++ b/settings.json	(date 1670937479188)
+--@@ -3,12 +3,12 @@
+--     "Sounds": true,
+--     "DarkTheme": true,
+--     "Color": {
+---        "Light": [
+--+        "Dark": [
+--             245,
+--             240,
+--             225
+--         ],
+---        "Dark": [
+--+        "Light": [
+--             30,
+--             61,
+--             89
+-Index: .idea/shelf/Uncommitted_changes_before_Checkout_at_13_12_2022_16_18__Changes_.xml
+-===================================================================
+-diff --git a/.idea/shelf/Uncommitted_changes_before_Checkout_at_13_12_2022_16_18__Changes_.xml b/.idea/shelf/Uncommitted_changes_before_Checkout_at_13_12_2022_16_18__Changes_.xml
+-deleted file mode 100644
+---- a/.idea/shelf/Uncommitted_changes_before_Checkout_at_13_12_2022_16_18__Changes_.xml	
+-+++ /dev/null	
+-@@ -1,4 +0,0 @@
+--<changelist name="Uncommitted_changes_before_Checkout_at_13_12_2022_16_18_[Changes]" date="1670937525760" recycled="true" deleted="true">
+--  <option name="PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_13_12_2022_16_18_[Changes]/shelved.patch" />
+--  <option name="DESCRIPTION" value="Uncommitted changes before Checkout at 13.12.2022 16:18 [Changes]" />
+--</changelist>
+-\ No newline at end of file
+-Index: .idea/shelf/Uncommitted_changes_before_Checkout_at_19_12_2022_14_21__Changes_1.xml
+-===================================================================
+-diff --git a/.idea/shelf/Uncommitted_changes_before_Checkout_at_19_12_2022_14_21__Changes_1.xml b/.idea/shelf/Uncommitted_changes_before_Checkout_at_19_12_2022_14_21__Changes_1.xml
+-deleted file mode 100644
+---- a/.idea/shelf/Uncommitted_changes_before_Checkout_at_19_12_2022_14_21__Changes_1.xml	
+-+++ /dev/null	
+-@@ -1,4 +0,0 @@
+--<changelist name="Uncommitted_changes_before_Checkout_at_19_12_2022_14_21_[Changes]1" date="1671448902732" recycled="true" deleted="true">
+--  <option name="PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_19_12_2022_14_21_[Changes]1/shelved.patch" />
+--  <option name="DESCRIPTION" value="Uncommitted changes before Checkout at 19.12.2022 14:21 [Changes]" />
+--</changelist>
+-\ No newline at end of file
+-Index: .idea/shelf/Uncommitted_changes_before_Checkout_at_13_12_2022_16_14_[Changes]1/shelved.patch
+-===================================================================
+-diff --git a/.idea/shelf/Uncommitted_changes_before_Checkout_at_13_12_2022_16_14_[Changes]1/shelved.patch b/.idea/shelf/Uncommitted_changes_before_Checkout_at_13_12_2022_16_14_[Changes]1/shelved.patch
+-deleted file mode 100644
+---- a/.idea/shelf/Uncommitted_changes_before_Checkout_at_13_12_2022_16_14_[Changes]1/shelved.patch	
+-+++ /dev/null	
+-@@ -1,17 +0,0 @@
+--Index: settings.json
+--IDEA additional info:
+--Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+--<+>{\r\n    \"Music\": true,\r\n    \"Sounds\": true,\r\n    \"DarkTheme\": true,\r\n    \"Color\": {\r\n        \"Light\": [\r\n            245,\r\n            240,\r\n            225\r\n        ],\r\n        \"Dark\": [\r\n            30,\r\n            61,\r\n            89\r\n        ]\r\n    }\r\n}
+--Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+--<+>UTF-8
+--===================================================================
+--diff --git a/settings.json b/settings.json
+----- a/settings.json	
+--+++ b/settings.json	
+--@@ -1,5 +1,5 @@
+-- {
+---    "Music": true,
+--+    "Music": false,
+--     "Sounds": true,
+--     "DarkTheme": true,
+--     "Color": {
+-Index: .idea/shelf/Uncommitted_changes_before_Checkout_at_19_12_2022_14_21_[Changes]1/shelved.patch
+-===================================================================
+-diff --git a/.idea/shelf/Uncommitted_changes_before_Checkout_at_19_12_2022_14_21_[Changes]1/shelved.patch b/.idea/shelf/Uncommitted_changes_before_Checkout_at_19_12_2022_14_21_[Changes]1/shelved.patch
+-deleted file mode 100644
+---- a/.idea/shelf/Uncommitted_changes_before_Checkout_at_19_12_2022_14_21_[Changes]1/shelved.patch	
+-+++ /dev/null	
+-@@ -1,17 +0,0 @@
+--Index: settings.json
+--IDEA additional info:
+--Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+--<+>UTF-8
+--===================================================================
+--diff --git a/settings.json b/settings.json
+----- a/settings.json	
+--+++ b/settings.json	
+--@@ -1,7 +1,7 @@
+-- {
+--     "Music": false,
+--     "Sounds": true,
+---    "DarkTheme": false,
+--+    "DarkTheme": true,
+--     "Color": {
+--         "Dark": [
+--             245,
+-Index: .idea/shelf/Uncommitted_changes_before_Update_at_17_12_2022_21_51_[Changes]/shelved.patch
+-===================================================================
+-diff --git a/.idea/shelf/Uncommitted_changes_before_Update_at_17_12_2022_21_51_[Changes]/shelved.patch b/.idea/shelf/Uncommitted_changes_before_Update_at_17_12_2022_21_51_[Changes]/shelved.patch
+-deleted file mode 100644
+---- a/.idea/shelf/Uncommitted_changes_before_Update_at_17_12_2022_21_51_[Changes]/shelved.patch	
+-+++ /dev/null	
+-@@ -1,296 +0,0 @@
+--Index: MainProgram.py
+--IDEA additional info:
+--Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+--<+>import pygame\r\nimport json\r\nimport random\r\nimport os\r\n\r\nrunm = 0\r\n\r\nclass MainWindow():\r\n    def __init__(self):\r\n        pygame.init()  # init pygame\r\n        self.size = self.width, self.height = 500, 700  # Window Size\r\n        self.screen = pygame.display.set_mode(self.size)  # Screen Setting\r\n        running = True\r\n        global runm\r\n        self.runM = runm\r\n\r\n        # open setting.json and take var\r\n        with open(\"settings.json\") as file:\r\n            data = json.load(file)\r\n            self.Music = data[\"Music\"]\r\n            self.Sound = data[\"Sounds\"]\r\n            self.DarkTheme = data[\"DarkTheme\"]\r\n            if self.DarkTheme:\r\n                self.TextColor = tuple(data[\"Color\"][\"Light\"])\r\n                self.BgColor = tuple(data[\"Color\"][\"Dark\"])\r\n            else:\r\n                self.TextColor = tuple(data[\"Color\"][\"Dark\"])\r\n                self.BgColor = tuple(data[\"Color\"][\"Light\"])\r\n\r\n\r\n\r\n        # Music\r\n        pygame.mixer.music.set_volume(0.1)\r\n        pygame.mixer.music.load(\"Music/\" + str(random.choice(os.listdir(\"Music\"))))\r\n        # Sounds\r\n        self.sound_push_button = pygame.mixer.Sound('Sounds/push_button.mp3')\r\n\r\n        # Play Music\r\n        if self.Music:\r\n            pygame.mixer.music.play()\r\n\r\n        self.draw()  # draw all\r\n\r\n        # Staff\r\n        while running:\r\n            for event in pygame.event.get():\r\n                if event.type == pygame.QUIT:  # Stop Programm\r\n                    running = False\r\n                if event.type == pygame.MOUSEBUTTONDOWN:\r\n                    self.click(event.pos)\r\n\r\n    # Draw all in screen\r\n    def draw(self):\r\n        self.screen.fill(self.TextColor)        # Fill display color\r\n        pygame.display.flip()\r\n\r\n        # Title \"Tetris\"\r\n        font = pygame.font.Font(None, 60)\r\n        text = font.render(\"T_E_T_R_I_S\", True, self.BgColor)\r\n        text_x = self.width // 2 - text.get_width() // 2\r\n        text_y = 40\r\n        self.screen.blit(text, (text_x, text_y))\r\n        pygame.draw.rect(self.screen, self.BgColor, (text_x - 10, text_y - 10,\r\n                                               text.get_width() + 20, text.get_height() + 20), 6)\r\n\r\n\r\n        # Btn \"Play\"\r\n        font = pygame.font.Font(None, 60)\r\n        text = font.render(\"    PLAY     \", True, self.BgColor)\r\n        text_x = self.width // 2 - text.get_width() // 2\r\n        text_y = 170\r\n        self.screen.blit(text, (text_x, text_y))\r\n        pygame.draw.rect(self.screen, self.BgColor, (text_x - 10, text_y - 10,\r\n                                                     text.get_width() + 20, text.get_height() + 20), 2)\r\n        # HitBox of Btn \"Play\"\r\n        self.BtnPlay_HuitBox_X = text_x\r\n        self.BtnPlay_HuitBox_Y = text_y\r\n        self.BtnPlay_HuitBox_XSize = text_x + 500\r\n        self.BtnPlay_HuitBox_YSize = text_y + 50\r\n\r\n\r\n        # Btn Sett\r\n        font = pygame.font.Font(None, 60)\r\n        text = font.render(\" SETTINGS \", True, self.BgColor)\r\n        text_x = self.width // 2 - text.get_width() // 2\r\n        text_y = 250\r\n        self.screen.blit(text, (text_x, text_y))\r\n        pygame.draw.rect(self.screen, self.BgColor, (text_x - 10, text_y - 10,\r\n                                                     text.get_width() + 20, text.get_height() + 20), 2)\r\n        # HitBox of Btn \"Play\"\r\n        self.BtnSett_HuitBox_X = text_x\r\n        self.BtnSett_HuitBox_Y = text_y\r\n        self.BtnSett_HuitBox_XSize = text_x + 500\r\n        self.BtnSett_HuitBox_YSize = text_y + 50\r\n\r\n        # Draw Changes\r\n        pygame.display.flip()\r\n\r\n    # CLick Operation\r\n    def click(self, pos):\r\n        # If sound On -> play sound\r\n        if self.Sound:\r\n            pygame.mixer.music.pause()\r\n            self.sound_push_button.play()\r\n            if self.Music:\r\n                pygame.mixer.music.unpause()\r\n\r\n        # If Mouse Pos in HitBox's ->\r\n        if self.BtnPlay_HuitBox_X <= pos[0] <= self.BtnPlay_HuitBox_XSize and self.BtnPlay_HuitBox_Y <= pos[1] <= self.BtnPlay_HuitBox_YSize:\r\n            # Debug\r\n            print(\"TEST PLAY\")\r\n        elif self.BtnSett_HuitBox_X <= pos[0] <= self.BtnSett_HuitBox_XSize and self.BtnSett_HuitBox_Y <= pos[1] <= self.BtnSett_HuitBox_YSize:\r\n            global runm\r\n            runm = 1\r\n            # Open SettingsWindow\r\n            Settings_Window()\r\n\r\n\r\nclass Settings_Window():\r\n    def __init__(self):\r\n        pygame.init()       # init pygame\r\n        self.size = self.width, self.height = 500, 700      # Window Size\r\n        self.screen = pygame.display.set_mode(self.size)    # Screen Setting\r\n        running = True\r\n\r\n\r\n        # open setting.json and take var\r\n        with open(\"settings.json\") as file:\r\n            data = json.load(file)\r\n            self.Music = data[\"Music\"]\r\n            self.Sound = data[\"Sounds\"]\r\n            self.DarkTheme = data[\"DarkTheme\"]\r\n            if self.DarkTheme:\r\n                self.TextColor = tuple(data[\"Color\"][\"Light\"])\r\n                self.BgColor = tuple(data[\"Color\"][\"Dark\"])\r\n            else:\r\n                self.TextColor = tuple(data[\"Color\"][\"Dark\"])\r\n                self.BgColor = tuple(data[\"Color\"][\"Light\"])\r\n\r\n        # Play Music\r\n        if self.Music:\r\n            pygame.mixer.music.unpause()\r\n        # Sounds\r\n        self.sound_push_button = pygame.mixer.Sound('Sounds/push_button.mp3')\r\n\r\n\r\n        # HitBox\r\n        # Chb \"Music\"\r\n        self.ChB_Music_posX = 175\r\n        self.ChB_Music_posY = 110\r\n        self.ChB_MusicHitBox_X = self.ChB_Music_posX + 65\r\n        self.ChB_MusicHitBox_Y = self.ChB_Music_posY + 20\r\n        # Chb \"Sounds\"\r\n        self.ChB_Sound_posX = 275\r\n        self.ChB_Sound_posY = 110\r\n        self.ChB_SoundHitBox_X = self.ChB_Sound_posX + 65\r\n        self.ChB_SoundHitBox_Y = self.ChB_Sound_posY + 20\r\n        # Chb \"Theme\"\r\n        self.ChB_Theme_posX = self.width // 2 - 118 // 2\r\n        self.ChB_Theme_posY = 150\r\n        self.ChB_ThemeHitBox_X = self.ChB_Theme_posX + 65\r\n        self.ChB_ThemeHitBox_Y = self.ChB_Theme_posY + 20\r\n\r\n        self.draw()  # draw all\r\n        while running:\r\n            for event in pygame.event.get():\r\n                if event.type == pygame.QUIT:               # Stop Program\r\n                    # play sound if \"settings\" close\r\n                    if self.Sound:\r\n                        pygame.mixer.music.pause()\r\n                        self.sound_push_button.play()\r\n                        if self.Music:\r\n                            pygame.mixer.music.unpause()\r\n\r\n                    MainWindow()    # Opne MainWindow\r\n                    running = False                         # write class of MainWind? for restart game\r\n                if event.type == pygame.MOUSEBUTTONDOWN:\r\n                    self.click(event.pos)\r\n\r\n\r\n    # Change settings\r\n    def click(self, pos):\r\n        # If Mouse Pos in HitBox \"Music\"\r\n        if self.ChB_MusicHitBox_X >= pos[0] >= self.ChB_Music_posX - 30 and self.ChB_MusicHitBox_Y >= pos[1] >= self.ChB_Music_posY - 5:\r\n            # Play Sounds\r\n            if self.Sound:\r\n                pygame.mixer.music.pause()\r\n                self.sound_push_button.play()\r\n                if self.Music:\r\n                    pygame.mixer.music.unpause()\r\n\r\n            # Open Sett_file and replace \"Music\"\r\n            with open(\"settings.json\") as file:\r\n                data = json.load(file)\r\n                self.Music = False if self.Music else True\r\n                if self.Music:\r\n                    pygame.mixer.music.load(\"Music/\" + str(random.choice(os.listdir(\"Music\"))))\r\n                    pygame.mixer.music.play()\r\n                else:\r\n                    pygame.mixer.music.pause()\r\n                data[\"Music\"] = True if self.Music else False\r\n                with open(\"settings.json\", \"w\") as file:\r\n                    json.dump(data, file, indent=4)\r\n\r\n        # If Mouse Pos in HitBox \"Sound\"\r\n        elif self.ChB_SoundHitBox_X >= pos[0] >= self.ChB_Sound_posX - 30 and self.ChB_SoundHitBox_Y >= pos[1] >= self.ChB_Sound_posY - 5:\r\n            # Play Sounds\r\n            if not self.Sound:\r\n                pygame.mixer.music.pause()\r\n                self.sound_push_button.play()\r\n                if self.Music:\r\n                    pygame.mixer.music.unpause()\r\n\r\n            # Open Sett_file and replace \"Sound\"\r\n            with open(\"settings.json\") as file:\r\n                data = json.load(file)\r\n                self.Sound = False if self.Sound else True\r\n                data[\"Sounds\"] = True if self.Sound else False\r\n                with open(\"settings.json\", \"w\") as file:\r\n                    json.dump(data, file, indent=4)\r\n\r\n        # If Mouse Pos in HitBox \"Theme\"\r\n        elif self.ChB_ThemeHitBox_X >= pos[0] >= self.ChB_Theme_posX - 30 and self.ChB_ThemeHitBox_Y >= pos[1] >= self.ChB_Theme_posY - 5:\r\n            # Play Sounds\r\n            if self.Sound:\r\n                pygame.mixer.music.pause()\r\n                self.sound_push_button.play()\r\n                if self.Music:\r\n                    pygame.mixer.music.unpause()\r\n\r\n            # Open Sett_file and replace \"Theme\"\r\n            with open(\"settings.json\") as file:\r\n                data = json.load(file)\r\n                if self.DarkTheme:\r\n                    self.TextColor = tuple(data[\"Color\"][\"Dark\"])\r\n                    self.BgColor = tuple(data[\"Color\"][\"Light\"])\r\n                else:\r\n                    self.TextColor = tuple(data[\"Color\"][\"Light\"])\r\n                    self.BgColor = tuple(data[\"Color\"][\"Dark\"])\r\n                self.DarkTheme = False if self.DarkTheme else True\r\n                data[\"DarkTheme\"] = True if self.DarkTheme else False\r\n\r\n                with open(\"settings.json\", \"w\") as file:\r\n                    json.dump(data, file, indent=4)\r\n\r\n        self.draw()\r\n\r\n    # Draw on windwo: Title, other sett.\r\n    def draw(self):\r\n        self.screen.fill(self.TextColor)                             # BackGround color\r\n\r\n        # draw title\r\n        font = pygame.font.Font(None, 50)\r\n        text = font.render(\"GAME SETTINGS\", True, self.BgColor)\r\n        text_x = self.width // 2 - text.get_width() // 2\r\n        text_y = 40\r\n        self.screen.blit(text, (text_x, text_y))\r\n        pygame.display.flip()\r\n\r\n\r\n        # draw ChB \"Music\"\r\n        # draw text\r\n        font = pygame.font.Font(None, 30)\r\n        text = font.render(\"Music\", True, self.BgColor)\r\n        text_x = self.ChB_Music_posX\r\n        text_y = self.ChB_Music_posY\r\n        self.screen.blit(text, (text_x, text_y))\r\n        pygame.display.flip()\r\n\r\n        # draw ChB\r\n        ChB_x = text_x - 25\r\n        ChB_y = text_y - 2\r\n\r\n        if self.Music:\r\n            pygame.draw.rect(self.screen, self.BgColor, (ChB_x, ChB_y, 20, 20))\r\n            pygame.draw.rect(self.screen, self.TextColor, (ChB_x + 2, ChB_y + 2, 16, 16))\r\n            pygame.draw.rect(self.screen, self.BgColor, (ChB_x + 3, ChB_y + 3, 14, 14))\r\n            pygame.display.flip()\r\n        else:\r\n            pygame.draw.rect(self.screen, self.BgColor, (ChB_x, ChB_y, 20, 20))\r\n            pygame.draw.rect(self.screen, self.TextColor, (ChB_x + 2, ChB_y + 2, 16, 16))\r\n            pygame.display.flip()\r\n\r\n\r\n        # draw ChB \"Sound\"\r\n        # draw text\r\n        font = pygame.font.Font(None, 30)\r\n        text = font.render(\"Sounds\", True, self.BgColor)\r\n        text_x = self.ChB_Sound_posX\r\n        text_y = self.ChB_Sound_posY\r\n        self.screen.blit(text, (text_x, text_y))\r\n        pygame.display.flip()\r\n\r\n        # draw ChB\r\n        ChB_x = text_x - 25\r\n        ChB_y = text_y - 2\r\n\r\n        if self.Sound:\r\n            pygame.draw.rect(self.screen, self.BgColor, (ChB_x, ChB_y, 20, 20))\r\n            pygame.draw.rect(self.screen, self.TextColor, (ChB_x + 2, ChB_y + 2, 16, 16))\r\n            pygame.draw.rect(self.screen, self.BgColor, (ChB_x + 3, ChB_y + 3, 14, 14))\r\n            pygame.display.flip()\r\n        else:\r\n            pygame.draw.rect(self.screen, self.BgColor, (ChB_x, ChB_y, 20, 20))\r\n            pygame.draw.rect(self.screen, self.TextColor, (ChB_x + 2, ChB_y + 2, 16, 16))\r\n            pygame.display.flip()\r\n\r\n\r\n        # draw ChB \"Theme\"\r\n        # draw text\r\n        font = pygame.font.Font(None, 30)\r\n        text = font.render(\"Dark Theme\", True, self.BgColor)\r\n        text_x = self.ChB_Theme_posX\r\n        text_y = self.ChB_Theme_posY\r\n        self.screen.blit(text, (text_x, text_y))\r\n        pygame.display.flip()\r\n\r\n        # draw ChB\r\n        ChB_x = text_x - 25\r\n        ChB_y = text_y - 2\r\n\r\n        if self.DarkTheme:\r\n            pygame.draw.rect(self.screen, self.BgColor, (ChB_x, ChB_y, 20, 20))\r\n            pygame.draw.rect(self.screen, self.TextColor, (ChB_x + 2, ChB_y + 2, 16, 16))\r\n            pygame.draw.rect(self.screen, self.BgColor, (ChB_x + 3, ChB_y + 3, 14, 14))\r\n            pygame.display.flip()\r\n        else:\r\n            pygame.draw.rect(self.screen, self.BgColor, (ChB_x, ChB_y, 20, 20))\r\n            pygame.draw.rect(self.screen, self.TextColor, (ChB_x + 2, ChB_y + 2, 16, 16))\r\n            pygame.display.flip()\r\n\r\n\r\nMainWindow()
+--Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+--<+>UTF-8
+--===================================================================
+--diff --git a/MainProgram.py b/MainProgram.py
+----- a/MainProgram.py	(revision 55c6c06ac25d0a7a65ab6abf0f5b706c71ef065f)
+--+++ b/MainProgram.py	(date 1670793581528)
+--@@ -109,6 +109,7 @@
+--         if self.BtnPlay_HuitBox_X <= pos[0] <= self.BtnPlay_HuitBox_XSize and self.BtnPlay_HuitBox_Y <= pos[1] <= self.BtnPlay_HuitBox_YSize:
+--             # Debug
+--             print("TEST PLAY")
+--+
+--         elif self.BtnSett_HuitBox_X <= pos[0] <= self.BtnSett_HuitBox_XSize and self.BtnSett_HuitBox_Y <= pos[1] <= self.BtnSett_HuitBox_YSize:
+--             global runm
+--             runm = 1
+--@@ -258,7 +259,7 @@
+--         pygame.display.flip()
+-- 
+-- 
+---        # draw ChB "Music"
+--+        # draw CёhB "Music"
+--         # draw text
+--         font = pygame.font.Font(None, 30)
+--         text = font.render("Music", True, self.BgColor)
+--Index: .idea/workspace.xml
+--IDEA additional info:
+--Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+--<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<project version=\"4\">\r\n  <component name=\"ChangeListManager\">\r\n    <list default=\"true\" id=\"60af78ae-74e4-4259-939a-c7eff029eade\" name=\"Changes\" comment=\"None Work\">\r\n      <change beforePath=\"$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_07_12_2022_23_13__Changes_.xml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_07_12_2022_23_13__Changes_.xml\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_07_12_2022_23_26__Changes_.xml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_07_12_2022_23_26__Changes_.xml\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/.idea/workspace.xml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/.idea/workspace.xml\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/MainWindow.py\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/MainWindow.py\" afterDir=\"false\" />\r\n    </list>\r\n    <option name=\"SHOW_DIALOG\" value=\"false\" />\r\n    <option name=\"HIGHLIGHT_CONFLICTS\" value=\"true\" />\r\n    <option name=\"HIGHLIGHT_NON_ACTIVE_CHANGELIST\" value=\"false\" />\r\n    <option name=\"LAST_RESOLUTION\" value=\"IGNORE\" />\r\n  </component>\r\n  <component name=\"FileTemplateManagerImpl\">\r\n    <option name=\"RECENT_TEMPLATES\">\r\n      <list>\r\n        <option value=\"Python Script\" />\r\n      </list>\r\n    </option>\r\n  </component>\r\n  <component name=\"Git.Settings\">\r\n    <option name=\"RECENT_BRANCH_BY_REPOSITORY\">\r\n      <map>\r\n        <entry key=\"$PROJECT_DIR$\" value=\"Egor\" />\r\n      </map>\r\n    </option>\r\n    <option name=\"RECENT_GIT_ROOT_PATH\" value=\"$PROJECT_DIR$\" />\r\n  </component>\r\n  <component name=\"HighlightingSettingsPerFile\">\r\n    <setting file=\"file://$PROJECT_DIR$/SettingsWindow.py\" root0=\"FORCE_HIGHLIGHTING\" />\r\n  </component>\r\n  <component name=\"MarkdownSettingsMigration\">\r\n    <option name=\"stateVersion\" value=\"1\" />\r\n  </component>\r\n  <component name=\"ProjectId\" id=\"2IasuvQ5UkiVQBkPjIPbSy2LeGm\" />\r\n  <component name=\"ProjectViewState\">\r\n    <option name=\"hideEmptyMiddlePackages\" value=\"true\" />\r\n    <option name=\"showLibraryContents\" value=\"true\" />\r\n  </component>\r\n  <component name=\"PropertiesComponent\"><![CDATA[{\r\n}]]></component>\r\n  <component name=\"RecentsManager\">\r\n    <key name=\"CopyFile.RECENT_KEYS\">\r\n      <recent name=\"D:\\IT\\PycharmProjects\\pythonProject1\\PyGame\\Tetris\\.idea\" />\r\n    </key>\r\n    <key name=\"MoveFile.RECENT_KEYS\">\r\n      <recent name=\"D:\\IT\\PycharmProjects\\pythonProject1\\PyGame\\Tetris\" />\r\n    </key>\r\n  </component>\r\n  <component name=\"RunManager\" selected=\"Python.MainWindow\">\r\n    <configuration name=\"Lessons\" type=\"PythonConfigurationType\" factoryName=\"Python\" temporary=\"true\" nameIsGenerated=\"true\">\r\n      <module name=\"Tetris\" />\r\n      <option name=\"INTERPRETER_OPTIONS\" value=\"\" />\r\n      <option name=\"PARENT_ENVS\" value=\"true\" />\r\n      <envs>\r\n        <env name=\"PYTHONUNBUFFERED\" value=\"1\" />\r\n      </envs>\r\n      <option name=\"SDK_HOME\" value=\"\" />\r\n      <option name=\"WORKING_DIRECTORY\" value=\"$PROJECT_DIR$\" />\r\n      <option name=\"IS_MODULE_SDK\" value=\"true\" />\r\n      <option name=\"ADD_CONTENT_ROOTS\" value=\"true\" />\r\n      <option name=\"ADD_SOURCE_ROOTS\" value=\"true\" />\r\n      <option name=\"SCRIPT_NAME\" value=\"$PROJECT_DIR$/Lessons.py\" />\r\n      <option name=\"PARAMETERS\" value=\"\" />\r\n      <option name=\"SHOW_COMMAND_LINE\" value=\"false\" />\r\n      <option name=\"EMULATE_TERMINAL\" value=\"false\" />\r\n      <option name=\"MODULE_MODE\" value=\"false\" />\r\n      <option name=\"REDIRECT_INPUT\" value=\"false\" />\r\n      <option name=\"INPUT_FILE\" value=\"\" />\r\n      <method v=\"2\" />\r\n    </configuration>\r\n    <configuration name=\"MainWindow\" type=\"PythonConfigurationType\" factoryName=\"Python\" temporary=\"true\" nameIsGenerated=\"true\">\r\n      <module name=\"Tetris\" />\r\n      <option name=\"INTERPRETER_OPTIONS\" value=\"\" />\r\n      <option name=\"PARENT_ENVS\" value=\"true\" />\r\n      <envs>\r\n        <env name=\"PYTHONUNBUFFERED\" value=\"1\" />\r\n      </envs>\r\n      <option name=\"SDK_HOME\" value=\"\" />\r\n      <option name=\"WORKING_DIRECTORY\" value=\"$PROJECT_DIR$\" />\r\n      <option name=\"IS_MODULE_SDK\" value=\"true\" />\r\n      <option name=\"ADD_CONTENT_ROOTS\" value=\"true\" />\r\n      <option name=\"ADD_SOURCE_ROOTS\" value=\"true\" />\r\n      <option name=\"SCRIPT_NAME\" value=\"$PROJECT_DIR$/MainWindow.py\" />\r\n      <option name=\"PARAMETERS\" value=\"\" />\r\n      <option name=\"SHOW_COMMAND_LINE\" value=\"false\" />\r\n      <option name=\"EMULATE_TERMINAL\" value=\"false\" />\r\n      <option name=\"MODULE_MODE\" value=\"false\" />\r\n      <option name=\"REDIRECT_INPUT\" value=\"false\" />\r\n      <option name=\"INPUT_FILE\" value=\"\" />\r\n      <method v=\"2\" />\r\n    </configuration>\r\n    <configuration name=\"SettingsWindow\" type=\"PythonConfigurationType\" factoryName=\"Python\" nameIsGenerated=\"true\">\r\n      <module name=\"Tetris\" />\r\n      <option name=\"INTERPRETER_OPTIONS\" value=\"\" />\r\n      <option name=\"PARENT_ENVS\" value=\"true\" />\r\n      <envs>\r\n        <env name=\"PYTHONUNBUFFERED\" value=\"1\" />\r\n      </envs>\r\n      <option name=\"SDK_HOME\" value=\"D:\\IT\\Python\\python.exe\" />\r\n      <option name=\"WORKING_DIRECTORY\" value=\"$PROJECT_DIR$\" />\r\n      <option name=\"IS_MODULE_SDK\" value=\"false\" />\r\n      <option name=\"ADD_CONTENT_ROOTS\" value=\"true\" />\r\n      <option name=\"ADD_SOURCE_ROOTS\" value=\"true\" />\r\n      <option name=\"SCRIPT_NAME\" value=\"$PROJECT_DIR$/SettingsWindow.py\" />\r\n      <option name=\"PARAMETERS\" value=\"\" />\r\n      <option name=\"SHOW_COMMAND_LINE\" value=\"false\" />\r\n      <option name=\"EMULATE_TERMINAL\" value=\"false\" />\r\n      <option name=\"MODULE_MODE\" value=\"false\" />\r\n      <option name=\"REDIRECT_INPUT\" value=\"false\" />\r\n      <option name=\"INPUT_FILE\" value=\"\" />\r\n      <method v=\"2\" />\r\n    </configuration>\r\n    <configuration default=\"true\" type=\"PythonConfigurationType\" factoryName=\"Python\">\r\n      <module name=\"Tetris\" />\r\n      <option name=\"INTERPRETER_OPTIONS\" value=\"\" />\r\n      <option name=\"PARENT_ENVS\" value=\"true\" />\r\n      <envs>\r\n        <env name=\"PYTHONUNBUFFERED\" value=\"1\" />\r\n      </envs>\r\n      <option name=\"SDK_HOME\" value=\"\" />\r\n      <option name=\"WORKING_DIRECTORY\" value=\"\" />\r\n      <option name=\"IS_MODULE_SDK\" value=\"false\" />\r\n      <option name=\"ADD_CONTENT_ROOTS\" value=\"true\" />\r\n      <option name=\"ADD_SOURCE_ROOTS\" value=\"true\" />\r\n      <option name=\"SCRIPT_NAME\" value=\"\" />\r\n      <option name=\"PARAMETERS\" value=\"\" />\r\n      <option name=\"SHOW_COMMAND_LINE\" value=\"false\" />\r\n      <option name=\"EMULATE_TERMINAL\" value=\"false\" />\r\n      <option name=\"MODULE_MODE\" value=\"false\" />\r\n      <option name=\"REDIRECT_INPUT\" value=\"false\" />\r\n      <option name=\"INPUT_FILE\" value=\"\" />\r\n      <method v=\"2\" />\r\n    </configuration>\r\n    <configuration name=\"myproject (1)\" type=\"PythonConfigurationType\" factoryName=\"Python\" temporary=\"true\" nameIsGenerated=\"true\">\r\n      <module name=\"git\" />\r\n      <option name=\"INTERPRETER_OPTIONS\" value=\"\" />\r\n      <option name=\"PARENT_ENVS\" value=\"true\" />\r\n      <envs>\r\n        <env name=\"PYTHONUNBUFFERED\" value=\"1\" />\r\n      </envs>\r\n      <option name=\"SDK_HOME\" value=\"D:\\IT\\Python\\python.exe\" />\r\n      <option name=\"WORKING_DIRECTORY\" value=\"$PROJECT_DIR$\" />\r\n      <option name=\"IS_MODULE_SDK\" value=\"false\" />\r\n      <option name=\"ADD_CONTENT_ROOTS\" value=\"true\" />\r\n      <option name=\"ADD_SOURCE_ROOTS\" value=\"true\" />\r\n      <option name=\"SCRIPT_NAME\" value=\"$PROJECT_DIR$/myproject.py\" />\r\n      <option name=\"PARAMETERS\" value=\"\" />\r\n      <option name=\"SHOW_COMMAND_LINE\" value=\"false\" />\r\n      <option name=\"EMULATE_TERMINAL\" value=\"false\" />\r\n      <option name=\"MODULE_MODE\" value=\"false\" />\r\n      <option name=\"REDIRECT_INPUT\" value=\"false\" />\r\n      <option name=\"INPUT_FILE\" value=\"\" />\r\n      <method v=\"2\" />\r\n    </configuration>\r\n    <configuration name=\"myproject\" type=\"PythonConfigurationType\" factoryName=\"Python\" temporary=\"true\" nameIsGenerated=\"true\">\r\n      <module name=\"git\" />\r\n      <option name=\"INTERPRETER_OPTIONS\" value=\"\" />\r\n      <option name=\"PARENT_ENVS\" value=\"true\" />\r\n      <envs>\r\n        <env name=\"PYTHONUNBUFFERED\" value=\"1\" />\r\n      </envs>\r\n      <option name=\"SDK_HOME\" value=\"D:\\IT\\Python\\python.exe\" />\r\n      <option name=\"WORKING_DIRECTORY\" value=\"$PROJECT_DIR$/../../../../../Downloads/Telegram Desktop\" />\r\n      <option name=\"IS_MODULE_SDK\" value=\"false\" />\r\n      <option name=\"ADD_CONTENT_ROOTS\" value=\"true\" />\r\n      <option name=\"ADD_SOURCE_ROOTS\" value=\"true\" />\r\n      <option name=\"SCRIPT_NAME\" value=\"$PROJECT_DIR$/../../../../../Downloads/Telegram Desktop/myproject.py\" />\r\n      <option name=\"PARAMETERS\" value=\"\" />\r\n      <option name=\"SHOW_COMMAND_LINE\" value=\"false\" />\r\n      <option name=\"EMULATE_TERMINAL\" value=\"false\" />\r\n      <option name=\"MODULE_MODE\" value=\"false\" />\r\n      <option name=\"REDIRECT_INPUT\" value=\"false\" />\r\n      <option name=\"INPUT_FILE\" value=\"\" />\r\n      <method v=\"2\" />\r\n    </configuration>\r\n    <configuration default=\"true\" type=\"Tox\" factoryName=\"Tox\">\r\n      <module name=\"Tetris\" />\r\n      <option name=\"INTERPRETER_OPTIONS\" value=\"\" />\r\n      <option name=\"PARENT_ENVS\" value=\"true\" />\r\n      <option name=\"SDK_HOME\" value=\"\" />\r\n      <option name=\"WORKING_DIRECTORY\" value=\"\" />\r\n      <option name=\"IS_MODULE_SDK\" value=\"false\" />\r\n      <option name=\"ADD_CONTENT_ROOTS\" value=\"true\" />\r\n      <option name=\"ADD_SOURCE_ROOTS\" value=\"true\" />\r\n      <method v=\"2\" />\r\n    </configuration>\r\n    <configuration default=\"true\" type=\"docs\" factoryName=\"Docutils task\">\r\n      <module name=\"Tetris\" />\r\n      <option name=\"INTERPRETER_OPTIONS\" value=\"\" />\r\n      <option name=\"PARENT_ENVS\" value=\"true\" />\r\n      <option name=\"SDK_HOME\" value=\"\" />\r\n      <option name=\"WORKING_DIRECTORY\" value=\"\" />\r\n      <option name=\"IS_MODULE_SDK\" value=\"false\" />\r\n      <option name=\"ADD_CONTENT_ROOTS\" value=\"true\" />\r\n      <option name=\"ADD_SOURCE_ROOTS\" value=\"true\" />\r\n      <option name=\"docutils_input_file\" value=\"\" />\r\n      <option name=\"docutils_output_file\" value=\"\" />\r\n      <option name=\"docutils_params\" value=\"\" />\r\n      <option name=\"docutils_task\" value=\"\" />\r\n      <option name=\"docutils_open_in_browser\" value=\"false\" />\r\n      <method v=\"2\" />\r\n    </configuration>\r\n    <configuration default=\"true\" type=\"docs\" factoryName=\"Sphinx task\">\r\n      <module name=\"Tetris\" />\r\n      <option name=\"INTERPRETER_OPTIONS\" value=\"\" />\r\n      <option name=\"PARENT_ENVS\" value=\"true\" />\r\n      <option name=\"SDK_HOME\" value=\"\" />\r\n      <option name=\"WORKING_DIRECTORY\" value=\"\" />\r\n      <option name=\"IS_MODULE_SDK\" value=\"false\" />\r\n      <option name=\"ADD_CONTENT_ROOTS\" value=\"true\" />\r\n      <option name=\"ADD_SOURCE_ROOTS\" value=\"true\" />\r\n      <option name=\"docutils_input_file\" value=\"\" />\r\n      <option name=\"docutils_output_file\" value=\"\" />\r\n      <option name=\"docutils_params\" value=\"\" />\r\n      <option name=\"docutils_task\" value=\"\" />\r\n      <option name=\"docutils_open_in_browser\" value=\"false\" />\r\n      <method v=\"2\" />\r\n    </configuration>\r\n    <configuration default=\"true\" type=\"tests\" factoryName=\"Autodetect\">\r\n      <module name=\"Tetris\" />\r\n      <option name=\"INTERPRETER_OPTIONS\" value=\"\" />\r\n      <option name=\"PARENT_ENVS\" value=\"true\" />\r\n      <option name=\"SDK_HOME\" value=\"\" />\r\n      <option name=\"WORKING_DIRECTORY\" value=\"\" />\r\n      <option name=\"IS_MODULE_SDK\" value=\"false\" />\r\n      <option name=\"ADD_CONTENT_ROOTS\" value=\"true\" />\r\n      <option name=\"ADD_SOURCE_ROOTS\" value=\"true\" />\r\n      <option name=\"_new_additionalArguments\" value=\"&quot;&quot;\" />\r\n      <option name=\"_new_target\" value=\"&quot;&quot;\" />\r\n      <option name=\"_new_targetType\" value=\"&quot;PATH&quot;\" />\r\n      <method v=\"2\" />\r\n    </configuration>\r\n    <configuration default=\"true\" type=\"tests\" factoryName=\"Doctests\">\r\n      <module name=\"Tetris\" />\r\n      <option name=\"INTERPRETER_OPTIONS\" value=\"\" />\r\n      <option name=\"PARENT_ENVS\" value=\"true\" />\r\n      <option name=\"SDK_HOME\" value=\"\" />\r\n      <option name=\"WORKING_DIRECTORY\" value=\"\" />\r\n      <option name=\"IS_MODULE_SDK\" value=\"false\" />\r\n      <option name=\"ADD_CONTENT_ROOTS\" value=\"true\" />\r\n      <option name=\"ADD_SOURCE_ROOTS\" value=\"true\" />\r\n      <option name=\"SCRIPT_NAME\" value=\"\" />\r\n      <option name=\"CLASS_NAME\" value=\"\" />\r\n      <option name=\"METHOD_NAME\" value=\"\" />\r\n      <option name=\"FOLDER_NAME\" value=\"\" />\r\n      <option name=\"TEST_TYPE\" value=\"TEST_SCRIPT\" />\r\n      <option name=\"PATTERN\" value=\"\" />\r\n      <option name=\"USE_PATTERN\" value=\"false\" />\r\n      <method v=\"2\" />\r\n    </configuration>\r\n    <list>\r\n      <item itemvalue=\"Python.SettingsWindow\" />\r\n      <item itemvalue=\"Python.myproject\" />\r\n      <item itemvalue=\"Python.MainWindow\" />\r\n      <item itemvalue=\"Python.myproject (1)\" />\r\n      <item itemvalue=\"Python.Lessons\" />\r\n    </list>\r\n    <recent_temporary>\r\n      <list>\r\n        <item itemvalue=\"Python.MainWindow\" />\r\n        <item itemvalue=\"Python.myproject (1)\" />\r\n        <item itemvalue=\"Python.myproject\" />\r\n        <item itemvalue=\"Python.MainWindow\" />\r\n        <item itemvalue=\"Python.Lessons\" />\r\n      </list>\r\n    </recent_temporary>\r\n  </component>\r\n  <component name=\"SpellCheckerSettings\" RuntimeDictionaries=\"0\" Folders=\"0\" CustomDictionaries=\"0\" DefaultDictionary=\"application-level\" UseSingleDictionary=\"true\" transferred=\"true\" />\r\n  <component name=\"TaskManager\">\r\n    <task active=\"true\" id=\"Default\" summary=\"Default task\">\r\n      <changelist id=\"6dc5f473-9df2-4c5a-9f07-20f5a9be5251\" name=\"Changes\" comment=\"\" />\r\n      <created>1670431254942</created>\r\n      <option name=\"number\" value=\"Default\" />\r\n      <option name=\"presentableId\" value=\"Default\" />\r\n      <updated>1670431254942</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00001\" summary=\"add change Theme\">\r\n      <created>1670434156569</created>\r\n      <option name=\"number\" value=\"00001\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00001\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1670434156569</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00002\" summary=\"repairTest\">\r\n      <created>1670435425650</created>\r\n      <option name=\"number\" value=\"00002\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00002\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1670435425650</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00003\" summary=\"repairTest\">\r\n      <created>1670435714218</created>\r\n      <option name=\"number\" value=\"00003\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00003\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1670435714218</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00004\" summary=\"Colors&#10;None SwichTheme\">\r\n      <created>1670441250785</created>\r\n      <option name=\"number\" value=\"00004\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00004\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1670441250785</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00005\" summary=\"Colors&#10;None SwichTheme\">\r\n      <created>1670441361910</created>\r\n      <option name=\"number\" value=\"00005\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00005\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1670441361912</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00006\" summary=\"Colors; &#10;None SwichTheme\">\r\n      <created>1670441473653</created>\r\n      <option name=\"number\" value=\"00006\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00006\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1670441473653</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00007\" summary=\"test Sound/Music\">\r\n      <created>1670508065253</created>\r\n      <option name=\"number\" value=\"00007\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00007\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1670508065253</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00008\" summary=\"test Sound/Music\">\r\n      <created>1670508082226</created>\r\n      <option name=\"number\" value=\"00008\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00008\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1670508082226</updated>\r\n    </task>\r\n    <option name=\"localTasksCounter\" value=\"9\" />\r\n    <servers />\r\n  </component>\r\n  <component name=\"Vcs.Log.History.Properties\">\r\n    <option name=\"COLUMN_ID_ORDER\">\r\n      <list>\r\n        <option value=\"Default.Root\" />\r\n        <option value=\"Default.Author\" />\r\n        <option value=\"Default.Date\" />\r\n        <option value=\"Default.Subject\" />\r\n        <option value=\"Space.CommitStatus\" />\r\n      </list>\r\n    </option>\r\n  </component>\r\n  <component name=\"Vcs.Log.Tabs.Properties\">\r\n    <option name=\"TAB_STATES\">\r\n      <map>\r\n        <entry key=\"06db7bdd-f158-4db4-93a8-e1a661b07f7e\">\r\n          <value>\r\n            <State />\r\n          </value>\r\n        </entry>\r\n        <entry key=\"MAIN\">\r\n          <value>\r\n            <State>\r\n              <option name=\"HIGHLIGHTERS\">\r\n                <map>\r\n                  <entry key=\"CURRENT_BRANCH\" value=\"true\" />\r\n                  <entry key=\"MERGE_COMMITS\" value=\"true\" />\r\n                  <entry key=\"MY_COMMITS\" value=\"true\" />\r\n                </map>\r\n              </option>\r\n              <option name=\"FILTERS\">\r\n                <map>\r\n                  <entry key=\"branch\">\r\n                    <value>\r\n                      <list>\r\n                        <option value=\"Maxim\" />\r\n                      </list>\r\n                    </value>\r\n                  </entry>\r\n                </map>\r\n              </option>\r\n            </State>\r\n          </value>\r\n        </entry>\r\n        <entry key=\"b311908e-0d18-41ce-bf4a-5f582c77befa\">\r\n          <value>\r\n            <State />\r\n          </value>\r\n        </entry>\r\n        <entry key=\"f6b1e260-d705-4f13-8893-146f2604548f\">\r\n          <value>\r\n            <State />\r\n          </value>\r\n        </entry>\r\n      </map>\r\n    </option>\r\n  </component>\r\n  <component name=\"VcsManagerConfiguration\">\r\n    <MESSAGE value=\"add change Theme\" />\r\n    <MESSAGE value=\"repairTest\" />\r\n    <MESSAGE value=\"Colors&#10;None SwichTheme\" />\r\n    <MESSAGE value=\"Colors; &#10;None SwichTheme\" />\r\n    <MESSAGE value=\"test Sound/Music\" />\r\n    <option name=\"LAST_COMMIT_MESSAGE\" value=\"test Sound/Music\" />\r\n  </component>\r\n</project>
+--Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+--<+>UTF-8
+--===================================================================
+--diff --git a/.idea/workspace.xml b/.idea/workspace.xml
+----- a/.idea/workspace.xml	(revision 55c6c06ac25d0a7a65ab6abf0f5b706c71ef065f)
+--+++ b/.idea/workspace.xml	(date 1670793793906)
+--@@ -1,11 +1,11 @@
+-- <?xml version="1.0" encoding="UTF-8"?>
+-- <project version="4">
+--   <component name="ChangeListManager">
+---    <list default="true" id="60af78ae-74e4-4259-939a-c7eff029eade" name="Changes" comment="None Work">
+--+    <list default="true" id="60af78ae-74e4-4259-939a-c7eff029eade" name="Changes" comment="Stable MainProgram/Window">
+--       <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_07_12_2022_23_13__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_07_12_2022_23_13__Changes_.xml" afterDir="false" />
+--       <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_07_12_2022_23_26__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_07_12_2022_23_26__Changes_.xml" afterDir="false" />
+--       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+---      <change beforePath="$PROJECT_DIR$/MainWindow.py" beforeDir="false" afterPath="$PROJECT_DIR$/MainWindow.py" afterDir="false" />
+--+      <change beforePath="$PROJECT_DIR$/MainProgram.py" beforeDir="false" afterPath="$PROJECT_DIR$/MainProgram.py" afterDir="false" />
+--     </list>
+--     <option name="SHOW_DIALOG" value="false" />
+--     <option name="HIGHLIGHT_CONFLICTS" value="true" />
+--@@ -22,13 +22,10 @@
+--   <component name="Git.Settings">
+--     <option name="RECENT_BRANCH_BY_REPOSITORY">
+--       <map>
+---        <entry key="$PROJECT_DIR$" value="Egor" />
+--+        <entry key="$PROJECT_DIR$" value="Lessons" />
+--       </map>
+--     </option>
+--     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+---  </component>
+---  <component name="HighlightingSettingsPerFile">
+---    <setting file="file://$PROJECT_DIR$/SettingsWindow.py" root0="FORCE_HIGHLIGHTING" />
+--   </component>
+--   <component name="MarkdownSettingsMigration">
+--     <option name="stateVersion" value="1" />
+--@@ -38,8 +35,8 @@
+--     <option name="hideEmptyMiddlePackages" value="true" />
+--     <option name="showLibraryContents" value="true" />
+--   </component>
+---  <component name="PropertiesComponent"><![CDATA[{
+---}]]></component>
+--+  <component name="PropertiesComponent">{
+--+}</component>
+--   <component name="RecentsManager">
+--     <key name="CopyFile.RECENT_KEYS">
+--       <recent name="D:\IT\PycharmProjects\pythonProject1\PyGame\Tetris\.idea" />
+--@@ -48,7 +45,7 @@
+--       <recent name="D:\IT\PycharmProjects\pythonProject1\PyGame\Tetris" />
+--     </key>
+--   </component>
+---  <component name="RunManager" selected="Python.MainWindow">
+--+  <component name="RunManager" selected="Python.test">
+--     <configuration name="Lessons" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+--       <module name="Tetris" />
+--       <option name="INTERPRETER_OPTIONS" value="" />
+--@@ -70,7 +67,7 @@
+--       <option name="INPUT_FILE" value="" />
+--       <method v="2" />
+--     </configuration>
+---    <configuration name="MainWindow" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+--+    <configuration name="MainProgram" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+--       <module name="Tetris" />
+--       <option name="INTERPRETER_OPTIONS" value="" />
+--       <option name="PARENT_ENVS" value="true" />
+--@@ -82,7 +79,7 @@
+--       <option name="IS_MODULE_SDK" value="true" />
+--       <option name="ADD_CONTENT_ROOTS" value="true" />
+--       <option name="ADD_SOURCE_ROOTS" value="true" />
+---      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/MainWindow.py" />
+--+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/MainProgram.py" />
+--       <option name="PARAMETERS" value="" />
+--       <option name="SHOW_COMMAND_LINE" value="false" />
+--       <option name="EMULATE_TERMINAL" value="false" />
+--@@ -91,19 +88,19 @@
+--       <option name="INPUT_FILE" value="" />
+--       <method v="2" />
+--     </configuration>
+---    <configuration name="SettingsWindow" type="PythonConfigurationType" factoryName="Python" nameIsGenerated="true">
+--+    <configuration name="MainWindow" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+--       <module name="Tetris" />
+--       <option name="INTERPRETER_OPTIONS" value="" />
+--       <option name="PARENT_ENVS" value="true" />
+--       <envs>
+--         <env name="PYTHONUNBUFFERED" value="1" />
+--       </envs>
+---      <option name="SDK_HOME" value="D:\IT\Python\python.exe" />
+--+      <option name="SDK_HOME" value="" />
+--       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+---      <option name="IS_MODULE_SDK" value="false" />
+--+      <option name="IS_MODULE_SDK" value="true" />
+--       <option name="ADD_CONTENT_ROOTS" value="true" />
+--       <option name="ADD_SOURCE_ROOTS" value="true" />
+---      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/SettingsWindow.py" />
+--+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/MainWindow.py" />
+--       <option name="PARAMETERS" value="" />
+--       <option name="SHOW_COMMAND_LINE" value="false" />
+--       <option name="EMULATE_TERMINAL" value="false" />
+--@@ -112,19 +109,19 @@
+--       <option name="INPUT_FILE" value="" />
+--       <method v="2" />
+--     </configuration>
+---    <configuration default="true" type="PythonConfigurationType" factoryName="Python">
+--+    <configuration name="SettingsWindow" type="PythonConfigurationType" factoryName="Python" nameIsGenerated="true">
+--       <module name="Tetris" />
+--       <option name="INTERPRETER_OPTIONS" value="" />
+--       <option name="PARENT_ENVS" value="true" />
+--       <envs>
+--         <env name="PYTHONUNBUFFERED" value="1" />
+--       </envs>
+---      <option name="SDK_HOME" value="" />
+---      <option name="WORKING_DIRECTORY" value="" />
+--+      <option name="SDK_HOME" value="D:\IT\Python\python.exe" />
+--+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+--       <option name="IS_MODULE_SDK" value="false" />
+--       <option name="ADD_CONTENT_ROOTS" value="true" />
+--       <option name="ADD_SOURCE_ROOTS" value="true" />
+---      <option name="SCRIPT_NAME" value="" />
+--+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/SettingsWindow.py" />
+--       <option name="PARAMETERS" value="" />
+--       <option name="SHOW_COMMAND_LINE" value="false" />
+--       <option name="EMULATE_TERMINAL" value="false" />
+--@@ -154,19 +151,19 @@
+--       <option name="INPUT_FILE" value="" />
+--       <method v="2" />
+--     </configuration>
+---    <configuration name="myproject" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+---      <module name="git" />
+--+    <configuration name="test" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+--+      <module name="Tetris" />
+--       <option name="INTERPRETER_OPTIONS" value="" />
+--       <option name="PARENT_ENVS" value="true" />
+--       <envs>
+--         <env name="PYTHONUNBUFFERED" value="1" />
+--       </envs>
+---      <option name="SDK_HOME" value="D:\IT\Python\python.exe" />
+---      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/../../../../../Downloads/Telegram Desktop" />
+---      <option name="IS_MODULE_SDK" value="false" />
+--+      <option name="SDK_HOME" value="" />
+--+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Lessons_Test" />
+--+      <option name="IS_MODULE_SDK" value="true" />
+--       <option name="ADD_CONTENT_ROOTS" value="true" />
+--       <option name="ADD_SOURCE_ROOTS" value="true" />
+---      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/../../../../../Downloads/Telegram Desktop/myproject.py" />
+--+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Lessons_Test/test.py" />
+--       <option name="PARAMETERS" value="" />
+--       <option name="SHOW_COMMAND_LINE" value="false" />
+--       <option name="EMULATE_TERMINAL" value="false" />
+--@@ -175,102 +172,28 @@
+--       <option name="INPUT_FILE" value="" />
+--       <method v="2" />
+--     </configuration>
+---    <configuration default="true" type="Tox" factoryName="Tox">
+---      <module name="Tetris" />
+---      <option name="INTERPRETER_OPTIONS" value="" />
+---      <option name="PARENT_ENVS" value="true" />
+---      <option name="SDK_HOME" value="" />
+---      <option name="WORKING_DIRECTORY" value="" />
+---      <option name="IS_MODULE_SDK" value="false" />
+---      <option name="ADD_CONTENT_ROOTS" value="true" />
+---      <option name="ADD_SOURCE_ROOTS" value="true" />
+---      <method v="2" />
+---    </configuration>
+---    <configuration default="true" type="docs" factoryName="Docutils task">
+---      <module name="Tetris" />
+---      <option name="INTERPRETER_OPTIONS" value="" />
+---      <option name="PARENT_ENVS" value="true" />
+---      <option name="SDK_HOME" value="" />
+---      <option name="WORKING_DIRECTORY" value="" />
+---      <option name="IS_MODULE_SDK" value="false" />
+---      <option name="ADD_CONTENT_ROOTS" value="true" />
+---      <option name="ADD_SOURCE_ROOTS" value="true" />
+---      <option name="docutils_input_file" value="" />
+---      <option name="docutils_output_file" value="" />
+---      <option name="docutils_params" value="" />
+---      <option name="docutils_task" value="" />
+---      <option name="docutils_open_in_browser" value="false" />
+---      <method v="2" />
+---    </configuration>
+---    <configuration default="true" type="docs" factoryName="Sphinx task">
+---      <module name="Tetris" />
+---      <option name="INTERPRETER_OPTIONS" value="" />
+---      <option name="PARENT_ENVS" value="true" />
+---      <option name="SDK_HOME" value="" />
+---      <option name="WORKING_DIRECTORY" value="" />
+---      <option name="IS_MODULE_SDK" value="false" />
+---      <option name="ADD_CONTENT_ROOTS" value="true" />
+---      <option name="ADD_SOURCE_ROOTS" value="true" />
+---      <option name="docutils_input_file" value="" />
+---      <option name="docutils_output_file" value="" />
+---      <option name="docutils_params" value="" />
+---      <option name="docutils_task" value="" />
+---      <option name="docutils_open_in_browser" value="false" />
+---      <method v="2" />
+---    </configuration>
+---    <configuration default="true" type="tests" factoryName="Autodetect">
+---      <module name="Tetris" />
+---      <option name="INTERPRETER_OPTIONS" value="" />
+---      <option name="PARENT_ENVS" value="true" />
+---      <option name="SDK_HOME" value="" />
+---      <option name="WORKING_DIRECTORY" value="" />
+---      <option name="IS_MODULE_SDK" value="false" />
+---      <option name="ADD_CONTENT_ROOTS" value="true" />
+---      <option name="ADD_SOURCE_ROOTS" value="true" />
+---      <option name="_new_additionalArguments" value="&quot;&quot;" />
+---      <option name="_new_target" value="&quot;&quot;" />
+---      <option name="_new_targetType" value="&quot;PATH&quot;" />
+---      <method v="2" />
+---    </configuration>
+---    <configuration default="true" type="tests" factoryName="Doctests">
+---      <module name="Tetris" />
+---      <option name="INTERPRETER_OPTIONS" value="" />
+---      <option name="PARENT_ENVS" value="true" />
+---      <option name="SDK_HOME" value="" />
+---      <option name="WORKING_DIRECTORY" value="" />
+---      <option name="IS_MODULE_SDK" value="false" />
+---      <option name="ADD_CONTENT_ROOTS" value="true" />
+---      <option name="ADD_SOURCE_ROOTS" value="true" />
+---      <option name="SCRIPT_NAME" value="" />
+---      <option name="CLASS_NAME" value="" />
+---      <option name="METHOD_NAME" value="" />
+---      <option name="FOLDER_NAME" value="" />
+---      <option name="TEST_TYPE" value="TEST_SCRIPT" />
+---      <option name="PATTERN" value="" />
+---      <option name="USE_PATTERN" value="false" />
+---      <method v="2" />
+---    </configuration>
+--     <list>
+--       <item itemvalue="Python.SettingsWindow" />
+---      <item itemvalue="Python.myproject" />
+--+      <item itemvalue="Python.test" />
+--+      <item itemvalue="Python.MainProgram" />
+--       <item itemvalue="Python.MainWindow" />
+--       <item itemvalue="Python.myproject (1)" />
+--       <item itemvalue="Python.Lessons" />
+--     </list>
+--     <recent_temporary>
+--       <list>
+---        <item itemvalue="Python.MainWindow" />
+---        <item itemvalue="Python.myproject (1)" />
+---        <item itemvalue="Python.myproject" />
+--+        <item itemvalue="Python.test" />
+--+        <item itemvalue="Python.MainProgram" />
+--         <item itemvalue="Python.MainWindow" />
+--         <item itemvalue="Python.Lessons" />
+--+        <item itemvalue="Python.myproject (1)" />
+--       </list>
+--     </recent_temporary>
+--   </component>
+--   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+--   <component name="TaskManager">
+--     <task active="true" id="Default" summary="Default task">
+---      <changelist id="6dc5f473-9df2-4c5a-9f07-20f5a9be5251" name="Changes" comment="" />
+--+      <changelist id="60af78ae-74e4-4259-939a-c7eff029eade" name="Changes" comment="Stable MainProgram/Window" />
+--       <created>1670431254942</created>
+--       <option name="number" value="Default" />
+--       <option name="presentableId" value="Default" />
+--@@ -369,7 +292,7 @@
+--                   <entry key="branch">
+--                     <value>
+--                       <list>
+---                        <option value="Maxim" />
+--+                        <option value="Lessons" />
+--                       </list>
+--                     </value>
+--                   </entry>
+Index: Installer/1test.py
+===================================================================
+diff --git a/Installer/1test.py b/Installer/1test.py
+new file mode 100644
+--- /dev/null	
++++ b/Installer/1test.py	
+@@ -0,0 +1,22 @@
++import sys
++
++from PyQt5 import uic  # Импортируем uic
++from PyQt5.QtWidgets import QApplication, QMainWindow, QButtonGroup, QLCDNumber
++from math import sqrt, factorial
++
++
++class MyWidget(QMainWindow):
++    def __init__(self):
++        super().__init__()
++        uic.loadUi('First.ui', self)  # Загружаем дизайн
++
++        self.chb_suc.clicked.connect(lambda state: self.Go(state))
++
++    def Go(self, state):
++        self.Continue.setEnabled(state)
++
++if __name__ == '__main__':
++    app = QApplication(sys.argv)
++    ex = MyWidget()
++    ex.show()
++    sys.exit(app.exec_())
+\ No newline at end of file

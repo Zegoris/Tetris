@@ -1,0 +1,17 @@
+Index: settings.json
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>{\r\n    \"Music\": true,\r\n    \"Sounds\": true,\r\n    \"DarkTheme\": true,\r\n    \"Color\": {\r\n        \"Dark\": [\r\n            245,\r\n            240,\r\n            225\r\n        ],\r\n        \"Light\": [\r\n            30,\r\n            61,\r\n            89\r\n        ]\r\n    },\r\n    \"NickName\": \"TPLV\"\r\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/settings.json b/settings.json
+--- a/settings.json	(revision 5d20309544f6931d08f94f79ce872666a9c67aae)
++++ b/settings.json	(date 1673196722519)
+@@ -1,5 +1,5 @@
+ {
+-    "Music": true,
++    "Music": false,
+     "Sounds": true,
+     "DarkTheme": true,
+     "Color": {
