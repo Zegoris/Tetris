@@ -8,7 +8,7 @@ import csv
 pygame.init()
 pygame.mixer.init()
 
-cursor_group = pygame.sprite.Group()  # Creating group of sprites
+cursor_group = pygame.sprite.Group()  # Creating group of Sprites
 pygame.mouse.set_visible(False)
 runm = 0
 
