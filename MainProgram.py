@@ -10,7 +10,7 @@ pygame.mixer.init()
 
 cursor_group = pygame.sprite.Group()  # Creating group of sprites
 pygame.mouse.set_visible(False)
-runm = 0
+runm, nick = 0, 0
 
 
 def load_image(name):
@@ -24,28 +24,39 @@ def write_records(user, gm, score):
     with open('records.csv', encoding="utf8") as csvf:
         reader = csv.reader(csvf, delimiter=',', quotechar='"')
         reader = list(reader)
+    if len(reader) >= 11:
+        reader = reader[:12]
+    reader = sorted(reader[1:], reverse=True, key=lambda x: int(x[1]) + int(x[2]))
+    reader.insert(0, ['user', 'first_gm', 'second_gm'])
     os.remove('records.csv')
-    for i in reader:
-        if user in i:
+    for number, item in enumerate(reader[1:]):
+        if user in item:
             yes = True
-            index = reader.index(i)
             if gm == 1:
-                if score > int(reader[index][1]):
-                    reader[index] = [user, score, i[2]]
-
+                if int(item[1]) < score:
+                    reader[number + 1] = [user, score, item[2]]
             elif gm == 2:
-                if score > int(reader[index][2]):
-                    reader[index] = [user, i[1], score]
+                if int(item[2]) < score:
+                    reader[number + 1] = [user, item[1], score]
             break
     if not yes:
         if gm == 1:
             reader.append([user, score, '0'])
-
         elif gm == 2:
             reader.append([user, '0', score])
+    reader = sorted(reader[1:], reverse=True, key=lambda x: int(x[1]) + int(x[2]))
+    reader.insert(0, ['user', 'first_gm', 'second_gm'])
+
     with open('records.csv', 'w', newline='') as csvf:
         writer = csv.writer(csvf)
         writer.writerows(reader)
+
+
+def read_records():
+    with open('records.csv', encoding="utf8") as csvf:
+        reader = csv.reader(csvf, delimiter=',', quotechar='"')
+        reader = list(reader)[1:]
+    return sorted(reader,reverse=True, key=lambda x: int(x[1]) + int(x[2]))
 
 
 class Cursor(pygame.sprite.Sprite):  # Class of the cursor
@@ -578,7 +589,6 @@ class MainWindow:
         self.running = True
         self.runM = runm
 
-
         # open setting.json and take var
         with open("settings.json") as file:
             data = json.load(file)
@@ -629,7 +639,7 @@ class MainWindow:
 
 
         # Btn "Play"
-        font = pygame.font.Font(None, 60)
+        font = pygame.font.SysFont('arial', 45)
         text = font.render("    PLAY     ", True, self.BgColor)
         text_x = self.width // 2 - text.get_width() // 2
         text_y = 170
@@ -644,7 +654,7 @@ class MainWindow:
 
 
         # Btn Sett
-        font = pygame.font.Font(None, 60)
+        font = pygame.font.SysFont('arial', 45)
         text = font.render(" SETTINGS ", True, self.BgColor)
         text_x = self.width // 2 - text.get_width() // 2
         text_y = 250
@@ -657,9 +667,8 @@ class MainWindow:
         self.BtnSett_HitBox_XSize = text_x + 235
         self.BtnSett_HitBox_YSize = text_y + 50
 
-        # Quite BTN
         # Btn "Quit"
-        font = pygame.font.Font(None, 40)
+        font = pygame.font.SysFont('arial', 25)
         text = font.render("Quit", True, self.BgColor)
         text_x = self.width // 2 - text.get_width() // 2
         text_y = 650
@@ -670,9 +679,25 @@ class MainWindow:
         self.BtnQ_HitBox_Y = text_y - 10
         self.BtnQ_HitBox_XSize = text_x + 235
         self.BtnQ_HitBox_YSize = text_y + 50
+
+        # Btn "Records"
+        font = pygame.font.SysFont('arial', 45)
+        text = font.render(" RECORDS ", True, self.BgColor)
+        text_x = self.width // 2 - text.get_width() // 2
+        text_y = 330
+        self.screen.blit(text, (text_x, text_y))
+        pygame.draw.rect(self.screen, self.BgColor, (text_x - 10, text_y - 10,
+                                                     text.get_width() + 20, text.get_height() + 20), 2)
+        # HitBox of Btn "Records"
+        self.BtnR_HitBox_X = text_x - 15
+        self.BtnR_HitBox_Y = text_y - 10
+        self.BtnR_HitBox_XSize = text_x + 235
+        self.BtnR_HitBox_YSize = text_y + 50
+
         if pygame.mouse.get_focused():  # Drawing a cursor
             cursor.rect.x, cursor.rect.y = pygame.mouse.get_pos()
             cursor_group.draw(self.screen)
+
         # Draw Changes
         pygame.display.flip()
 
@@ -690,12 +715,18 @@ class MainWindow:
                 <= self.BtnPlay_HitBox_YSize:
             Levels_Window()
             self.running = False
+
         elif self.BtnSett_HitBox_X <= pos[0] <= self.BtnSett_HitBox_XSize and self.BtnSett_HitBox_Y <= pos[1]\
                 <= self.BtnSett_HitBox_YSize:
             global runm
             runm = 1
             # Open SettingsWindow
             Settings_Window()
+            self.running = False
+
+        elif self.BtnR_HitBox_X <= pos[0] <= self.BtnR_HitBox_XSize and self.BtnR_HitBox_Y <= pos[1] \
+                <= self.BtnR_HitBox_YSize:
+            Records()
             self.running = False
 
         elif self.BtnQ_HitBox_X <= pos[0] <= self.BtnQ_HitBox_XSize and self.BtnQ_HitBox_Y <= pos[1] \
@@ -712,7 +743,7 @@ class MainWindow:
 
 class Settings_Window:
     def __init__(self):
-        global cursor
+        global cursor, nick
         self.size = self.width, self.height = 500, 700      # Window Size
         self.screen = pygame.display.set_mode(self.size)    # Screen Setting
         self.running = True
@@ -791,8 +822,11 @@ class Settings_Window:
                             if self.Sound:
                                 self.sound_push_backspace.play()
                             self.NickName = self.NickName[:-1]
+                            nick -= 1
                         else:
-                            self.NickName += event.unicode
+                            if nick <= 7:
+                                nick += 1
+                                self.NickName += event.unicode
 
                         # Open Sett_file and replace "Music"
                         with open("settings.json") as file:
@@ -886,7 +920,7 @@ class Settings_Window:
     # Draw on window: Title, other sett.
     def draw(self):
         # draw tittle "NickName"
-        font = pygame.font.Font(None, 30)
+        font = pygame.font.SysFont('arial', 24)
         text = font.render("NickName:", True, self.BgColor)
         text_x = (self.width // 2 - text.get_width() // 2) - 48
         text_y = 195
@@ -904,7 +938,7 @@ class Settings_Window:
 
 
         # draw title
-        font = pygame.font.Font(None, 50)
+        font = pygame.font.SysFont('arial', 40)
         text = font.render("GAME SETTINGS", True, self.BgColor)
         text_x = self.width // 2 - text.get_width() // 2
         text_y = 40
@@ -913,7 +947,7 @@ class Settings_Window:
 
         # draw ChB "Music"
         # draw text
-        font = pygame.font.Font(None, 30)
+        font = pygame.font.SysFont('arial', 24)
         text = font.render("Music", True, self.BgColor)
         text_x = self.ChB_Music_posX
         text_y = self.ChB_Music_posY
@@ -934,7 +968,7 @@ class Settings_Window:
 
         # draw ChB "Sound"
         # draw text
-        font = pygame.font.Font(None, 30)
+        font = pygame.font.SysFont('arial', 24)
         text = font.render("Sounds", True, self.BgColor)
         text_x = self.ChB_Sound_posX
         text_y = self.ChB_Sound_posY
@@ -955,7 +989,7 @@ class Settings_Window:
 
         # draw ChB "Theme"
         # draw text
-        font = pygame.font.Font(None, 30)
+        font = pygame.font.SysFont('arial', 22)
         text = font.render("Dark Theme", True, self.BgColor)
         text_x = self.ChB_Theme_posX
         text_y = self.ChB_Theme_posY
@@ -975,7 +1009,7 @@ class Settings_Window:
             pygame.draw.rect(self.screen, self.TextColor, (ChB_x + 2, ChB_y + 2, 16, 16))
 
         # Btn "Quit"
-        font = pygame.font.Font(None, 40)
+        font = pygame.font.SysFont('arial', 25)
         text = font.render("Quit", True, self.BgColor)
         text_x = self.width // 2 - text.get_width() // 2
         text_y = 650
@@ -1040,7 +1074,7 @@ class Levels_Window:
         self.all_sprites = pygame.sprite.Group()
 
         # Classic levels
-        font = pygame.font.Font(None, 60)
+        font = pygame.font.SysFont('arial', 40)
         text = font.render("CLASSIC", True, self.BgColor)
         text_x = self.width // 2 - text.get_width() // 2
         text_y = 13
@@ -1064,7 +1098,7 @@ class Levels_Window:
 
 
         #survival levels
-        font = pygame.font.Font(None, 60)
+        font = pygame.font.SysFont('arial', 40)
         text = font.render("SURVIVAL", True, self.BgColor)
         text_x = self.width // 2 - text.get_width() // 2
         text_y = 233
@@ -1087,7 +1121,7 @@ class Levels_Window:
         sp2_l3.rect.x, sp2_l3.rect.y = 350, 290
 
         # puzzle levels
-        font = pygame.font.Font(None, 60)
+        font = pygame.font.SysFont('arial', 40)
         text = font.render("PUZZLE", True, self.BgColor)
         text_x = self.width // 2 - text.get_width() // 2
         text_y = 453
@@ -1112,7 +1146,7 @@ class Levels_Window:
         self.all_sprites.add(sp1_l1, sp1_l2, sp1_l3, sp2_l1, sp2_l2, sp2_l3, sp3_l1, sp3_l2, sp3_l3)
 
         # Btn "Quit"
-        font = pygame.font.Font(None, 40)
+        font = pygame.font.SysFont('arial', 25)
         text = font.render("Quit", True, self.BgColor)
         text_x = self.width // 2 - text.get_width() // 2
         text_y = 650
@@ -1151,7 +1185,7 @@ class Levels_Window:
                         pygame.draw.rect(self.screen, (0, 0, 0), (57, 237, 400, 160))
                         pygame.draw.rect(self.screen, (255, 0, 0), (50, 230, 400, 160))
 
-                        font = pygame.font.Font(None, 80)
+                        font = pygame.font.SysFont('arial', 80)
                         text = font.render("Coming soon!", True, (255, 255, 255))
                         text2 = font.render("Coming soon!", True, (0, 0, 0))
                         self.btn_text_x = 70
@@ -1174,6 +1208,122 @@ class Levels_Window:
                 if self.Music:
                     pygame.mixer.music.unpause()
 
+            MainWindow()  # Open MainWindow
+            self.running = False
+
+
+class Records:
+    def __init__(self):
+        global cursor, runm
+        self.size = self.width, self.height = 500, 700  # Window Size
+        self.screen = pygame.display.set_mode(self.size)  # Screen Setting
+        self.running = True
+        self.runM = runm
+
+        # open setting.json and take var
+        with open("settings.json") as file:
+            data = json.load(file)
+            self.Music = data["Music"]
+            self.Sound = data["Sounds"]
+            self.DarkTheme = data["DarkTheme"]
+            if self.DarkTheme:
+                self.TextColor = tuple(data["Color"]["Light"])
+                self.BgColor = tuple(data["Color"]["Dark"])
+            else:
+                self.TextColor = tuple(data["Color"]["Dark"])
+                self.BgColor = tuple(data["Color"]["Light"])
+
+        if self.Music:
+            pygame.mixer.music.unpause()
+        self.sound_push_button = pygame.mixer.Sound('Data/Sounds/push_button.mp3')
+        self.sound_push_keywords = pygame.mixer.Sound('Data/Sounds/push_keywords.mp3')
+        self.sound_push_backspace = pygame.mixer.Sound('Data/Sounds/push_backspace.mp3')
+
+        # Staff
+        while self.running:
+            for event in pygame.event.get():
+                if event.type == pygame.QUIT:  # Stop Programm
+                    exit()
+                if event.type == pygame.MOUSEBUTTONDOWN:
+                    self.click(event.pos)
+            self.screen.fill(self.TextColor)  # Fill display color
+            self.draw()  # draw all
+
+    def draw(self):
+        font = pygame.font.Font(None, 30)
+        text = font.render("PLAYER", True, self.BgColor)
+        text_x = 30
+        text_y = 13
+        self.screen.blit(text, (text_x, text_y))
+
+        font = pygame.font.Font(None, 30)
+        text = font.render("FIRST SCORE", True, self.BgColor)
+        text_x = 160
+        text_y = 13
+        self.screen.blit(text, (text_x, text_y))
+
+        font = pygame.font.Font(None, 30)
+        text = font.render("SECOND SCORE", True, self.BgColor)
+        text_x = 320
+        text_y = 13
+        self.screen.blit(text, (text_x, text_y))
+
+        n = 0
+        records = read_records()
+
+        for number, item in enumerate(records):
+            font = pygame.font.SysFont('symbol', 24)
+            text = font.render(f'{number + 1}.', True, self.BgColor)
+            text_x = 7
+            text_y = 49 + n
+            self.screen.blit(text, (text_x, text_y))
+
+            font = pygame.font.Font(None, 30)
+            text = font.render(item[0], True, self.BgColor)
+            text_x = 30
+            text_y = 50 + n
+            self.screen.blit(text, (text_x, text_y))
+
+            font = pygame.font.SysFont('symbol', 24)
+            text = font.render(item[1], True, self.BgColor)
+            text_x = 160
+            text_y = 49 + n
+            self.screen.blit(text, (text_x, text_y))
+
+            font = pygame.font.SysFont('symbol', 24)
+            text = font.render(item[2], True, self.BgColor)
+            text_x = 320
+            text_y = 49 + n
+            self.screen.blit(text, (text_x, text_y))
+
+            n += 50
+
+        font = pygame.font.SysFont('arial', 25)
+        text = font.render("Quit", True, self.BgColor)
+        text_x = self.width // 2 - text.get_width() // 2
+        text_y = 650
+        self.screen.blit(text, (text_x, text_y))
+        pygame.draw.rect(self.screen, self.BgColor, (text_x - 10, text_y - 10,
+                                                     text.get_width() + 20, text.get_height() + 20), 3)
+        self.BtnQ_HitBox_X = text_x - 15
+        self.BtnQ_HitBox_Y = text_y - 10
+        self.BtnQ_HitBox_XSize = text_x + 235
+        self.BtnQ_HitBox_YSize = text_y + 50
+
+        if pygame.mouse.get_focused():  # Drawing a cursor
+            cursor.rect.x, cursor.rect.y = pygame.mouse.get_pos()
+            cursor_group.draw(self.screen)
+        pygame.display.flip()
+
+    def click(self, pos):
+        if self.BtnQ_HitBox_X <= pos[0] <= self.BtnQ_HitBox_XSize and self.BtnQ_HitBox_Y <= pos[1] \
+                <= self.BtnQ_HitBox_YSize:
+
+            if self.Sound:
+                pygame.mixer.music.pause()
+                self.sound_push_button.play()
+                if self.Music:
+                    pygame.mixer.music.unpause()
             MainWindow()  # Open MainWindow
             self.running = False
 
