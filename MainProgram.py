@@ -77,6 +77,7 @@ class Game_Over:
         self.screen = pygame.display.set_mode(self.size)  # Screen Setting
         pygame.display.set_caption('Game')
         self.running = True
+        self.Font_records = "Data/Fonts/"
         with open("settings.json") as file:
             data = json.load(file)
             self.music = data['Music']
@@ -85,6 +86,7 @@ class Game_Over:
             self.lightTheme = tuple(data['Color']['Light'])
             self.darkTheme = tuple(data['Color']['Dark'])
             self.user = data['NickName']
+            self.Font_records += data["Font"]
         if self.theme:
             self.themeColor = self.lightTheme
         else:
@@ -115,7 +117,7 @@ class Game_Over:
             fontColor = pygame.Color('white')
         else:
             fontColor = pygame.Color((30, 61, 89))
-        font_score = pygame.font.SysFont('symbol', 45)
+        font_score = pygame.font.SysFont(self.Font_records, 45)
         score = '0' * (5 - len(str(self.score))) + str(self.score)
         text_score = font_score.render(score, True, fontColor)
         text_score_x = self.width - 235
@@ -279,6 +281,7 @@ class Board:  # General class for game modes
         self.cell_size = 24
         self.score = 0
         self.screen = screen
+        self.Font_records = "Data/Fonts/"
         with open("settings.json") as file:
             data = json.load(file)
             self.music = data['Music']
@@ -287,6 +290,7 @@ class Board:  # General class for game modes
             self.lightTheme = tuple(data['Color']['Light'])
             self.darkTheme = tuple(data['Color']['Dark'])
             self.user = data['NickName']
+            self.Font_records += data["Font"]
         if self.theme:
             self.themeColor = self.lightTheme
         else:
@@ -506,7 +510,7 @@ class Board:  # General class for game modes
             fontColor = pygame.Color('white')
         else:
             fontColor = pygame.Color((30, 61, 89))
-        font_score = pygame.font.SysFont('symbol', 45)
+        font_score = pygame.font.SysFont(self.Font_records, 45)
         score = '0' * (5 - len(str(self.score))) + str(self.score)
         text_score = font_score.render(score, True, fontColor)
         text_score_x = self.widthW - 170
@@ -590,6 +594,7 @@ class MainWindow:
         pygame.display.set_caption('Game')
         self.running = True
         self.runM = runm
+        self.Font_records = "Data/Fonts/"
 
         # open setting.json and take var
         with open("settings.json") as file:
@@ -597,6 +602,7 @@ class MainWindow:
             self.Music = data["Music"]
             self.Sound = data["Sounds"]
             self.DarkTheme = data["DarkTheme"]
+            self.Font_records += data["Font"]
             if self.DarkTheme:
                 self.TextColor = tuple(data["Color"]["Light"])
                 self.BgColor = tuple(data["Color"]["Dark"])
@@ -750,6 +756,7 @@ class Settings_Window:
         self.screen = pygame.display.set_mode(self.size)    # Screen Setting
         pygame.display.set_caption('Game')
         self.running = True
+        self.Font_records = "Data/Fonts/"
 
         # open setting.json and take var
         with open("settings.json") as file:
@@ -757,6 +764,7 @@ class Settings_Window:
             self.Music = data["Music"]
             self.Sound = data["Sounds"]
             self.DarkTheme = data["DarkTheme"]
+            self.Font_records += data["Font"]
             if self.DarkTheme:
                 self.TextColor = tuple(data["Color"]["Light"])
                 self.BgColor = tuple(data["Color"]["Dark"])
@@ -1039,6 +1047,7 @@ class Levels_Window:
         self.running = True
         self.error = False
         self.runM = runm
+        self.Font_records = "Data/Fonts/"
 
         # open setting.json and take var
         with open("settings.json") as file:
@@ -1046,6 +1055,7 @@ class Levels_Window:
             self.Music = data["Music"]
             self.Sound = data["Sounds"]
             self.DarkTheme = data["DarkTheme"]
+            self.Font_records += data["Font"]
             if self.DarkTheme:
                 self.TextColor = tuple(data["Color"]["Light"])
                 self.BgColor = tuple(data["Color"]["Dark"])
@@ -1184,21 +1194,10 @@ class Levels_Window:
                         elif sp.index(i) + 1 == 2:
                             self.running = False
                             Second_GM()
-                    else:
-                        self.error = True
-                        pygame.draw.rect(self.screen, (0, 0, 0), (57, 237, 400, 160))
-                        pygame.draw.rect(self.screen, (255, 0, 0), (50, 230, 400, 160))
 
-                        font = pygame.font.SysFont('arial', 80)
-                        text = font.render("Coming soon!", True, (255, 255, 255))
-                        text2 = font.render("Coming soon!", True, (0, 0, 0))
-                        self.btn_text_x = 70
-                        self.btn_text_y = 280
-                        self.screen.blit(text2, (self.btn_text_x + 3, self.btn_text_y + 3))
-                        self.screen.blit(text, (self.btn_text_x, self.btn_text_y))
-                        pygame.display.flip()
 
         else:
+            self.error = False
             self.error = False
             self.draw()
 
@@ -1224,6 +1223,7 @@ class Records:
         pygame.display.set_caption('Game')
         self.running = True
         self.runM = runm
+        self.Font_records = "Data/Fonts/"
 
         # open setting.json and take var
         with open("settings.json") as file:
@@ -1231,6 +1231,7 @@ class Records:
             self.Music = data["Music"]
             self.Sound = data["Sounds"]
             self.DarkTheme = data["DarkTheme"]
+            self.Font_records += data["Font"]
             if self.DarkTheme:
                 self.TextColor = tuple(data["Color"]["Light"])
                 self.BgColor = tuple(data["Color"]["Dark"])
@@ -1277,7 +1278,7 @@ class Records:
         records = read_records()
 
         for number, item in enumerate(records):
-            font = pygame.font.SysFont('symbol', 24)
+            font = pygame.font.SysFont(self.Font_records, 24)
             text = font.render(f'{number + 1}.', True, self.BgColor)
             text_x = 7
             text_y = 49 + n
@@ -1289,13 +1290,13 @@ class Records:
             text_y = 50 + n
             self.screen.blit(text, (text_x, text_y))
 
-            font = pygame.font.SysFont('symbol', 24)
+            font = pygame.font.SysFont(self.Font_records, 24)
             text = font.render(item[1], True, self.BgColor)
             text_x = 160
             text_y = 49 + n
             self.screen.blit(text, (text_x, text_y))
 
-            font = pygame.font.SysFont('symbol', 24)
+            font = pygame.font.SysFont(self.Font_records, 24)
             text = font.render(item[2], True, self.BgColor)
             text_x = 320
             text_y = 49 + n
