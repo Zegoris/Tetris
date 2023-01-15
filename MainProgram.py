@@ -75,6 +75,7 @@ class Game_Over:
         self.score = score
         self.size = self.width, self.height = 500, 700  # Window Size
         self.screen = pygame.display.set_mode(self.size)  # Screen Setting
+        pygame.display.set_caption('Game')
         self.running = True
         with open("settings.json") as file:
             data = json.load(file)
@@ -586,6 +587,7 @@ class MainWindow:
         global cursor, runm
         self.size = self.width, self.height = 500, 700  # Window Size
         self.screen = pygame.display.set_mode(self.size)  # Screen Setting
+        pygame.display.set_caption('Game')
         self.running = True
         self.runM = runm
 
@@ -746,6 +748,7 @@ class Settings_Window:
         global cursor, nick
         self.size = self.width, self.height = 500, 700      # Window Size
         self.screen = pygame.display.set_mode(self.size)    # Screen Setting
+        pygame.display.set_caption('Game')
         self.running = True
 
         # open setting.json and take var
@@ -1032,6 +1035,7 @@ class Levels_Window:
         global cursor, runm
         self.size = self.width, self.height = 500, 700  # Window Size
         self.screen = pygame.display.set_mode(self.size)  # Screen Setting
+        pygame.display.set_caption('Game')
         self.running = True
         self.error = False
         self.runM = runm
@@ -1217,6 +1221,7 @@ class Records:
         global cursor, runm
         self.size = self.width, self.height = 500, 700  # Window Size
         self.screen = pygame.display.set_mode(self.size)  # Screen Setting
+        pygame.display.set_caption('Game')
         self.running = True
         self.runM = runm
 
