@@ -75,12 +75,15 @@ class Game_Over:
         self.score = score
         self.size = self.width, self.height = 500, 700  # Window Size
         self.screen = pygame.display.set_mode(self.size)  # Screen Setting
+
+        # Sounds
+        self.sound_push_button = pygame.mixer.Sound('Data/Sounds/push_button.mp3')
         pygame.display.set_caption('Game')
         self.running = True
         with open("settings.json") as file:
             data = json.load(file)
-            self.music = data['Music']
-            self.sounds = data['Sounds']
+            self.Music = data['Music']
+            self.Sound = data['Sounds']
             self.theme = data['DarkTheme']
             self.lightTheme = tuple(data['Color']['Light'])
             self.darkTheme = tuple(data['Color']['Dark'])
@@ -104,6 +107,12 @@ class Game_Over:
             self.render()
 
     def click(self, pos):
+        # If sound On -> play sound
+        if self.Sound:
+            pygame.mixer.music.pause()
+            self.sound_push_button.play()
+            if self.Music:
+                pygame.mixer.music.unpause()
         # If Mouse Pos in HitBox True
         if self.button_HitBox_x - 10 <= pos[0] <= self.button_HitBox_sizeX\
                 and self.button_HitBox_y - 12 <= pos[1] <= self.button_HitBox_sizeY:
@@ -281,8 +290,8 @@ class Board:  # General class for game modes
         self.screen = screen
         with open("settings.json") as file:
             data = json.load(file)
-            self.music = data['Music']
-            self.sounds = data['Sounds']
+            self.Music = data['Music']
+            self.Sound = data['Sounds']
             self.theme = data['DarkTheme']
             self.lightTheme = tuple(data['Color']['Light'])
             self.darkTheme = tuple(data['Color']['Dark'])
@@ -291,6 +300,9 @@ class Board:  # General class for game modes
             self.themeColor = self.lightTheme
         else:
             self.themeColor = self.darkTheme
+
+        # Sounds
+        self.sound_push_button = pygame.mixer.Sound('Data/Sounds/push_button.mp3')
         self.screen.fill(self.themeColor)
         self.fps = 60
         self.side_frequency, self.down_frequency = 0.15, 0.1  # Movement to the side and down
@@ -423,6 +435,13 @@ class Board:  # General class for game modes
         return removed_lines
 
     def click(self, pos):
+        # If sound On -> play sound
+        if self.Sound:
+            pygame.mixer.music.pause()
+            self.sound_push_button.play()
+            if self.Music:
+                pygame.mixer.music.unpause()
+
         # If Mouse Pos in HitBox True
         if self.button_HitBox_x - 10 <= pos[0] <= self.button_HitBox_sizeX\
                 and self.button_HitBox_y - 12 <= pos[1] <= self.button_HitBox_sizeY:
@@ -1177,6 +1196,7 @@ class Levels_Window:
         pygame.display.flip()
 
     def click(self, pos):
+
         if not self.error:
             sp = list(self.all_sprites)
             for i in sp:
@@ -1189,19 +1209,6 @@ class Levels_Window:
                         elif sp.index(i) + 1 == 2:
                             self.running = False
                             Second_GM()
-                    else:
-                        self.error = True
-                        pygame.draw.rect(self.screen, (0, 0, 0), (57, 237, 400, 160))
-                        pygame.draw.rect(self.screen, (255, 0, 0), (50, 230, 400, 160))
-
-                        font = pygame.font.SysFont('arial', 80)
-                        text = font.render("Coming soon!", True, (255, 255, 255))
-                        text2 = font.render("Coming soon!", True, (0, 0, 0))
-                        self.btn_text_x = 70
-                        self.btn_text_y = 280
-                        self.screen.blit(text2, (self.btn_text_x + 3, self.btn_text_y + 3))
-                        self.screen.blit(text, (self.btn_text_x, self.btn_text_y))
-                        pygame.display.flip()
 
         else:
             self.error = False
@@ -1247,7 +1254,7 @@ class Records:
             pygame.mixer.music.unpause()
         self.sound_push_button = pygame.mixer.Sound('Data/Sounds/push_button.mp3')
         self.sound_push_keywords = pygame.mixer.Sound('Data/Sounds/push_keywords.mp3')
-        self.sound_push_backspace = pygame.mixer.Sound('Data/Sounds/push_backspace.mp3')
+
 
         # Staff
         while self.running:
@@ -1326,6 +1333,13 @@ class Records:
         pygame.display.flip()
 
     def click(self, pos):
+        # If sound On -> play sound
+        if self.Sound:
+            pygame.mixer.music.pause()
+            self.sound_push_button.play()
+            if self.Music:
+                pygame.mixer.music.unpause()
+
         if self.BtnQ_HitBox_X <= pos[0] <= self.BtnQ_HitBox_XSize and self.BtnQ_HitBox_Y <= pos[1] \
                 <= self.BtnQ_HitBox_YSize:
 
