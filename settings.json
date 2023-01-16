@@ -1,7 +1,7 @@
 {
     "Music": false,
     "Sounds": true,
-    "DarkTheme": false,
+    "DarkTheme": true,
     "Color": {
         "Dark": [
             245,
@@ -17,5 +17,5 @@
     "NickName": "Gercog",
     "Font": "Symbol.ttf",
     "Form": "Circle",
-    "Colors": "Random"
+    "Colors": "Forest"
 }

@@ -4,14 +4,21 @@ from random import choice, randint
 import time
 import os
 import csv
-
+# Egor
 pygame.init()
 pygame.mixer.init()
 
+pygame.mixer.music.set_volume(0.1)
+pygame.mixer.music.load("Data/Music/" + str(choice(os.listdir("Data/Music"))))
+with open("settings.json") as file:
+    d = json.load(file)
+    music = d['Music']
+if music:
+    pygame.mixer.music.play(loops=-1)
+
 cursor_group = pygame.sprite.Group()  # Creating group of sprites
 pygame.mouse.set_visible(False)
-runm, nick = 0, 0
-
+nick = 0
 
 def load_image(name):
     fullname = os.path.join('Data/Sprites', name)  # Create a path to a picture file
@@ -56,7 +63,14 @@ def read_records():
     with open('records.csv', encoding="utf8") as csvf:
         reader = csv.reader(csvf, delimiter=',', quotechar='"')
         reader = list(reader)[1:]
-    return sorted(reader,reverse=True, key=lambda x: int(x[1]) + int(x[2]))
+    reader = sorted(reader,reverse=True, key=lambda x: int(x[1]) + int(x[2]))
+    answer = []
+    for i in reader:
+        n = 0
+        for j in i[1:]:
+            n += int(j)
+        answer.append([i[0], str(n)])
+    return answer
 
 
 class Cursor(pygame.sprite.Sprite):  # Class of the cursor
@@ -70,7 +84,7 @@ cursor = Cursor('cursor.png')  # Initialization of the cursor
 
 
 class Game_Over:
-    def __init__(self, score):
+    def __init__(self, score, gm):
         global cursor
         self.score = score
         self.size = self.width, self.height = 500, 700  # Window Size
@@ -99,12 +113,31 @@ class Game_Over:
                 if event.type == pygame.QUIT:
                     exit()
                 if event.type == pygame.MOUSEBUTTONUP and event.button == 1:
-                    if self.click(event.pos):
+                    if self.quit(event.pos):
                         self.running = False
                         MainWindow()
+                    if self.click(event.pos):
+                        self.running = False
+                        if gm == 1:
+                            First_GM()
+                        elif gm == 2:
+                            Second_GM()
 
             self.screen.fill(self.themeColor)
             self.render()
+
+    def quit(self, pos):
+        # If sound On -> play sound
+        if self.Sound:
+            pygame.mixer.music.pause()
+            self.sound_push_button.play()
+            if self.Music:
+                pygame.mixer.music.unpause()
+        # If Mouse Pos in HitBox True
+        if self.button_HitBoxC_x - 10 <= pos[0] <= self.button_HitBoxC_sizeX\
+                and self.button_HitBoxC_y - 12 <= pos[1] <= self.button_HitBoxC_sizeY:
+            return True
+        return False
 
     def click(self, pos):
         # If sound On -> play sound
@@ -113,7 +146,6 @@ class Game_Over:
             self.sound_push_button.play()
             if self.Music:
                 pygame.mixer.music.unpause()
-        # If Mouse Pos in HitBox True
         if self.button_HitBox_x - 10 <= pos[0] <= self.button_HitBox_sizeX\
                 and self.button_HitBox_y - 12 <= pos[1] <= self.button_HitBox_sizeY:
             return True
@@ -150,23 +182,32 @@ class Game_Over:
         else:
             fontColor = pygame.Color((30, 61, 89))
         font = pygame.font.SysFont('arial', 30)
-        text = font.render('Continue', True, fontColor)
+        text = font.render('Replay', True, fontColor)
         text_x = self.width - 310
         text_y = 360
         self.screen.blit(text, (text_x, text_y))
         pygame.draw.rect(self.screen, fontColor, (text_x - 15, text_y - 15,
                                                      text.get_width() + 30, text.get_height() + 30), 3)
-        # HitBox of a button "Continue"
+        # HitBox of a button "Replay"
         self.button_HitBox_x = text_x - 10
         self.button_HitBox_y = text_y - 5
         self.button_HitBox_sizeX = text_x + 130
         self.button_HitBox_sizeY = text_y + 50
 
+        font = pygame.font.SysFont('arial', 30)
+        text = font.render('Continue', True, fontColor)
+        text_x = self.width - 320
+        text_y = 440
+        self.screen.blit(text, (text_x, text_y))
+        pygame.draw.rect(self.screen, fontColor, (text_x - 15, text_y - 15,
+                                                  text.get_width() + 30, text.get_height() + 30), 3)
+        # HitBox of a button "Continue"
+        self.button_HitBoxC_x = text_x - 10
+        self.button_HitBoxC_y = text_y - 5
+        self.button_HitBoxC_sizeX = text_x + 130
+        self.button_HitBoxC_sizeY = text_y + 50
+
     def render(self):
-        if self.theme:
-            borderColor = pygame.Color('white')
-        else:
-            borderColor = pygame.Color((30, 61, 89))
         self.info() # Information about user and score
         self.button() # Exit button
 
@@ -297,7 +338,12 @@ class Board:  # General class for game modes
             self.form = data['Form']
             self.color = data['Colors']
         self.colors = {'Random': {'light': ((30, 30, 255), (50, 255, 50), (255, 30, 30), (255, 255, 30)),
-                                  'dark': ((0, 0, 225), (0, 225, 0), (225, 0, 0), (225, 225, 0))}}
+                                  'dark': ((0, 0, 225), (0, 225, 0), (225, 0, 0), (225, 225, 0))},
+                       'Girls': {'light': ((167, 0, 179), (157, 28, 166), (243, 82, 255), (183, 0, 255)),
+                                 'dark': ((122, 3, 130), (70, 21, 74), (119, 30, 125), (85, 0, 255))},
+                       'Forest': {'light': ((0, 168, 81), (15, 196, 2), (65, 184, 57), (58, 133, 77)),
+                                  'dark': ((0, 105, 51), (10, 143, 0), (32, 115, 26), (8, 38, 15))}
+                       }
         if self.theme:
             self.themeColor = self.lightTheme
         else:
@@ -323,57 +369,47 @@ class Board:  # General class for game modes
                 self.fallingTetramine = self.nextTetramine
                 self.nextTetramine = self.newTetramine()
                 self.last_fall = time.time()
-
                 if not self.check(self.fallingTetramine):
                     write_records(self.user, self.gm, self.score)
                     self.running = False  # If there is no free space on the playing field - the game is over, FINAL WINDOW
-                    Game_Over(self.score)
+                    Game_Over(self.score, self.gm)
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
                     exit()
-
                 if event.type == pygame.MOUSEBUTTONUP and event.button == 1:
-                    if self.click(event.pos):
+                    if self.quit(event.pos):
                         write_records(self.user, self.gm, self.score)
                         self.running = False
-                        Game_Over(self.score)
-
+                        Game_Over(self.score, self.gm)
                 if event.type == pygame.KEYUP:
                     if event.key == pygame.K_LEFT:
                         self.left = False
-
                     if event.key == pygame.K_RIGHT:
                         self.right = False
-
                     if event.key == pygame.K_DOWN:
                         self.down = False
-
                 if event.type == pygame.KEYDOWN:  # Moving the tetramine to the right and left
                     if event.key == pygame.K_LEFT and self.check(self.fallingTetramine, x0=-1):
                         self.fallingTetramine['x'] -= 1
                         self.left = True
                         self.right = False
                         self.last_side = time.time()
-
                     if event.key == pygame.K_RIGHT and self.check(self.fallingTetramine, x0=1):
                         self.fallingTetramine['x'] += 1
                         self.right = True
                         self.left = False
                         self.last_side = time.time()
-
                     if event.key == pygame.K_UP:  # Rotate the tetramine if there is room
                         self.fallingTetramine['rotation'] = (self.fallingTetramine['rotation'] + 1) \
                                                             % len(self.tetramines[self.fallingTetramine['shape']])
                         if not self.check(self.fallingTetramine):
                             self.fallingTetramine['rotation'] = (self.fallingTetramine['rotation'] - 1) \
                                                                 % len(self.tetramines[self.fallingTetramine['shape']])
-
                     if event.key == pygame.K_DOWN:  # Speed up the fall of the tetramine
                         self.down = True
                         if self.check(self.fallingTetramine, y0=1):
                             self.fallingTetramine['y'] += 1
                         self.last_down = time.time()
-
                     if event.key == pygame.K_SPACE:  # Instant reset of the tetramine
                         self.down = False
                         self.left = False
@@ -384,21 +420,17 @@ class Board:  # General class for game modes
                                 break
                         self.fallingTetramine['y'] += end
                         self.score += 3
-
             # Controlling the fall of the tetramine while holding down the keys
             if (self.left or self.right) and time.time() - self.last_side > 0.1:
                 if self.left and self.check(self.fallingTetramine, x0=-1):
                     self.fallingTetramine['x'] -= 1
-
                 elif self.right and self.check(self.fallingTetramine, x0=1):
                     self.fallingTetramine['x'] += 1
                 self.last_side = time.time()
-
             if self.down and time.time() - self.last_down > 0.1 \
                     and self.check(self.fallingTetramine, y0=1):
                 self.fallingTetramine['y'] += 1
                 self.last_down = time.time()
-
             if time.time() - self.last_fall > self.fall_speed:  # Free fall of the tetramine
                 if not self.check(self.fallingTetramine, y0=1):
                     self.add(self.fallingTetramine)  # The tetramine has landed, add it to the contents of the board
@@ -433,7 +465,7 @@ class Board:  # General class for game modes
                 y0 -= 1
         return removed_lines
 
-    def click(self, pos):
+    def quit(self, pos):
         # If sound On -> play sound
         if self.Sound:
             pygame.mixer.music.pause()
@@ -480,10 +512,10 @@ class Board:  # General class for game modes
     def newTetramine(self):  # Returns a new tetramine with a random color and rotation angle
         shape = choice(list(self.tetramines.keys()))
         return {'shape': shape,
-                        'rotation': randint(0, len(self.tetramines[shape]) - 1),
-                        'x': int(self.width / 2) - int(self.tetraminesW / 2),
-                        'y': -2,
-                        'color': randint(0, len(self.colors) - 1)}
+                'rotation': randint(0, len(self.tetramines[shape]) - 1),
+                'x': int(self.width / 2) - int(self.tetraminesW / 2),
+                'y': -2,
+                'color': randint(0, len(self.colors[self.color]['dark']) - 1)}
 
     def drawBlock(self, block_x, block_y, color, size, x=None, y=None):  # Drawing the square blocks that make up the tetramines
         if color == 'o':
@@ -607,15 +639,14 @@ class Second_GM(Board): # Class of the second game mode
         fall_speed = 0.2 - score / 2500 * 0.02
         return fall_speed
 
-
+# Maxim
 class MainWindow:
     def __init__(self):
-        global cursor, runm, nick
+        global cursor, nick
         self.size = self.width, self.height = 500, 700  # Window Size
         self.screen = pygame.display.set_mode(self.size)  # Screen Setting
         pygame.display.set_caption('Game')
         self.running = True
-        self.runM = runm
 
         # open setting.json and take var
         with open("settings.json") as file:
@@ -634,15 +665,9 @@ class MainWindow:
 
 
         # Music
-        pygame.mixer.music.set_volume(0.1)
-        pygame.mixer.music.load("Data/Music/" + str(choice(os.listdir("Data/Music"))))
+
         # Sounds
         self.sound_push_button = pygame.mixer.Sound('Data/Sounds/push_button.mp3')
-
-        # Play Music
-        if self.Music:
-            pygame.mixer.music.play()
-
 
         # Staff
         while self.running:
@@ -690,7 +715,7 @@ class MainWindow:
         self.screen.blit(text, (text_x, text_y))
         pygame.draw.rect(self.screen, self.BgColor, (text_x - 10, text_y - 10,
                                                      text.get_width() + 20, text.get_height() + 20), 2)
-        # HitBox of Btn "Play"
+        # HitBox of Btn "Sett"
         self.BtnSett_HitBox_X = text_x - 15
         self.BtnSett_HitBox_Y = text_y - 10
         self.BtnSett_HitBox_XSize = text_x + 235
@@ -710,6 +735,7 @@ class MainWindow:
         self.BtnQ_HitBox_YSize = text_y + 50
 
         # Btn "Records"
+# Egor
         font = pygame.font.SysFont('arial', 45)
         text = font.render(" RECORDS ", True, self.BgColor)
         text_x = self.width // 2 - text.get_width() // 2
@@ -729,7 +755,7 @@ class MainWindow:
 
         # Draw Changes
         pygame.display.flip()
-
+# Maxim
     # CLick Operation
     def click(self, pos):
         # If sound On -> play sound
@@ -747,12 +773,10 @@ class MainWindow:
 
         elif self.BtnSett_HitBox_X <= pos[0] <= self.BtnSett_HitBox_XSize and self.BtnSett_HitBox_Y <= pos[1]\
                 <= self.BtnSett_HitBox_YSize:
-            global runm
-            runm = 1
             # Open SettingsWindow
             Settings_Window()
             self.running = False
-
+# Egor
         elif self.BtnR_HitBox_X <= pos[0] <= self.BtnR_HitBox_XSize and self.BtnR_HitBox_Y <= pos[1] \
                 <= self.BtnR_HitBox_YSize:
             Records()
@@ -769,12 +793,12 @@ class MainWindow:
 
             self.running = False
 
-
+# Maxim
 class Settings_Window:
     def __init__(self):
         global cursor, nick
-        self.size = self.width, self.height = 500, 700      # Window Size
-        self.screen = pygame.display.set_mode(self.size)    # Screen Setting
+        self.size = self.width, self.height = 500, 700  # Window Size
+        self.screen = pygame.display.set_mode(self.size)  # Screen Setting
         pygame.display.set_caption('Game')
         self.running = True
 
@@ -791,9 +815,10 @@ class Settings_Window:
                 self.TextColor = tuple(data["Color"]["Dark"])
                 self.BgColor = tuple(data["Color"]["Light"])
             self.NickName = data["NickName"]
+            self.Form = data["Form"]
+            self.Brick_Color = data["Colors"]
 
-
-        #data of nickname
+        # data of nickname
         self.font = pygame.font.SysFont('arial', 26)
         self.input_box = pygame.Rect(150, 220, 280, 32)
         self.color_inactive = self.BgColor
@@ -828,12 +853,12 @@ class Settings_Window:
 
         while self.running:
             for event in pygame.event.get():
-                if event.type == pygame.QUIT:               # Stop Program
+                if event.type == pygame.QUIT:  # Stop Program
                     exit()
                 if event.type == pygame.MOUSEBUTTONDOWN and event.button == 1:
                     if self.Sound:
                         self.sound_push_button.play()
-                    #NickName
+                    # NickName
                     if self.input_box.collidepoint(event.pos):
                         # Toggle the active variable.
 
@@ -874,7 +899,8 @@ class Settings_Window:
     # Change settings
     def click(self, pos):
         # If Mouse Pos in HitBox "Music"
-        if self.ChB_MusicHitBox_X >= pos[0] >= self.ChB_Music_posX - 30 and self.ChB_MusicHitBox_Y >= pos[1] >= self.ChB_Music_posY - 5:
+        if self.ChB_MusicHitBox_X >= pos[0] >= self.ChB_Music_posX - 30 and self.ChB_MusicHitBox_Y >= pos[
+            1] >= self.ChB_Music_posY - 5:
             # Play Sounds
             if self.Sound:
                 pygame.mixer.music.pause()
@@ -896,7 +922,8 @@ class Settings_Window:
                     json.dump(data, file, indent=4)
 
         # If Mouse Pos in HitBox "Sound"
-        elif self.ChB_SoundHitBox_X >= pos[0] >= self.ChB_Sound_posX - 30 and self.ChB_SoundHitBox_Y >= pos[1] >= self.ChB_Sound_posY - 5:
+        elif self.ChB_SoundHitBox_X >= pos[0] >= self.ChB_Sound_posX - 30 and self.ChB_SoundHitBox_Y >= pos[
+            1] >= self.ChB_Sound_posY - 5:
             # Play Sounds
             if not self.Sound:
                 pygame.mixer.music.pause()
@@ -913,7 +940,8 @@ class Settings_Window:
                     json.dump(data, file, indent=4)
 
         # If Mouse Pos in HitBox "Theme"
-        elif self.ChB_ThemeHitBox_X >= pos[0] >= self.ChB_Theme_posX - 30 and self.ChB_ThemeHitBox_Y >= pos[1] >= self.ChB_Theme_posY - 5:
+        elif self.ChB_ThemeHitBox_X >= pos[0] >= self.ChB_Theme_posX - 30 and self.ChB_ThemeHitBox_Y >= pos[
+            1] >= self.ChB_Theme_posY - 5:
             # Play Sounds
             if self.Sound:
                 pygame.mixer.music.pause()
@@ -948,6 +976,34 @@ class Settings_Window:
             MainWindow()  # Open MainWindow
             self.running = False
 
+        # Swich form R-s
+        elif 15 <= pos[0] <= 165 and 300 <= pos[1] <= 470:
+            self.Form = "Rectangles"
+        # Swich form R
+        elif 175 <= pos[0] <= 325 and 300 <= pos[1] <= 470:
+            self.Form = "Rectangle"
+        # Swich form Circ
+        elif 335 <= pos[0] <= 485 and 300 <= pos[1] <= 470:
+            self.Form = "Circle"
+
+        # Swich Color
+        elif 15 <= pos[0] <= 165 and 510 <= pos[1] <= 610:
+            self.Brick_Color = "Random"
+        # Swich form R
+        elif 175 <= pos[0] <= 325 and 510 <= pos[1] <= 610:
+            self.Brick_Color = "Girls"
+        # Swich form Circ
+        elif 335 <= pos[0] <= 485 and 510 <= pos[1] <= 610:
+            self.Brick_Color = "Forest"
+
+        # Open Sett_file and replace "Theme"
+        with open("settings.json") as file:
+            data = json.load(file)
+            data["Form"] = self.Form
+            data["Colors"] = self.Brick_Color
+            with open("settings.json", "w") as file:
+                json.dump(data, file, indent=4)
+
         self.draw()
 
     # Draw on window: Title, other sett.
@@ -967,8 +1023,7 @@ class Settings_Window:
         # Blit the text.
         self.screen.blit(txt_surface, (self.input_box.x + 5, self.input_box.y + 5))
         # Blit the input_box rect.
-        pygame.draw.rect(self.screen,  self.BgColor, self.input_box, 2)
-
+        pygame.draw.rect(self.screen, self.BgColor, self.input_box, 2)
 
         # draw title
         font = pygame.font.SysFont('arial', 40)
@@ -976,7 +1031,6 @@ class Settings_Window:
         text_x = self.width // 2 - text.get_width() // 2
         text_y = 40
         self.screen.blit(text, (text_x, text_y))
-
 
         # draw ChB "Music"
         # draw text
@@ -998,7 +1052,6 @@ class Settings_Window:
             pygame.draw.rect(self.screen, self.BgColor, (ChB_x, ChB_y, 20, 20))
             pygame.draw.rect(self.screen, self.TextColor, (ChB_x + 2, ChB_y + 2, 16, 16))
 
-
         # draw ChB "Sound"
         # draw text
         font = pygame.font.SysFont('arial', 24)
@@ -1018,7 +1071,6 @@ class Settings_Window:
         else:
             pygame.draw.rect(self.screen, self.BgColor, (ChB_x, ChB_y, 20, 20))
             pygame.draw.rect(self.screen, self.TextColor, (ChB_x + 2, ChB_y + 2, 16, 16))
-
 
         # draw ChB "Theme"
         # draw text
@@ -1040,7 +1092,7 @@ class Settings_Window:
         else:
             pygame.draw.rect(self.screen, self.BgColor, (ChB_x, ChB_y, 20, 20))
             pygame.draw.rect(self.screen, self.TextColor, (ChB_x + 2, ChB_y + 2, 16, 16))
-
+# Egor
         # Btn "Quit"
         font = pygame.font.SysFont('arial', 25)
         text = font.render("Quit", True, self.BgColor)
@@ -1053,22 +1105,113 @@ class Settings_Window:
         self.BtnQ_HitBox_Y = text_y - 10
         self.BtnQ_HitBox_XSize = text_x + 235
         self.BtnQ_HitBox_YSize = text_y + 50
+
+        # Theme of Bricks
+        font = pygame.font.SysFont('arial', 24)
+        text = font.render("Brick Form:", True, self.BgColor)
+        text_x = self.width // 2 - text.get_width() // 2
+        text_y = 270
+        self.screen.blit(text, (text_x, text_y))
+
+        # Theme of Bricks
+        font = pygame.font.SysFont('arial', 24)
+        text = font.render("Brick Color:", True, self.BgColor)
+        text_x = self.width // 2 - text.get_width() // 2
+        text_y = 480
+        self.screen.blit(text, (text_x, text_y))
+
+        self.colors = {'Random': {'light': ((30, 30, 255), (50, 255, 50), (255, 30, 30), (255, 255, 30)),
+                                  'dark': ((0, 0, 225), (0, 225, 0), (225, 0, 0), (225, 225, 0))},
+                       'Girls': {'light': ((167, 0, 179), (157, 28, 166), (243, 82, 255), (183, 0, 255)),
+                                 'dark': ((122, 3, 130), (70, 21, 74), (119, 30, 125), (85, 0, 255))},
+                       'Forest': {'light': ((0, 168, 81), (15, 196, 2), (65, 184, 57), (58, 133, 77)),
+                                  'dark': ((0, 105, 51), (10, 143, 0), (32, 115, 26), (8, 38, 15))}
+                       }
+        # Rectangles
+        pygame.draw.rect(self.screen, self.BgColor, (15, 300, 150, 170), 2)
+        pygame.draw.rect(self.screen, self.colors[self.Brick_Color]['dark'][3],
+                         (55, 350, 70,
+                          70), 0, 3)
+        pygame.draw.rect(self.screen, self.colors[self.Brick_Color]['light'][3],
+                         (55, 350, 66,
+                          66), 0, 3)
+        pygame.draw.circle(self.screen, self.colors[self.Brick_Color]['dark'][3],
+                           (90,
+                            385), 15.5)
+        if self.Form == "Rectangles":
+            pygame.draw.rect(self.screen, self.BgColor, (20, 305, 140, 15))
+        # Rectangle
+        pygame.draw.rect(self.screen, self.BgColor, (175, 300, 150, 170), 2)
+        pygame.draw.rect(self.screen, self.colors[self.Brick_Color]['dark'][3],
+                         (215, 350, 70,
+                          70), 0)
+        pygame.draw.rect(self.screen, self.colors[self.Brick_Color]['light'][3],
+                         (215, 350, 66,
+                          66), 0)
+        pygame.draw.circle(self.screen, self.colors[self.Brick_Color]['dark'][3],
+                           (250,
+                            385), 15.5)
+        if self.Form == "Rectangle":
+            pygame.draw.rect(self.screen, self.BgColor, (180, 305, 140, 15))
+        # Circle
+        pygame.draw.rect(self.screen, self.BgColor, (335, 300, 150, 170), 2)
+        pygame.draw.circle(self.screen, self.colors[self.Brick_Color]['dark'][3],
+                           (410,
+                            385), 30)
+        pygame.draw.circle(self.screen, self.colors[self.Brick_Color]['light'][3],
+                           (408,
+                            382), 27)
+        if self.Form == "Circle":
+            pygame.draw.rect(self.screen, self.BgColor, (340, 305, 140, 15))
+
+        # Random
+        pygame.draw.rect(self.screen, self.BgColor, (15, 510, 150, 100), 2)
+        if self.Brick_Color == "Random":
+            pygame.draw.rect(self.screen, self.BgColor, (20, 515, 140, 15))
+        pygame.draw.rect(self.screen, self.colors["Random"]["light"][0], (20, 540, 43, 30))
+        pygame.draw.rect(self.screen, self.colors["Random"]["light"][1], (68, 540, 43, 30))
+        pygame.draw.rect(self.screen, self.colors["Random"]["light"][2], (115, 540, 43, 30))
+        pygame.draw.rect(self.screen, self.colors["Random"]["dark"][1], (20, 575, 43, 30))
+        pygame.draw.rect(self.screen, self.colors["Random"]["light"][2], (68, 575, 43, 30))
+        pygame.draw.rect(self.screen, self.colors["Random"]["dark"][3], (115, 575, 43, 30))
+
+        # Girls Style
+        pygame.draw.rect(self.screen, self.BgColor, (175, 510, 150, 100), 2)
+        if self.Brick_Color == "Girls":
+            pygame.draw.rect(self.screen, self.BgColor, (180, 515, 140, 15))
+        pygame.draw.rect(self.screen, self.colors["Girls"]["light"][0], (180, 540, 43, 30))
+        pygame.draw.rect(self.screen, self.colors["Girls"]["light"][1], (228, 540, 43, 30))
+        pygame.draw.rect(self.screen, self.colors["Girls"]["light"][2], (275, 540, 43, 30))
+        pygame.draw.rect(self.screen, self.colors["Girls"]["dark"][1], (180, 575, 43, 30))
+        pygame.draw.rect(self.screen, self.colors["Girls"]["light"][2], (228, 575, 43, 30))
+        pygame.draw.rect(self.screen, self.colors["Girls"]["dark"][3], (275, 575, 43, 30))
+
+        # Forest
+        pygame.draw.rect(self.screen, self.BgColor, (335, 510, 150, 100), 2)
+        if self.Brick_Color == "Forest":
+            pygame.draw.rect(self.screen, self.BgColor, (340, 515, 140, 15))
+        pygame.draw.rect(self.screen, self.colors["Forest"]["light"][0], (340, 540, 43, 30))
+        pygame.draw.rect(self.screen, self.colors["Forest"]["light"][1], (388, 540, 43, 30))
+        pygame.draw.rect(self.screen, self.colors["Forest"]["light"][2], (435, 540, 43, 30))
+        pygame.draw.rect(self.screen, self.colors["Forest"]["dark"][1], (340, 575, 43, 30))
+        pygame.draw.rect(self.screen, self.colors["Forest"]["light"][2], (388, 575, 43, 30))
+        pygame.draw.rect(self.screen, self.colors["Forest"]["dark"][3], (435, 575, 43, 30))
+
         if pygame.mouse.get_focused():  # Drawing a cursor
             cursor.rect.x, cursor.rect.y = pygame.mouse.get_pos()
             cursor_group.draw(self.screen)
 
         pygame.display.flip()
 
-
+# Maxim
 class Levels_Window:
     def __init__(self):
-        global cursor, runm
+        global cursor
         self.size = self.width, self.height = 500, 700  # Window Size
         self.screen = pygame.display.set_mode(self.size)  # Screen Setting
         pygame.display.set_caption('Game')
         self.running = True
         self.error = False
-        self.runM = runm
 
         # open setting.json and take var
         with open("settings.json") as file:
@@ -1238,15 +1381,14 @@ class Levels_Window:
             MainWindow()  # Open MainWindow
             self.running = False
 
-
+# Egor
 class Records:
     def __init__(self):
-        global cursor, runm
+        global cursor
         self.size = self.width, self.height = 500, 700  # Window Size
         self.screen = pygame.display.set_mode(self.size)  # Screen Setting
         pygame.display.set_caption('Game')
         self.running = True
-        self.runM = runm
 
         # open setting.json and take var
         with open("settings.json") as file:
@@ -1285,13 +1427,7 @@ class Records:
         self.screen.blit(text, (text_x, text_y))
 
         font = pygame.font.Font(None, 30)
-        text = font.render("FIRST SCORE", True, self.BgColor)
-        text_x = 160
-        text_y = 13
-        self.screen.blit(text, (text_x, text_y))
-
-        font = pygame.font.Font(None, 30)
-        text = font.render("SECOND SCORE", True, self.BgColor)
+        text = font.render("TOTAL SCORE", True, self.BgColor)
         text_x = 320
         text_y = 13
         self.screen.blit(text, (text_x, text_y))
@@ -1303,25 +1439,19 @@ class Records:
             font = pygame.font.Font('Data/Fonts/asymbols.ttf', 24)
             text = font.render(f'{number + 1}.', True, self.BgColor)
             text_x = 7
-            text_y = 49 + n
+            text_y = 55 + n
             self.screen.blit(text, (text_x, text_y))
 
             font = pygame.font.Font('Data/Fonts/asymbols.ttf', 30)
             text = font.render(item[0], True, self.BgColor)
             text_x = 30
-            text_y = 45 + n
+            text_y = 51 + n
             self.screen.blit(text, (text_x, text_y))
 
             font = pygame.font.Font('Data/Fonts/asymbols.ttf', 24)
             text = font.render(item[1], True, self.BgColor)
-            text_x = 160
-            text_y = 49 + n
-            self.screen.blit(text, (text_x, text_y))
-
-            font = pygame.font.Font('Data/Fonts/asymbols.ttf', 24)
-            text = font.render(item[2], True, self.BgColor)
             text_x = 320
-            text_y = 49 + n
+            text_y = 55 + n
             self.screen.blit(text, (text_x, text_y))
 
             n += 50
