@@ -279,8 +279,7 @@ class Board:  # General class for game modes
                                   'ooooo']]}
         self.size = self.widthW, self.heightW = 600, 750  # Window Size
         self.running = True
-        self.colors = ((0, 0, 225), (0, 225, 0), (225, 0, 0), (225, 225, 0))
-        self.light_colors = ((30, 30, 255), (50, 255, 50), (255, 30, 30), (255, 255, 30))
+
         self.width = width
         self.height = height
         self.board = [['o'] * height for _ in range(width)]  # Matrix of values of painted cells
@@ -295,6 +294,10 @@ class Board:  # General class for game modes
             self.lightTheme = tuple(data['Color']['Light'])
             self.darkTheme = tuple(data['Color']['Dark'])
             self.user = data['NickName']
+            self.form = data['Form']
+            self.color = data['Colors']
+        self.colors = {'Random': {'light': ((30, 30, 255), (50, 255, 50), (255, 30, 30), (255, 255, 30)),
+                                  'dark': ((0, 0, 225), (0, 225, 0), (225, 0, 0), (225, 225, 0))}}
         if self.theme:
             self.themeColor = self.lightTheme
         else:
@@ -488,16 +491,33 @@ class Board:  # General class for game modes
 
         if x is None and y is None:
             x, y = self.coords(block_x, block_y)
-        pygame.draw.rect(self.screen, self.colors[color],
-                         (x + 1, y + 1, size - 1,
-                          size - 1),
-                         0, 3)
-        pygame.draw.rect(self.screen, self.light_colors[color],
-                         (x + 1, y + 1, size - 4,
-                          size - 4), 0, 3)
-        pygame.draw.circle(self.screen, self.colors[color],
-                           (x + size / 2,
-                            y + size / 2), 5)
+        if self.form == 'Rectangles':
+            pygame.draw.rect(self.screen, self.colors[self.color]['dark'][color],
+                             (x + 1, y + 1, size - 1,
+                              size - 1), 0, 3)
+            pygame.draw.rect(self.screen, self.colors[self.color]['light'][color],
+                             (x + 1, y + 1, size - 4,
+                              size - 4), 0, 3)
+            pygame.draw.circle(self.screen, self.colors[self.color]['dark'][color],
+                               (x + size / 2,
+                                y + size / 2), size / 4.5)
+        elif self.form == 'Rectangle':
+            pygame.draw.rect(self.screen, self.colors[self.color]['dark'][color],
+                             (x + 1, y + 1, size,
+                              size), 0)
+            pygame.draw.rect(self.screen, self.colors[self.color]['light'][color],
+                             (x + 1, y + 1, size - 3,
+                              size - 3), 0)
+            pygame.draw.circle(self.screen, self.colors[self.color]['dark'][color],
+                               (x + size / 2,
+                                y + size / 2), size / 4.5)
+        elif self.form == 'Circle':
+            pygame.draw.circle(self.screen, self.colors[self.color]['dark'][color],
+                               (x + size / 2,
+                                y + size / 2), size / 2)
+            pygame.draw.circle(self.screen, self.colors[self.color]['light'][color],
+                               (x + size / 2.2,
+                                y + size / 2.2), size / 2.2)
 
     def drawTetramine(self, tetramine, size, x0=None, y0=None):
         tetramineDraw = self.tetramines[tetramine['shape']][tetramine['rotation']]
