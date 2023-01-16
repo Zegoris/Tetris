@@ -181,7 +181,6 @@ class Board:  # General class for game modes
         global cursor
         pygame.display.set_caption('Game')
         self.tetraminesW, self.tetraminesH = 5, 5
-        self.empty = 'o'
         self.gm = game_mode
         self.tetramines = {'S': [['ooooo',  # Game tetramines
                                   'ooooo',
@@ -284,7 +283,7 @@ class Board:  # General class for game modes
         self.light_colors = ((30, 30, 255), (50, 255, 50), (255, 30, 30), (255, 255, 30))
         self.width = width
         self.height = height
-        self.board = [[self.empty] * height for _ in range(width)]  # Matrix of values of painted cells
+        self.board = [['o'] * height for _ in range(width)]  # Matrix of values of painted cells
         self.cell_size = 24
         self.score = 0
         self.screen = screen
@@ -305,9 +304,6 @@ class Board:  # General class for game modes
         self.sound_push_button = pygame.mixer.Sound('Data/Sounds/push_button.mp3')
         self.screen.fill(self.themeColor)
         self.fps = 60
-        self.side_frequency, self.down_frequency = 0.15, 0.1  # Movement to the side and down
-        self.side_fields = 10
-        self.upper_field = self.heightW - (self.height * self.cell_size) - 5
         self.clock = pygame.time.Clock()
         self.last_down = time.time()
         self.last_side = time.time()
@@ -315,7 +311,7 @@ class Board:  # General class for game modes
         self.down = False  # Is it possible to move to the down
         self.left = False  # Is it possible to move to the left
         self.right = False  # Is it possible to move to the right
-        self.level, self.fall_speed = self.static()
+        self.fall_speed = self.static()
         self.fallingTetramine = self.newTetramine()
         self.nextTetramine = self.newTetramine()
 
@@ -387,7 +383,7 @@ class Board:  # General class for game modes
                         self.score += 3
 
             # Controlling the fall of the tetramine while holding down the keys
-            if (self.left or self.right) and time.time() - self.last_side > self.side_frequency:
+            if (self.left or self.right) and time.time() - self.last_side > 0.1:
                 if self.left and self.check(self.fallingTetramine, x0=-1):
                     self.fallingTetramine['x'] -= 1
 
@@ -395,7 +391,7 @@ class Board:  # General class for game modes
                     self.fallingTetramine['x'] += 1
                 self.last_side = time.time()
 
-            if self.down and time.time() - self.last_down > self.down_frequency \
+            if self.down and time.time() - self.last_down > 0.1 \
                     and self.check(self.fallingTetramine, y0=1):
                 self.fallingTetramine['y'] += 1
                 self.last_down = time.time()
@@ -404,7 +400,7 @@ class Board:  # General class for game modes
                 if not self.check(self.fallingTetramine, y0=1):
                     self.add(self.fallingTetramine)  # The tetramine has landed, add it to the contents of the board
                     self.score += self.clearCompleted() * 300 if self.score <= 99999 else 99999
-                    self.level, self.fall_speed = self.static()
+                    self.fall_speed = self.static()
                     self.fallingTetramine = None
                 else:  # The tetramine hasn't landed yet, we keep moving down
                     self.fallingTetramine['y'] += 1
@@ -415,7 +411,7 @@ class Board:  # General class for game modes
 
     def isCompleted(self, y):  # Check the presence of fully filled rows
         for x in range(self.width):
-            if self.board[x][y] == self.empty:
+            if self.board[x][y] == 'o':
                 return False
         return True
 
@@ -428,7 +424,7 @@ class Board:  # General class for game modes
                     for x in range(self.width):
                         self.board[x][y] = self.board[x][y - 1]
                 for x in range(self.width):
-                    self.board[x][0] = self.empty
+                    self.board[x][0] = 'o'
                 removed_lines += 1
             else:
                 y0 -= 1
@@ -452,45 +448,42 @@ class Board:  # General class for game modes
         for x in range(self.tetraminesW):
             for y in range(self.tetraminesH):
                 above_board = y + tetramine['y'] + y0 < 0
-                if above_board or self.tetramines[tetramine['shape']][tetramine['rotation']][y][x] == self.empty:
+                if above_board or self.tetramines[tetramine['shape']][tetramine['rotation']][y][x] == 'o':
                     continue
 
                 if not self.inBoard(x + tetramine['x'] + x0, y + tetramine['y'] + y0):
                     return False
 
-                if self.board[x + tetramine['x'] + x0][y + tetramine['y'] + y0] != self.empty:
+                if self.board[x + tetramine['x'] + x0][y + tetramine['y'] + y0] != 'o':
                     return False
         return True
 
     def inBoard(self, x, y):
-        return self.width > x >= 0 and y < self.height
+        return self.width > x >= 0 and 0 <= y < self.height
 
     def add(self, tetramine):
         for x in range(self.tetraminesW):
             for y in range(self.tetraminesH):
-                if self.tetramines[tetramine['shape']][tetramine['rotation']][y][x] != self.empty:
+                if self.tetramines[tetramine['shape']][tetramine['rotation']][y][x] != 'o':
                     self.board[x + tetramine['x']][y + tetramine['y']] = tetramine['color']
 
     def static(self): # Calculating game's speed
-        level = int(0 / 10) + 1
-        fall_speed = 0.27 - (level * 0.02)
-        return level, fall_speed
+        return 0.2
 
     def coords(self, x, y):
-        return (self.side_fields + (x * self.cell_size)), \
-            (self.upper_field + (y * self.cell_size))
+        return (10 + (x * self.cell_size)), \
+            (5 + (y * self.cell_size))
 
     def newTetramine(self):  # Returns a new tetramine with a random color and rotation angle
         shape = choice(list(self.tetramines.keys()))
-        newTetramine = {'shape': shape,
+        return {'shape': shape,
                         'rotation': randint(0, len(self.tetramines[shape]) - 1),
                         'x': int(self.width / 2) - int(self.tetraminesW / 2),
                         'y': -2,
                         'color': randint(0, len(self.colors) - 1)}
-        return newTetramine
 
     def drawBlock(self, block_x, block_y, color, size, x=None, y=None):  # Drawing the square blocks that make up the tetramines
-        if color == self.empty:
+        if color == 'o':
             return
 
         if x is None and y is None:
@@ -506,9 +499,6 @@ class Board:  # General class for game modes
                            (x + size / 2,
                             y + size / 2), 5)
 
-    def drawnextTetramine(self, tetramine):  # Preview of the next tetramine
-        self.drawTetramine(tetramine, self.cell_size + 10, x0=self.widthW - 200, y0=70)
-
     def drawTetramine(self, tetramine, size, x0=None, y0=None):
         tetramineDraw = self.tetramines[tetramine['shape']][tetramine['rotation']]
         if x0 is None and y0 is None:
@@ -516,7 +506,7 @@ class Board:  # General class for game modes
         # Drawing tetramine elements
         for x in range(self.tetraminesW):
             for y in range(self.tetraminesH):
-                if tetramineDraw[y][x] != self.empty:
+                if tetramineDraw[y][x] != 'o':
                     self.drawBlock(None, None, tetramine['color'], size, x0 + (x * size),
                                    y0 + (y * size))
 
@@ -563,17 +553,15 @@ class Board:  # General class for game modes
             borderColor = pygame.Color((30, 61, 89))
         self.info() # Information about user and score
         self.button() # Exit button
-        pygame.draw.rect(self.screen, borderColor,
-                         (self.side_fields - 4, self.upper_field - 4, (self.width * self.cell_size) + 8,
-                          (self.height * self.cell_size) + 8), 5)  # Border of the playing field
 
         for x in range(self.width):
             for y in range(self.height):
                 self.drawBlock(x, y, self.board[x][y], size=self.cell_size)  # Already landed tetramine
-        self.drawnextTetramine(self.nextTetramine)  # Preview of the next tetramine
+        self.drawTetramine(self.nextTetramine, self.cell_size + 10, x0=400, y0=70)  # Preview of the next tetramine
 
         if self.fallingTetramine is not None:
             self.drawTetramine(self.fallingTetramine, size=self.cell_size)  # Drawing a falling tetramine
+        pygame.draw.rect(self.screen, borderColor, (5, 1, 368, 752), 5) # Border of the playing field
 
         if pygame.mouse.get_focused(): # Drawing a cursor
             cursor.rect.x, cursor.rect.y = pygame.mouse.get_pos()
@@ -595,10 +583,9 @@ class Second_GM(Board): # Class of the second game mode
         Board.__init__(self, self.screen, 15, 31, game_mode=2)
 
     def static(self): # Calculating game's speed
-        score = self.score if self.score < 15000 else 15000
-        level = int((score / 250) / 10) + 1
-        fall_speed = 0.27 - (level * 0.03)
-        return level, fall_speed
+        score = self.score if self.score <= 15000 else 15000
+        fall_speed = 0.2 - score / 2500 * 0.02
+        return fall_speed
 
 
 class MainWindow:
@@ -852,7 +839,6 @@ class Settings_Window:
                         else:
                             if nick <= 7:
                                 nick += 1
-                                print(nick)
                                 self.NickName += event.unicode
 
                         # Open Sett_file and replace "Music"
@@ -1203,6 +1189,11 @@ class Levels_Window:
                 x, y, x2, y2 = i.rect.x, i.rect.y, i.rect.x + i.rect.width, i.rect.y + i.rect.height
                 if x - 10 <= pos[0] <= x2 and y - 10 <= pos[1] <= y2:
                     if sp.index(i) + 1 <= 2:
+                        if self.Sound:
+                            pygame.mixer.music.pause()
+                            self.sound_push_button.play()
+                            if self.Music:
+                                pygame.mixer.music.unpause()
                         if sp.index(i) + 1 == 1:
                             self.running = False
                             First_GM()
