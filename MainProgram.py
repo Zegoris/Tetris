@@ -1352,15 +1352,20 @@ class Levels_Window:
                 x, y, x2, y2 = i.rect.x, i.rect.y, i.rect.x + i.rect.width, i.rect.y + i.rect.height
                 if x - 10 <= pos[0] <= x2 and y - 10 <= pos[1] <= y2:
                     if sp.index(i) + 1 <= 2:
-                        if self.Sound:
-                            pygame.mixer.music.pause()
-                            self.sound_push_button.play()
-                            if self.Music:
-                                pygame.mixer.music.unpause()
                         if sp.index(i) + 1 == 1:
                             self.running = False
+                            if self.Sound:
+                                pygame.mixer.music.pause()
+                                self.sound_push_button.play()
+                                if self.Music:
+                                    pygame.mixer.music.unpause()
                             First_GM()
                         elif sp.index(i) + 1 == 2:
+                            if self.Sound:
+                                pygame.mixer.music.pause()
+                                self.sound_push_button.play()
+                                if self.Music:
+                                    pygame.mixer.music.unpause()
                             self.running = False
                             Second_GM()
 

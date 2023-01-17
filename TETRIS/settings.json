@@ -1,0 +1,21 @@
+{
+    "Music": true,
+    "Sounds": true,
+    "DarkTheme": true,
+    "Color": {
+        "Dark": [
+            245,
+            240,
+            225
+        ],
+        "Light": [
+            30,
+            61,
+            89
+        ]
+    },
+    "NickName": "Gercog",
+    "Font": "Symbol.ttf",
+    "Form": "Circle",
+    "Colors": "Forest"
+}
